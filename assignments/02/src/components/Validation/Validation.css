@@ -1,0 +1,14 @@
+.Validation {
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+}
+
+.Validation.yes {
+  background-color: #cfc;
+  border: 2px solid #8f8;
+}
+
+.Validation.no {
+  background-color: #faa;
+  border: 2px solid #f66;
+}

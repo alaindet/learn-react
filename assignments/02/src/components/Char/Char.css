@@ -1,0 +1,14 @@
+.Char {
+  display: inline-block;
+  font-size: 2.75rem;
+  padding: .33rem .5rem;
+  margin: .33rem;
+  background-color: #ffc;
+  border-radius: .5rem;
+  border: 2px solid #ca0;
+  width: 2rem;
+  min-height: 3.08rem;
+  line-height: 100%;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #888;
+}
