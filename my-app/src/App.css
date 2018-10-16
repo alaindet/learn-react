@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.App-button {
+  background-color: #efefef;
+  cursor: pointer;
+  font: 1.1rem;
+  border: 2px solid #88a;
+  border-radius: .5rem;
+  padding: 1rem;
+}
+.App-button:hover {
+  background-color: #cce;
+}
+.App-button:focus {
+  outline: 0;
+}
+.App-button:active {
+  background-color: #88a;
+  color: #eef;
+}
