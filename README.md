@@ -1,10 +1,15 @@
-# Udemy React course
+# Learn React
 
-- **Course**: [React 16 - The Complete Guide (incl. React Router 4 &amp; Redux)](https://www.udemy.com/react-the-complete-guide-incl-redux)
-- **Teacher**: [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)
+## Goals
 
-This repository contains the learning material I use to follow along with the course. Contains solved assignments as well
+This repository contains the learning material, demo, tests and everything I use to learn React
 
-## Personal notes
+## References
 
-- Never ever use changing data for React keys! Here's why http://reactkungfu.com/2015/09/react-js-loses-input-focus-on-typing/
+- React 16 - The Complete Guide (incl. React Router 4 &amp; Redux)
+  - **Course**: [React 16 - The Complete Guide (incl. React Router 4 &amp; Redux)](https://www.udemy.com/react-the-complete-guide-incl-redux)
+  - **Teacher**: [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)
+  
+- Modern React with Redux [2020 Update]
+  - **Course**: [Modern React with Redux [2020 Update]](https://www.udemy.com/course/react-redux/)
+  - **Teacher**: [Stephen Grider](https://www.udemy.com/user/sgslo/)
