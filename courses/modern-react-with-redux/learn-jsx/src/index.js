@@ -29,7 +29,7 @@ const MyForm = () => {
 
   return (
     <div style={style.all}>
-      <label style={style.label}>Enter name:</label>
+      <label style={style.label} htmlFor="name">Enter name:</label>
       <input style={style.input} id="name" type="text" />
       <button style={style.button} type="submit">
         {getButtonText()}
