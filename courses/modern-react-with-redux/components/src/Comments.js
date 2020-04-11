@@ -9,20 +9,28 @@ const comments = [
     author: 'John Doe',
     text: 'Nice blog post!',
     timeAgo: 'Today at 6:06 PM',
-  }
+  },
+  {
+    image: faker.image.avatar(),
+    author: 'Jane Doe',
+    text: 'Really well written article',
+    timeAgo: 'Today at 3:03 AM',
+  },
 ];
 
 const Comments = () => {
   return (
     <div className="ui container comments">
-      <ApprovalCard>
-        <CommentDetails
-          image={comments[0].image}
-          author={comments[0].author}
-          text={comments[0].text}
-          timeAgo={comments[0].timeAgo}
-        />
-      </ApprovalCard>
+      {comments.map((comment, index) => (
+        <ApprovalCard key={index}>
+          <CommentDetails
+            image={comment.image}
+            author={comment.author}
+            text={comment.text}
+            timeAgo={comment.timeAgo}
+          />
+        </ApprovalCard>
+      ))}
     </div>
   );
 };
