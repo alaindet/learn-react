@@ -7,6 +7,7 @@ class App extends React.Component {
 
   state = {
     loading: null,
+    loadingMessage: 'Waiting for geolocation permission',
     errorMessage: null,
     latitude: null,
   }
@@ -36,7 +37,7 @@ class App extends React.Component {
    */
   render() {
     if (this.state.loading) {
-      return <LoadingSpinner />;
+      return <LoadingSpinner message={this.state.loadingMessage} />;
     }
 
     if (this.state.errorMessage) {
