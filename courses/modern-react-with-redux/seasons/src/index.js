@@ -10,41 +10,47 @@ class App extends React.Component {
     latitude: null,
   }
 
-  constructor(props) {
-    super(props);
-    this.loadPosition();
-    this.state.loading = true;
-  }
-
   loadPosition() {
     window.navigator.geolocation.getCurrentPosition(
-      (position) => this.setState({
+      pos => this.setState({
         loading: false,
-        latitude: position.coords.latitude
+        latitude: pos.coords.latitude
       }),
-      (error) => this.setState({
+      err => this.setState({
         loading: false,
-        errorMessage: 'You did not allow access to your position'
+        errorMessage: err.message,
       })
     );
   }
 
+  /**
+   * Put data loading here
+   */
   componentDidMount() {
     console.log('componentDidMount');
+    this.setState({
+      loading: true
+    });
+    this.loadPosition();
   }
 
+  /**
+   * Put data loading based on state/props here
+   */
   componentDidUpdate() {
     console.log('componentDidUpdate');
   }
 
-  componentWillMount() {
-    console.log('componentWillMount');
-  }
-
+  /**
+   * Put cleanup stuff here
+   */
   componentWillUnmount() {
     console.log('componentWillUnmount');
   }
 
+  /**
+   * Avoid anything here except returing JSX
+   */
   render() {
     console.log('render');
     if (this.state.loading) {
