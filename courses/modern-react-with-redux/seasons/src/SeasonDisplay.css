@@ -1,0 +1,29 @@
+.icon-left {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+.icon-right {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.season-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.warm {
+  background-color: #ffc0a0;
+  color: #ff6000;
+}
+
+.cold {
+  background-color: #a0c0ff;
+  color: #0060ff;
+}

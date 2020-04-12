@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import LoadingSpinner from './LoadingSpinner';
 
 class App extends React.Component {
 
@@ -22,12 +23,8 @@ class App extends React.Component {
       })
     );
   }
-
-  /**
-   * Put data loading here
-   */
+  
   componentDidMount() {
-    console.log('componentDidMount');
     this.setState({
       loading: true
     });
@@ -35,33 +32,18 @@ class App extends React.Component {
   }
 
   /**
-   * Put data loading based on state/props here
-   */
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
-
-  /**
-   * Put cleanup stuff here
-   */
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-  }
-
-  /**
    * Avoid anything here except returing JSX
    */
   render() {
-    console.log('render');
     if (this.state.loading) {
-      return <p>Loading...</p>;
+      return <LoadingSpinner />;
     }
 
     if (this.state.errorMessage) {
       return <p>Error: {this.state.errorMessage}</p>;
     }
 
-    return <p>Latitude: {this.state.latitude}</p>;
+    return <SeasonDisplay latitude={this.state.latitude} />;
   }
 }
 
