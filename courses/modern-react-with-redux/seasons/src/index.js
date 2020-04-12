@@ -1,17 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import SeasonDisplay from './SeasonDisplay';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  state = {
+    loading: true,
+    errorMessage: null,
+    latitude: null,
+  }
+
+  constructor(props) {
+    super(props);
+    this.loadPosition();
+  }
+
+  loadPosition() {
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => this.setState({
+        loading: false,
+        latitude: position.coords.latitude
+      }),
+      (error) => this.setState({
+        loading: false,
+        errorMessage: 'You did not allow access to your position'
+      })
+    );
+  }
+
+  render() {
+    if (this.state.loading) {
+      return <p>Loading...</p>;
+    }
+
+    if (this.state.errorMessage) {
+      return <p>Error: {this.state.errorMessage}</p>;
+    }
+
+    return <p>Latitude: {this.state.latitude}</p>;
+  }
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'));
