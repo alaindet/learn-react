@@ -11,6 +11,13 @@ class App extends React.Component {
     errorMessage: null,
     latitude: null,
   }
+  
+  componentDidMount() {
+    this.setState({
+      loading: true
+    });
+    this.loadPosition();
+  }
 
   loadPosition() {
     window.navigator.geolocation.getCurrentPosition(
@@ -24,18 +31,8 @@ class App extends React.Component {
       })
     );
   }
-  
-  componentDidMount() {
-    this.setState({
-      loading: true
-    });
-    this.loadPosition();
-  }
 
-  /**
-   * Avoid anything here except returing JSX
-   */
-  render() {
+  renderContent() {
     if (this.state.loading) {
       return <LoadingSpinner message={this.state.loadingMessage} />;
     }
@@ -45,6 +42,13 @@ class App extends React.Component {
     }
 
     return <SeasonDisplay latitude={this.state.latitude} />;
+  }
+
+  /**
+   * Avoid anything here except returing JSX
+   */
+  render() {
+    return <React.Fragment>{this.renderContent()}</React.Fragment>;
   }
 }
 
