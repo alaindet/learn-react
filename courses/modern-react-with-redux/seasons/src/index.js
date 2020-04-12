@@ -5,7 +5,7 @@ import SeasonDisplay from './SeasonDisplay';
 class App extends React.Component {
 
   state = {
-    loading: true,
+    loading: null,
     errorMessage: null,
     latitude: null,
   }
@@ -13,6 +13,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.loadPosition();
+    this.state.loading = true;
   }
 
   loadPosition() {
@@ -28,7 +29,24 @@ class App extends React.Component {
     );
   }
 
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+  }
+
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
+
   render() {
+    console.log('render');
     if (this.state.loading) {
       return <p>Loading...</p>;
     }
