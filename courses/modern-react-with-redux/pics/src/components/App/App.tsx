@@ -3,12 +3,17 @@ import React from 'react';
 import './App.scss';
 import SearchBar from '../SearchBar/SearchBar';
 
-const App = () => {
-  return (
-    <div className="ui container" style={{ marginTop: '10px' }}>
-      <SearchBar />
-    </div>
-  );
-}
+export default class App extends React.Component {
 
-export default App;
+  public onSearchSubmit(term: string): void {
+    console.log('onSearchSubmit', term);
+  }
+
+  render() {
+    return (
+      <div className="ui container" style={{ marginTop: '10px' }}>
+        <SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
+      </div>
+    );
+  }
+}
