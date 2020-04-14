@@ -1,10 +1,23 @@
 $img-width: 150px;
+$img-height: 150px;
+$grid-gap: 5px;
 
 .image-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax($img-width, 1fr));
+  grid-gap: $grid-gap;
+  grid-auto-rows: $img-height;
 
   img {
     width: $img-width;
+    &.span-1 {
+      grid-row-end: span 1;
+    }
+    &.span-2 {
+      grid-row-end: span 2;
+    }
+    &.span-3 {
+      grid-row-end: span 3;
+    }
   }
 }
