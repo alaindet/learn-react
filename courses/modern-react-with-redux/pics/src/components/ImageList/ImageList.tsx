@@ -6,7 +6,7 @@ import ImageListProps from './ImageListProps.interface';
 
 export default function ImageList(props: ImageListProps) {
   return (
-    <div>
+    <div className="image-list">
       {props.images.map(image => (
         <ImageThumb
           key={image.id}

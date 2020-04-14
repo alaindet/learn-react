@@ -1,0 +1,10 @@
+$img-width: 150px;
+
+.image-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($img-width, 1fr));
+
+  img {
+    width: $img-width;
+  }
+}
