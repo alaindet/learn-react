@@ -4,7 +4,7 @@ import { AxiosResponse } from 'axios';
 
 import './App.scss';
 import SearchBar from './../SearchBar/SearchBar';
-import ImageList from './../ImageList/ImageList';
+import ImageList from '../ImageList/ImageList';
 import { SearchPhotosImage, SearchPhotosResponse } from './../../interfaces/SearchPhotoResponse';
 
 interface Props {}
