@@ -4,6 +4,7 @@ import { AxiosResponse } from 'axios';
 
 import './App.scss';
 import SearchBar from './../SearchBar/SearchBar';
+import ImageList from './../ImageList/ImageList';
 import { SearchPhotosImage, SearchPhotosResponse } from './../../interfaces/SearchPhotoResponse';
 
 interface Props {}
@@ -45,6 +46,7 @@ export default class App extends React.Component<Props, State> {
       <div className="ui container" style={{ marginTop: '10px' }}>
         <SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
         {this.renderResultsCounter()}
+        <ImageList images={this.state.images} />
       </div>
     );
   }
