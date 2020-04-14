@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import unsplash from './../../api/unsplash';
+import { AxiosResponse } from 'axios';
 
 import './App.scss';
 import SearchBar from './../SearchBar/SearchBar';
@@ -20,19 +20,15 @@ export default class App extends React.Component<Props, State> {
 
   private async onSearchSubmit(term: string) {
 
+    let response: AxiosResponse<SearchPhotosResponse>;
     const url = ''+process.env.REACT_APP_API_SEARCH_PHOTOS_URL;
-    const accessKey = process.env.REACT_APP_API_ACCESS_KEY;
-    const config: AxiosRequestConfig = {
+    const config = {
       params: {
         query: term
-      },
-      headers: {
-        Authorization: `Client-ID ${accessKey}`,
       }
     };
 
-    let response: AxiosResponse<SearchPhotosResponse>;
-    response = await axios.get(url, config);
+    response = await unsplash.get(url, config);
     this.setState({ images: response.data.results });
   }
 
