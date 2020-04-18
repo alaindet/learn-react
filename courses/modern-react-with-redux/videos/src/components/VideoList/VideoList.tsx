@@ -5,16 +5,21 @@ import VideoItem from 'components/VideoItem/VideoItem';
 
 interface Props {
   videos: YoutubeSearchResult[];
+  onVideoSelect: (video: YoutubeSearchResult) => void;
 }
 
-const VideoList = ({ videos }: Props) => {
+const VideoList = ({ videos, onVideoSelect }: Props) => {
 
   const renderedList = videos.map(video => (
-    <VideoItem key={video.id.videoId} video={video} />
+    <VideoItem
+      key={video.id.videoId}
+      video={video}
+      onVideoSelect={onVideoSelect}
+    />
   ));
 
   return (
-    <div>
+    <div className="ui relaxed divided list">
       {renderedList}
     </div>
   );

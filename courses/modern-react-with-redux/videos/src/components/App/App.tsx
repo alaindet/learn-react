@@ -2,7 +2,7 @@ import React from 'react';
 import { AxiosResponse } from 'axios';
 
 import youtube from 'api/youtube';
-import YoutubeSearchListResponse from 'api/youtube-search-list-response.interface';
+import YoutubeSearchListResponse, { YoutubeSearchResult } from 'api/youtube-search-list-response.interface';
 import Props from './Props.interface';
 import State from './State.interface';
 import './App.css';
@@ -13,7 +13,14 @@ export default class App extends React.Component<Props, State> {
 
   state: State = {
     videos: [],
+    selectedVideo: null,
   };
+
+  onVideoSelect(video: YoutubeSearchResult): void {
+    this.setState({
+      selectedVideo: video
+    })
+  }
 
   async onSearchSubmit(term: string) {
 
@@ -33,7 +40,10 @@ export default class App extends React.Component<Props, State> {
     return (
       <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
-        <VideoList videos={this.state.videos} />
+        <VideoList
+          onVideoSelect={this.onVideoSelect.bind(this)}
+          videos={this.state.videos}
+        />
       </div>
     );
   }
