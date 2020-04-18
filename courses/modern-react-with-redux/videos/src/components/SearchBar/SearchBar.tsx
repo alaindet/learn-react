@@ -19,14 +19,14 @@ export default class SearchBar extends React.Component<Props, State> {
 
   onFormSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    // this.props.onSubmit(this.state.term);
+    this.props.onSubmit(this.state.term);
   }
 
 
   render() {
     return (
       <div className="search-bar ui segment">
-        <form className="ui form" onSubmit={this.onFormSubmit}>
+        <form className="ui form" onSubmit={this.onFormSubmit.bind(this)}>
           <div className="field">
             <label htmlFor="search">Video Search</label>
             <input
