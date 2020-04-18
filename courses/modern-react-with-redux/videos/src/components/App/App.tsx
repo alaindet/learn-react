@@ -8,13 +8,19 @@ import State from './State.interface';
 import './App.css';
 import SearchBar from 'components/SearchBar/SearchBar';
 import VideoList from 'components/VideoList/VideoList';
+import VideoDetail from 'components/VideoDetail/VideoDetail';
 
 export default class App extends React.Component<Props, State> {
 
   state: State = {
     videos: [],
     selectedVideo: null,
+    defaultSearch: 'rick astley',
   };
+
+  componentDidMount() {
+    this.onSearchSubmit(this.state.defaultSearch);
+  }
 
   onVideoSelect(video: YoutubeSearchResult): void {
     this.setState({
@@ -33,17 +39,30 @@ export default class App extends React.Component<Props, State> {
 
     this.setState({
       videos: response.data.items,
+      selectedVideo: response.data.items[0],
     })
   }
 
   render() {
     return (
       <div className="ui container">
+
         <SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
-        <VideoList
-          onVideoSelect={this.onVideoSelect.bind(this)}
-          videos={this.state.videos}
-        />
+
+        <div className="ui stackable four column grid">
+          <div className="ui row">
+            <div className="eleven wide column">
+              <VideoDetail video={this.state.selectedVideo} />
+            </div>
+            <div className="one wide column">
+              <VideoList
+                onVideoSelect={this.onVideoSelect.bind(this)}
+                videos={this.state.videos}
+              />
+            </div>
+          </div>
+        </div>
+
       </div>
     );
   }
