@@ -1,3 +1,6 @@
 export default interface Post {
-  [key: string]: any; // TODO
+  id: number;
+  userId: number;
+  title: string;
+  body: string;
 }

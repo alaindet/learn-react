@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { fetchPosts } from 'actions/index';
+import Post from 'types/post.interface';
+import UserHeader from 'components/UserHeader';
 
 interface Props {
   fetchPosts: () => any;
@@ -16,11 +19,38 @@ class PostList extends React.Component<any, Props> {
     this.props.fetchPosts();
   }
 
+  renderList() {
+    return this.props.posts.map((post: Post) => {
+      return (
+        <div key={post.id} className="item">
+
+          {/* Icon */}
+          <i className="large middle aligned icon user" />
+
+          {/* Post */}
+          <div className="content">
+            <div className="description">
+              <h2>{post.title}</h2>
+              <p>{post.body}</p>
+            </div>
+          </div>
+
+          {/* Author */}
+          <UserHeader userId={post.userId} />
+
+        </div>
+      );
+    });
+  }
+
   render() {
-    console.log(this.props.posts);
+    if (!this.props.posts.length) {
+      return <div>Loading...</div>;
+    }
+
     return (
-      <div className="ui container">
-        Post List
+      <div className="ui relaxed divided list">
+        {this.renderList()}
       </div>
     );
   }
