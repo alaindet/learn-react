@@ -1,23 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchUser } from 'actions/index';
 import User from 'types/user.interface';
 import State from 'types/state.interface';
 
 interface TheseProps {
   userId?: string | number;
   user?: User;
-  fetchUser?: () => any;
 }
 
 class UserHeader extends React.Component<any, TheseProps> {
-
-  componentDidMount() {
-    if (!this.props.user) {
-      this.props.fetchUser(this.props.userId);
-    }
-  }
 
   render() {
 
@@ -41,9 +33,7 @@ const mapStateToProps = (state: State, ownProps: TheseProps) => {
   }
 };
 
-const mapDispatchToProps = {
-  fetchUser,
-};
+const mapDispatchToProps = null;
 
 export default connect(
   mapStateToProps,

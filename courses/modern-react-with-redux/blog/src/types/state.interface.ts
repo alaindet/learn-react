@@ -1,5 +1,3 @@
-import { Reducer } from 'react';
-
 import Post from 'types/post.interface';
 import User from 'types/user.interface';
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchPosts } from 'actions/index';
+import { fetchPostsAndUsers } from 'actions/index';
 import Post from 'types/post.interface';
 import UserHeader from 'components/UserHeader';
 
 interface Props {
-  fetchPosts: () => any;
+  fetchPostsAndUsers: () => any;
 }
 
 interface State {
@@ -16,7 +16,7 @@ interface State {
 class PostList extends React.Component<any, Props> {
 
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchPostsAndUsers();
   }
 
   renderList() {
@@ -63,7 +63,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = {
-  fetchPosts,
+  fetchPostsAndUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);

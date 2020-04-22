@@ -17,13 +17,15 @@ export const fetchPosts = () => async (dispatch: any) => {
   });
 };
 
-export const fetchUser = (id: string) => (dispatch: any) => {
-  _fetchUser(id, dispatch);
+export const fetchUser = (id: string) => async (dispatch: any) => {
+  const response = await jsonPlaceholder.get(`/users/${id}`);
+  dispatch({ type: ACTIONS.FETCH_USER, payload: response.data });
 };
 
-const _fetchUser = _.memoize(
-  async (id: string, dispatch: any ) => {
-    const response = await jsonPlaceholder.get(`/users/${id}`);
-    dispatch({ type: ACTIONS.FETCH_USER, payload: response.data });
+export const fetchPostsAndUsers = () => async (dispatch: any, getState: any) => {
+  await dispatch(fetchPosts());
+  const userIds = _.uniq(_.map(getState().posts, 'userId'));
+  for (const userId of userIds) {
+    dispatch(fetchUser(userId));
   }
-);
+};
