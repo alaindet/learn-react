@@ -1,9 +1,32 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-function App() {
+const PageOne = () => {
   return (
     <div>
-      App
+      PageOne
+    </div>
+  );
+};
+
+const PageTwo = () => {
+  return (
+    <div>
+      PageTwo
+      <button>Click me</button>
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <div>
+      <BrowserRouter>
+        <div>
+          <Route path="/" exact component={PageOne} />
+          <Route path="/pageTwo" component={PageTwo} />
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
