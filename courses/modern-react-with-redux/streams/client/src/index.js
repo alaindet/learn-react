@@ -6,7 +6,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import App from './components/App';
 import reducers from './reducers';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+let composeEnhancers = compose;
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+}
 const store = createStore(reducers, composeEnhancers(applyMiddleware()));
 
 ReactDOM.render(
