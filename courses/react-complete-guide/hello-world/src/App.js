@@ -8,6 +8,10 @@ class App extends Component {
         <h1>Hello World</h1>
       </div>
     );
+    // // Equivalent to
+    // return React.createElement('div', { className: 'App'},
+    //   React.createElement('h1', 'Hello World')
+    // );
   }
 }
 
