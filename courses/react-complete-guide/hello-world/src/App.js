@@ -1,17 +1,48 @@
 import React, { Component } from 'react';
 import './App.css';
+import Person from './Person/Person';
 
 class App extends Component {
+
+  state = {
+    people: [
+      {
+        name: 'Alice',
+        age: 10,
+        hobbies: ['Gardening', 'Rolling on hills\' sides'],
+      },
+      {
+        name: 'Bob',
+        age: 20,
+        hobbies: ['Cooking', 'Riding the lightning'],
+      },
+      {
+        name: 'Fenchurch',
+        age: 30,
+        hobbies: ['Reading', 'Listening to music'],
+      },
+    ],
+  };
+
+  renderPeople() {
+    return this.state.people.map((person, i) => (
+      <Person name={person.name} age={person.age} key={i}>
+        <ul className="hobbies">
+          {person.hobbies.map((hobby, j) => (
+            <li className="hobby" key={j}>{hobby}</li>
+          ))}
+        </ul>
+      </Person>
+    ));
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Hello World</h1>
+        {this.renderPeople()}
       </div>
     );
-    // // Equivalent to
-    // return React.createElement('div', { className: 'App'},
-    //   React.createElement('h1', 'Hello World')
-    // );
   }
 }
 
