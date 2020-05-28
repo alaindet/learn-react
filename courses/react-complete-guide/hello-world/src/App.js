@@ -24,9 +24,17 @@ class App extends Component {
     ],
   };
 
+  onRemovePerson = () => {
+    const name = 'Bob'; // TODO
+    this.setState({
+      people: this.state.people.filter(person => person.name !== name),
+    });
+  }
+
   renderPeople() {
     return this.state.people.map((person, i) => (
       <Person name={person.name} age={person.age} key={i}>
+        <button onClick={this.onRemovePerson}>Remove</button>
         <ul className="hobbies">
           {person.hobbies.map((hobby, j) => (
             <li className="hobby" key={j}>{hobby}</li>
