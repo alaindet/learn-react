@@ -24,22 +24,33 @@ class App extends Component {
     ],
   };
 
-  onRemovePerson = () => {
-    const name = 'Bob'; // TODO
+  onRemovePerson = (name) => {
     this.setState({
-      people: this.state.people.filter(person => person.name !== name),
+      people: this.state.people.filter(
+        person => person.name !== name
+      )
     });
+  }
+
+  renderPerson(person) {
+    return (
+      <ul className="hobbies">
+        {person.hobbies.map((hobby, j) => (
+          <li className="hobby" key={j}>{hobby}</li>
+        ))}
+      </ul>
+    );
   }
 
   renderPeople() {
     return this.state.people.map((person, i) => (
-      <Person name={person.name} age={person.age} key={i}>
-        <button onClick={this.onRemovePerson}>Remove</button>
-        <ul className="hobbies">
-          {person.hobbies.map((hobby, j) => (
-            <li className="hobby" key={j}>{hobby}</li>
-          ))}
-        </ul>
+      <Person
+        key={i}
+        age={person.age}
+        name={person.name}
+        click={this.onRemovePerson}
+      >
+        {this.renderPerson(person)}
       </Person>
     ));
   }
