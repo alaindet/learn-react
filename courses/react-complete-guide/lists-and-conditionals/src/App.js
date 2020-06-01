@@ -5,6 +5,7 @@ import Person from './Person/Person';
 class App extends Component {
 
   state = {
+    showPeople: false,
     people: [
       {
         name: 'Alice',
@@ -37,6 +38,10 @@ class App extends Component {
     console.log('onChangePersonName', name);
   }
 
+  onTogglePeople = () => {
+    this.setState(state => ({ showPeople: !state.showPeople }));
+  }
+
   renderPersonHobbies(person) {
     return (
       <ul className="hobbies">
@@ -64,8 +69,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello World</h1>
-        {this.renderPeople()}
+        <h1 className="title">
+          People list
+          <button className="button-link" onClick={this.onTogglePeople}>
+            {this.state.showPeople ? 'Hide' : 'Show'}
+          </button>
+        </h1>
+        {this.state.showPeople ? this.renderPeople() : null}
       </div>
     );
   }
