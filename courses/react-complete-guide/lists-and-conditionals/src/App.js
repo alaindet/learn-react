@@ -5,19 +5,22 @@ import Person from './Person/Person';
 class App extends Component {
 
   state = {
-    showPeople: false,
+    showPeople: true,
     people: [
       {
+        id: 123,
         name: 'Alice',
         age: 10,
         hobbies: ['Gardening', 'Rolling on hills\' sides'],
       },
       {
+        id: 456,
         name: 'Bob',
         age: 20,
         hobbies: ['Cooking', 'Riding the lightning'],
       },
       {
+        id: 789,
         name: 'Fenchurch',
         age: 30,
         hobbies: ['Reading', 'Listening to music'],
@@ -25,17 +28,21 @@ class App extends Component {
     ],
   };
 
-  onRemovePerson = (name) => {
+  onRemovePerson = (id) => {
     this.setState({
-      people: this.state.people.filter(
-        person => person.name !== name
-      )
+      people: this.state.people.filter(person => person.id !== id)
     });
   }
 
-  onChangePersonName = (event) => {
-    const name = event.target.value;
-    console.log('onChangePersonName', name);
+  onChangePersonName = (event, id) => {
+    this.setState({
+      people: this.state.people.map(person => {
+        if (person.id === id) {
+          person.name = event.target.value;
+        }
+        return person;
+      }),
+    });
   }
 
   onTogglePeople = () => {
@@ -53,12 +60,11 @@ class App extends Component {
   }
 
   renderPeople() {
-    return this.state.people.map((person, i) => (
+    return this.state.people.map(person => (
       <Person
-        key={i}
-        age={person.age}
-        name={person.name}
-        click={this.onRemovePerson}
+        key={person.id}
+        data={person}
+        click={(index) => this.onRemovePerson(person.id)}
         change={this.onChangePersonName}
       >
         {this.renderPersonHobbies(person)}

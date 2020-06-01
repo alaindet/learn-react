@@ -2,8 +2,7 @@ import React from 'react';
 import './Person.css';
 
 const Person = ({
-  name,
-  age,
+  data,
   click,
   change,
   children,
@@ -11,13 +10,16 @@ const Person = ({
   return (
     <div className="person">
       <p>
-        I am <span className="name">{name}</span> and I am <span className="age">{age}</span> years old
+        I am <span className="name">{data.name}</span> and I am <span className="age">{data.age}</span> years old
       </p>
       <div className="children">{children}</div>
-      <div className="remove" onClick={() => click(name)}>
+      <div className="remove" onClick={() => click(data.name)}>
         Remove
       </div>
-      <input type="text" onChange={change} value={name} />
+      <input
+        type="text"
+        onChange={(event) => change(event, data.id)} value={data.name}
+      />
     </div>
   );
 };
