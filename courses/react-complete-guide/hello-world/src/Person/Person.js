@@ -1,7 +1,13 @@
 import React from 'react';
 import './Person.css';
 
-const Person = ({ name, age, click, children }) => {
+const Person = ({
+  name,
+  age,
+  click,
+  change,
+  children,
+}) => {
   return (
     <div className="person">
       <p>
@@ -11,6 +17,7 @@ const Person = ({ name, age, click, children }) => {
       <div className="remove" onClick={() => click(name)}>
         Remove
       </div>
+      <input type="text" onChange={change} value={name} />
     </div>
   );
 };

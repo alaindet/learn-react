@@ -32,7 +32,12 @@ class App extends Component {
     });
   }
 
-  renderPerson(person) {
+  onChangePersonName = (event) => {
+    const name = event.target.value;
+    console.log('onChangePersonName', name);
+  }
+
+  renderPersonHobbies(person) {
     return (
       <ul className="hobbies">
         {person.hobbies.map((hobby, j) => (
@@ -49,8 +54,9 @@ class App extends Component {
         age={person.age}
         name={person.name}
         click={this.onRemovePerson}
+        change={this.onChangePersonName}
       >
-        {this.renderPerson(person)}
+        {this.renderPersonHobbies(person)}
       </Person>
     ));
   }
