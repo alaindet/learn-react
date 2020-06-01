@@ -1,0 +1,8 @@
+.hobbies {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.hobby {
+  padding: 0.5rem 0;
+}
