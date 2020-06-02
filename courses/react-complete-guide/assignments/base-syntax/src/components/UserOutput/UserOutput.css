@@ -1,0 +1,21 @@
+.UserOutput::before {
+  content: "$";
+  color: #8e8;
+  padding-right: 1rem;
+}
+
+.UserOutput::after {
+  content: "|";
+  color: #8e8;
+  padding-left: 1rem;
+  animation: blink-animation 1s infinite steps(2, start);
+}
+
+@keyframes blink-animation {
+  from {
+    visibility: visible;
+  }
+  to {
+    visibility: hidden;
+  }
+}

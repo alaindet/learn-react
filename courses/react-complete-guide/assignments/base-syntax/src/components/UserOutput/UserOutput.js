@@ -4,7 +4,7 @@ import './UserOutput.css';
 
 const UserOutput = ({ content }) => {
   return (
-    <div className="user-output">
+    <div className="UserOutput">
       {content}
     </div>
   );

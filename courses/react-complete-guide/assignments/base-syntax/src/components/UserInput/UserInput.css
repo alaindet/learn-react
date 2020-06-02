@@ -1,17 +1,17 @@
-.user-input input {
-  font-family: monospace;
+.UserInput input {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 2rem;
   padding: 0.5rem;
+  min-width: 0;
   border-radius: 0.5rem;
   border: 2px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
 }
 
-.user-input input:focus,
-.user-input input:active {
+.UserInput input:focus,
+.UserInput input:active {
   outline: none;
   border-color: #8e8;
   color: #8e8;

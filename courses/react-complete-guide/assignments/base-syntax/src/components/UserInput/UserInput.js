@@ -4,7 +4,7 @@ import './UserInput.css';
 
 const UserInput = ({ change, value }) => {
   return (
-    <div className="user-input">
+    <div className="UserInput">
       <input
         type="text"
         value={value}
