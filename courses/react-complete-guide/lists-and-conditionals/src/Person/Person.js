@@ -1,25 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Person.css';
 
 const Person = ({
   data,
-  click,
-  change,
+  remove,
+  edit,
   children,
 }) => {
+
+  const [name, setName] = useState(data.name);
+  const [isEditing, setIsEditing] = useState(false);
+  const [actionLabel, setActionLabel] = useState('Edit');
+
+  const toggleEditing = () => {
+    if (isEditing) {
+      setIsEditing(false);
+      setActionLabel('Edit');
+      edit(data.id, { ...data, name });
+    } else {
+      setIsEditing(true);
+      setActionLabel('Save');
+    }
+  };
+
+  const onInputChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const onInputKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      onInputChange(event);
+      toggleEditing();
+    }
+  };
+
   return (
-    <div className="person">
-      <p>
-        I am <span className="name">{data.name}</span> and I am <span className="age">{data.age}</span> years old
-      </p>
+    <div className="Person">
+
+      {/* Person's generalities */}
+      <ul className="generalities">
+        <li><strong>Name:</strong> {data.name}</li>
+        <li><strong>Age:</strong> {data.age}</li>
+      </ul>
+
+      {/* Injected content */}
       <div className="children">{children}</div>
-      <div className="remove" onClick={() => click(data.name)}>
-        Remove
+
+      {/* Actions */}
+      <div className="actions">
+        <button className="remove" onClick={() => remove(data.id)}>Remove</button>
+        <button className={actionLabel.toLowerCase()} onClick={toggleEditing}>{actionLabel}</button>
       </div>
-      <input
-        type="text"
-        onChange={(event) => change(event, data.id)} value={data.name}
-      />
+
+      {/* Editing */}
+      {isEditing &&
+        <input
+          className="name-input"
+          type="text"
+          onChange={onInputChange}
+          onKeyDown={onInputKeyDown}
+          value={name}
+        />
+      }
     </div>
   );
 };

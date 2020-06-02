@@ -34,26 +34,23 @@ class App extends Component {
     });
   }
 
-  onChangePersonName = (event, id) => {
+  onEditPerson = (id, newPerson) => {
     this.setState({
-      people: this.state.people.map(person => {
-        if (person.id === id) {
-          person.name = event.target.value;
-        }
-        return person;
-      }),
+      people: this.state.people.map(
+        person => person.id === id ? newPerson : person
+      )
     });
   }
 
-  onTogglePeople = () => {
+  onTogglePeopleVisibility = () => {
     this.setState(state => ({ showPeople: !state.showPeople }));
   }
 
   renderPersonHobbies(person) {
     return (
       <ul className="hobbies">
-        {person.hobbies.map((hobby, j) => (
-          <li className="hobby" key={j}>{hobby}</li>
+        {person.hobbies.map((hobby, index) => (
+          <li className="hobby" key={index}>{hobby}</li>
         ))}
       </ul>
     );
@@ -64,8 +61,8 @@ class App extends Component {
       <Person
         key={person.id}
         data={person}
-        click={(index) => this.onRemovePerson(person.id)}
-        change={this.onChangePersonName}
+        remove={this.onRemovePerson}
+        edit={this.onEditPerson}
       >
         {this.renderPersonHobbies(person)}
       </Person>
@@ -77,11 +74,14 @@ class App extends Component {
       <div className="App">
         <h1 className="title">
           People list
-          <button className="button-link" onClick={this.onTogglePeople}>
+          <button
+            className="button-link"
+            onClick={this.onTogglePeopleVisibility}
+          >
             {this.state.showPeople ? 'Hide' : 'Show'}
           </button>
         </h1>
-        {this.state.showPeople ? this.renderPeople() : null}
+        {this.state.showPeople && this.renderPeople()}
       </div>
     );
   }
