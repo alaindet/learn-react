@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
 import './Person.css';
+
+const StyledDiv = styled.div`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+`;
 
 const Person = ({
   data,
