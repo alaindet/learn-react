@@ -1,80 +1,61 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
-import './Person.css';
-
-const StyledDiv = styled.div`
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
-  display: flex;
-  flex-direction: column;
-`;
+import {
+  PersonStyled,
+  PersonMetadata,
+  Actions,
+  RemoveAction,
+  EditAction,
+  SaveAction,
+} from './Person.style';
 
 const Person = ({
   data,
   remove,
   edit,
-  children,
 }) => {
 
   const [name, setName] = useState(data.name);
+  const [age, setAge] = useState(data.age);
   const [isEditing, setIsEditing] = useState(false);
-  const [actionLabel, setActionLabel] = useState('Edit');
 
-  const toggleEditing = () => {
-    if (isEditing) {
-      setIsEditing(false);
-      setActionLabel('Edit');
-      edit(data.id, { ...data, name });
-    } else {
-      setIsEditing(true);
-      setActionLabel('Save');
-    }
+  const onSaveForm = () => {
+    setIsEditing(false);
+    edit(data.id, {...data, name, age});
   };
 
-  const onInputChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const onInputKeyDown = (event) => {
-    if (event.keyCode === 13) {
-      onInputChange(event);
-      toggleEditing();
-    }
+  const onEditForm = () => {
+    setIsEditing(true);
   };
 
   return (
-    <div className="Person">
+    <PersonStyled>
 
       {/* Person's generalities */}
-      <ul className="generalities">
+      <PersonMetadata>
         <li><strong>Name:</strong> {data.name}</li>
         <li><strong>Age:</strong> {data.age}</li>
-      </ul>
-
-      {/* Injected content */}
-      <div className="children">{children}</div>
+      </PersonMetadata>
 
       {/* Actions */}
-      <div className="actions">
-        <button className="remove" onClick={() => remove(data.id)}>Remove</button>
-        <button className={actionLabel.toLowerCase()} onClick={toggleEditing}>{actionLabel}</button>
-      </div>
+      <Actions>
+        <RemoveAction onClick={() => remove(data.id)}>
+          Remove
+        </RemoveAction>
 
-      {/* Editing */}
+        {isEditing &&
+          <SaveAction onClick={onSaveForm}>Save</SaveAction>
+        }
+
+        {!isEditing &&
+          <EditAction onClick={onEditForm}>Edit</EditAction>
+        }
+      </Actions>
+
       {isEditing &&
-        <input
-          className="name-input"
-          type="text"
-          onChange={onInputChange}
-          onKeyDown={onInputKeyDown}
-          value={name}
-        />
+        'Editing form'
       }
-    </div>
+    </PersonStyled>
   );
 };
 
