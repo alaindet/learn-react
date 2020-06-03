@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Form from './../Form/Form';
 import {
   PersonStyled,
   PersonMetadata,
@@ -19,9 +20,28 @@ const Person = ({
   const [age, setAge] = useState(data.age);
   const [isEditing, setIsEditing] = useState(false);
 
+  const fields = [
+    {
+      label: 'Name',
+      value: name,
+      setter: setName,
+    },
+    {
+      label: 'Age',
+      value: age,
+      setter: setAge,
+    },
+  ];
+
   const onSaveForm = () => {
     setIsEditing(false);
     edit(data.id, {...data, name, age});
+  };
+
+  const onDiscardForm = () => {
+    setIsEditing(false);
+    setName(data.name);
+    setAge(data.age);
   };
 
   const onEditForm = () => {
@@ -31,30 +51,20 @@ const Person = ({
   return (
     <PersonStyled>
 
-      {/* Person's generalities */}
       <PersonMetadata>
         <li><strong>Name:</strong> {data.name}</li>
         <li><strong>Age:</strong> {data.age}</li>
       </PersonMetadata>
 
-      {/* Actions */}
       <Actions>
-        <RemoveAction onClick={() => remove(data.id)}>
-          Remove
-        </RemoveAction>
-
-        {isEditing &&
-          <SaveAction onClick={onSaveForm}>Save</SaveAction>
-        }
-
-        {!isEditing &&
-          <EditAction onClick={onEditForm}>Edit</EditAction>
-        }
+        <RemoveAction onClick={() => remove(data.id)}>Remove</RemoveAction>
+        {isEditing && <SaveAction onClick={onSaveForm}>Save</SaveAction>}
+        {isEditing && <EditAction onClick={onDiscardForm}>Discard</EditAction>}
+        {!isEditing && <EditAction onClick={onEditForm}>Edit</EditAction>}
       </Actions>
 
-      {isEditing &&
-        'Editing form'
-      }
+      {isEditing && <Form fields={fields} />}
+      
     </PersonStyled>
   );
 };

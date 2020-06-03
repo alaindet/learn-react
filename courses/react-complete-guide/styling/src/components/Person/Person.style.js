@@ -59,3 +59,8 @@ export const SaveAction = styled(Action)`
   background-color: #48bb78;
   color: white;
 `;
+
+export const DiscardAction = styled(Action)`
+  background-color: #48bb78;
+  color: white;
+`;

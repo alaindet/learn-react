@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
-import './App.css';
-import Person from './Person/Person';
+import Person from './components/Person/Person';
+import {
+  AppStyled,
+  AppTitle,
+  ButtonLink,
+} from './App.style';
 
 class App extends Component {
 
@@ -47,43 +51,29 @@ class App extends Component {
     this.setState(state => ({ showPeople: !state.showPeople }));
   }
 
-  renderPersonHobbies(person) {
-    return (
-      <ul className="hobbies">
-        {person.hobbies.map((hobby, index) => (
-          <li className="hobby" key={index}>{hobby}</li>
-        ))}
-      </ul>
-    );
-  }
-
-  renderPeople() {
-    return this.state.people.map(person => (
-      <Person
-        key={person.id}
-        data={person}
-        remove={this.onRemovePerson}
-        edit={this.onEditPerson}
-      >
-        {this.renderPersonHobbies(person)}
-      </Person>
-    ));
-  }
-
   render() {
+    const showPeople = this.state.showPeople;
+    const people = this.state.people;
     return (
-      <div className="App">
-        <h1 className="title">
+      <AppStyled>
+
+        <AppTitle>
           People list
-          <button
-            className="button-link"
-            onClick={this.onTogglePeopleVisibility}
-          >
-            {this.state.showPeople ? 'Hide' : 'Show'}
-          </button>
-        </h1>
-        {this.state.showPeople && this.renderPeople()}
-      </div>
+          <ButtonLink onClick={this.onTogglePeopleVisibility}>
+            {showPeople ? 'Hide' : 'Show'}
+          </ButtonLink>
+        </AppTitle>
+
+        {showPeople && people.map(person => (
+          <Person
+            key={person.id}
+            data={person}
+            remove={this.onRemovePerson}
+            edit={this.onEditPerson}
+          />
+        ))}
+
+      </AppStyled>
     );
   }
 }
