@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import { AppStyled, AppTitle, ButtonLink } from './App.style.js';
+import { AppStyled } from './App.style.js';
 import People from './../../components/People/People';
+import Dashboard from './../../components/Dashboard/Dashboard';
 
 class App extends Component {
 
   state = {
-    showPeople: true,
     people: [
       {
         id: 123,
@@ -40,28 +40,19 @@ class App extends Component {
     });
   }
 
-  onTogglePeopleVisibility = () => {
-    this.setState(state => ({ showPeople: !state.showPeople }));
-  }
-
   render() {
     return (
       <AppStyled>
 
-        <AppTitle>
-          People list
-          <ButtonLink onClick={this.onTogglePeopleVisibility}>
-            {this.state.showPeople ? 'Hide' : 'Show'}
-          </ButtonLink>
-        </AppTitle>
+        <h1>People list</h1>
 
-        {this.state.showPeople &&
-          <People
-            people={this.state.people}
-            edit={this.onEditPerson}
-            remove={this.onRemovePerson}
-          />
-        }
+        <Dashboard />
+
+        <People
+          people={this.state.people}
+          edit={this.onEditPerson}
+          remove={this.onRemovePerson}
+        />
 
       </AppStyled>
     );

@@ -34,11 +34,11 @@ export const Action = styled.button`
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 600;
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
-    box-shadow: 3px 3px 3px #ccc;
-    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, .3);
+    transform: translate(-2px, -2px);
   }
 
   &:focus {

@@ -5,11 +5,6 @@ export const AppStyled = styled.div`
   max-width: 60rem;
 `;
 
-export const AppTitle = styled.h1`
-  display: flex;
-  align-items: center;
-`;
-
 export const ButtonLink = styled.button`
   background-color: transparent;
   border: 1px solid transparent;
