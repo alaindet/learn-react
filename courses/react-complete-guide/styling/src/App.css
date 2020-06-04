@@ -1,0 +1,29 @@
+.App {
+  margin: 0 auto;
+  padding: 0.5rem;
+  max-width: 60rem; 
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.button-link {
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-left: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.button-link:hover {
+  color: #60a0a0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.button-link:focus {
+  outline: none;
+  border-color: #60a0a0;
+}

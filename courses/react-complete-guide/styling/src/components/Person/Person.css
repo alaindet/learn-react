@@ -1,0 +1,60 @@
+.Person {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  position: relative;
+  box-shadow: 3px 3px 8px #ddd;
+  border: 3px dashed transparent;
+}
+
+.metadata {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.action {
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.action:hover {
+  box-shadow: 3px 3px 3px #ccc;
+  transform: translate(-1px, -1px);
+}
+
+.action:focus {
+  outline: 0;
+}
+
+.action.remove {
+  background-color: #e53e3e;
+  color: white;
+}
+
+.action.edit,
+.action.discard {
+  background-color: #f6e05e;
+}
+
+.action.save {
+  background-color: #48bb78;
+  color: white;
+}
