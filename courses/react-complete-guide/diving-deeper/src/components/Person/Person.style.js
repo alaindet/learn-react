@@ -24,38 +24,3 @@ export const Actions = styled.div`
   flex-direction: column;
   justify-content: space-around;
 `;
-
-export const Action = styled.button`
-  border: none;
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 0;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, .3);
-    transform: translate(-2px, -2px);
-  }
-
-  &:focus {
-    outline: 0;
-  }
-`;
-
-export const RemoveAction = styled(Action)`
-  background-color: #e53e3e;
-  color: white;
-`;
-
-export const EditAction = styled(Action)`
-  background-color: #f6e05e;
-`;
-
-export const SaveAction = styled(Action)`
-  background-color: #48bb78;
-  color: white;
-`;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { PersonStyled, Generalities, Actions, RemoveAction, EditAction, SaveAction } from './Person.style';
+import { PersonStyled, Generalities, Actions } from './Person.style';
+import { DangerButton, WarningButton, SuccessButton } from './../../theme/button';
 import Form from './../Form/Form';
 
 const Person = ({
@@ -50,10 +51,10 @@ const Person = ({
       </Generalities>
 
       <Actions>
-        <RemoveAction onClick={() => remove(data.id)}>Remove</RemoveAction>
-        {isEditing && <SaveAction onClick={onSaveForm}>Save</SaveAction>}
-        {isEditing && <EditAction onClick={onDiscardForm}>Discard</EditAction>}
-        {!isEditing && <EditAction onClick={onActivateForm}>Edit</EditAction>}
+        <DangerButton onClick={() => remove(data.id)}>Remove</DangerButton>
+        {isEditing && <SuccessButton onClick={onSaveForm}>Save</SuccessButton>}
+        {isEditing && <WarningButton onClick={onDiscardForm}>Discard</WarningButton>}
+        {!isEditing && <WarningButton onClick={onActivateForm}>Edit</WarningButton>}
       </Actions>
 
       {isEditing && <Form fields={fields} />}
