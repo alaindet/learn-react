@@ -26,32 +26,34 @@ const Person = ({
     },
   ];
 
-  const toggleEditing = () => {
-    if (isEditing) {
-      setIsEditing(false);
-      edit(data.id, { ...data, name });
-    } else {
-      setIsEditing(true);
-    }
+  const onSaveForm = () => {
+    setIsEditing(false);
+    edit(data.id, { ...data, name, age });
+  };
+
+  const onDiscardForm = () => {
+    setIsEditing(false);
+    setName(data.name);
+    setAge(data.age);
+  };
+
+  const onActivateForm = () => {
+    setIsEditing(true);
   };
 
   return (
     <PersonStyled>
 
       <Generalities>
-        <li><strong>Name:</strong> {name}</li>
-        <li><strong>Age:</strong> {age}</li>
+        <li><strong>Name:</strong> {data.name}</li>
+        <li><strong>Age:</strong> {data.age}</li>
       </Generalities>
 
       <Actions>
-
         <RemoveAction onClick={() => remove(data.id)}>Remove</RemoveAction>
-
-        {isEditing
-          ? <SaveAction onClick={toggleEditing}>Save</SaveAction>
-          : <EditAction onClick={toggleEditing}>Edit</EditAction>
-        }
-
+        {isEditing && <SaveAction onClick={onSaveForm}>Save</SaveAction>}
+        {isEditing && <EditAction onClick={onDiscardForm}>Discard</EditAction>}
+        {!isEditing && <EditAction onClick={onActivateForm}>Edit</EditAction>}
       </Actions>
 
       {isEditing && <Form fields={fields} />}
