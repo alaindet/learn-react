@@ -31,7 +31,6 @@ class LightbulbClass extends React.Component {
     return (
       <Box switch={this.state.lightbulb}>
         <h2>Lightbulb Class</h2>
-        Lightbulb is
         <Lightbulb switch={this.state.lightbulb} onClick={this.toggleLightbulb}>
           {this.state.lightbulb ? 'On' : 'Off'}
         </Lightbulb>

@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  max-width: 30rem;
+  margin: 0 auto;
+`;
+
 export const Box = styled.div`
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
