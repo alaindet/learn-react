@@ -9,16 +9,16 @@ class LightbulbClass extends React.Component {
   };
 
   componentDidMount() {
-    console.log('FooClass componentDidMount');
+    console.log('LightbulbClass : componentDidMount');
   }
 
   shouldComponentUpdate() {
-    console.log('FooClass shouldComponentUpdate');
+    console.log('LightbulbClass : shouldComponentUpdate');
     return true;
   }
 
   componentDidUpdate() {
-    console.log('FooClass componentDidUpdate');
+    console.log('LightbulbClass : componentDidUpdate');
   }
 
   toggleLightbulb = () => {
