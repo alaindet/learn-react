@@ -1,0 +1,13 @@
+.sunny,
+.rainy {
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.sunny {
+  color: orange;
+}
+
+.rainy {
+  color: blue;
+}
