@@ -1,36 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './Person.css';
-import { Button } from './../theme/button';
 import WeatherContext from './../context/weather';
+import ThemeContext from './../context/theme';
 
 const Person = ({ name }) => {
+
+  const weather = useContext(WeatherContext);
+  const theme = useContext(ThemeContext);
+
   return (
-    <WeatherContext.Consumer>
-      {(context) => (
-        <div className="Person">
-          <ul>
-            <li>
-              <strong>Name: </strong>
-              {name}
-            </li>
-            <li>
-              <strong>Weather: </strong>
-              It's going to be
-              &nbsp;
-              <span className={context.weather}>{context.weather}</span>
-            </li>
-            <li>
-              <Button size="small" onClick={context.changeWeather}>
-                Change Weather
-              </Button>
-              &nbsp;
-              at random
-            </li>
-          </ul>
-        </div>
-      )}
-    </WeatherContext.Consumer>
+      <div className="Person">
+        <ul>
+          <li><strong>Name: </strong>{name}</li>
+
+          <li>
+            <strong>Weather: </strong>
+            <span className={`weather ${weather.weather}`}>{weather.weather}</span>
+            <a href="#" onClick={weather.changeWeather}>(Change)</a>
+          </li>
+
+          <li>
+            <strong>Theme: </strong>
+            <span className={`theme ${theme.theme}`}>{theme.theme}</span>
+            <a href="#" onClick={theme.changeTheme}>(Change)</a>
+          </li>
+
+        </ul>
+      </div>
   );
 };
 

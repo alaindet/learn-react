@@ -1,13 +1,23 @@
-.sunny,
-.rainy {
+.weather,
+.theme {
   font-style: italic;
   letter-spacing: 1px;
 }
 
-.sunny {
-  color: orange;
+.weather.sunny { color: orange }
+.weather.rainy { color: blue }
+
+.theme.light {
+  color: #333;
+  background-color: #eee;
 }
 
-.rainy {
-  color: blue;
+.theme.dark {
+  color: #eee;
+  background-color: #333;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
 }

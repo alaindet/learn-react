@@ -19,15 +19,21 @@ const _Button = styled.button`
   transition: border-color 0.15s ease-in;
   ${props => props.hasMargin ? 'margin: 0 0.5rem;' : ''}
 
-  ${props => props.size && props.size === 'small' ? `
-    border-radius: 0.25rem;
-    padding: 0.25rem 0.5rem;
-  ` : ''}
-
-  ${props => props.size && props.size === 'medium' ? `
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-  ` : ''}
+  ${props => {
+    const size = props.size || 'medium';
+    if (size === 'small') {
+      return `
+        border-radius: 0.25rem;
+        padding: 0.25rem 0.5rem;
+      `;
+    }
+    if (size === 'medium') {
+      return `
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+      `;
+    }
+  }}
 
   &:hover {
     border-color: #666;

@@ -1,12 +1,15 @@
 import React from 'react';
 
 import { Container } from './theme/layout';
+import { Button } from './theme/button';
 import People from './components/People';
 import WeatherContext from './context/weather';
+import ThemeContext from './context/theme';
 
 class App extends React.Component {
 
   state = {
+    theme: 'light',
     weather: 'rainy',
     people: [
       { name: 'Alice' },
@@ -16,22 +19,42 @@ class App extends React.Component {
   };
 
   onChangeWeather = () => {
-    const random = Math.random();
-    console.log('onChangeWeather', random);
-    const weather = random > 0.5 ? 'sunny' : 'rainy';
+    const weather = this.state.weather === 'sunny' ? 'rainy' : 'sunny';
     this.setState({ weather });
   };
 
+  onChangeTheme = () => {
+    const theme = this.state.theme === 'light' ? 'dark' : 'light';
+    this.setState({ theme });
+  };
+
   render() {
+
+    // Perfomance hit?
+    const themeContextValue = {
+      theme: this.state.theme,
+      changeTheme: this.onChangeTheme,
+    };
+
+    // Perfomance hit?
+    const weatherContextValue = {
+      weather: this.state.weather,
+      changeWeather: this.onChangeWeather,
+    };
+
     return (
-      <Container hasPadding hasShadow>
-        <WeatherContext.Provider value={{
-          weather: this.state.weather,
-          changeWeather: this.onChangeWeather,
-        }}>
+      <ThemeContext.Provider value={themeContextValue}>
+        <WeatherContext.Provider value={weatherContextValue}>
+        <Container hasPadding hasShadow>
+          <div className="actions">
+            <Button onClick={this.onChangeWeather}>Change weather</Button>
+            &nbsp;
+            <Button onClick={this.onChangeTheme}>Change theme</Button>
+          </div>
           <People people={this.state.people} />
+        </Container>
         </WeatherContext.Provider>
-      </Container>
+      </ThemeContext.Provider>
     );
   }
 }

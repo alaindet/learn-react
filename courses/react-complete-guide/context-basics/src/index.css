@@ -6,3 +6,16 @@ html {
 body {
   margin: 0;
 }
+
+a {
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin: 0 0.25rem;
+  transition: border-bottom 0.15s ease-in;
+  color: #333;
+}
+
+a:hover {
+  color: #33a0ff;
+  border-color: #33a0ff;
+}
