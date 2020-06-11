@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { MainContent } from './Layout.style';
+
 const Layout = (props) => {
   return (
     <React.Fragment>
       <div>Toolbar, SideDrawer, Backdrop</div>
-      <main>{props.children}</main>
+      <MainContent>{props.children}</MainContent>
     </React.Fragment>
   );
 };
