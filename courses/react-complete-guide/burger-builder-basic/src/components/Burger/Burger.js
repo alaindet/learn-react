@@ -1,14 +1,14 @@
 import React from 'react';
 
+import { BurgerStyled } from './Burger.style';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const Burger = () => {
-  const ingredient = 'Cheese';
+  const ingredient = 'bread-top';
   return (
-    <div>
-      Burger
+    <BurgerStyled>
       <BurgerIngredient type={ingredient} />
-    </div>
+    </BurgerStyled>
   );
 };
 

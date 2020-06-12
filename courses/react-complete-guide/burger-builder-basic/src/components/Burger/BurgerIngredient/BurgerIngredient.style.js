@@ -4,7 +4,7 @@ const BreadTop = `
   height: 20%;
   width: 80%;
   background: linear-gradient(#bc581e, #e27b36);
-  border - radius: 50% 50% 0 0;
+  border-radius: 50% 50% 0 0;
   box-shadow: inset -15px 0 #c15711;
   margin: 2% auto;
   position: relative;
@@ -112,16 +112,17 @@ const Bacon = `
 `;
 
 const types = {
-  BreadTop,
-  BreadBottom,
-  Seeds1,
-  Seeds2,
-  Meat,
-  Cheese,
-  Salad,
-  Bacon,
+  'bread-top': BreadTop,
+  'bread-bottom': BreadBottom,
+  'seeds1': Seeds1,
+  'seeds2': Seeds2,
+  'meat': Meat,
+  'cheese': Cheese,
+  'salad': Salad,
+  'bacon': Bacon,
 };
 
 export const BurgerIngredientStyled = styled.div`
+  border: 1px solid black;
   ${props => types[props.type]}
 `;
