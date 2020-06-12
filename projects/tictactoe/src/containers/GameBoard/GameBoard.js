@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { GameBoardStyled } from './GameBoard.style';
+
 const GameBoard = () => {
   return (
-    <div className="GameBoard">
-      GameBoard
-    </div>
+    <GameBoardStyled>
+      
+    </GameBoardStyled>
   );
 };
 
