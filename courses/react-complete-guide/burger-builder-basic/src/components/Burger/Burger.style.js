@@ -6,3 +6,9 @@ export const BurgerStyled = styled.div`
   border-radius: 1rem;
   padding: 1rem;
 `;
+
+export const MissingIngredients = styled.p`
+  text-align: center;
+  font-size: 1.1rem;
+  font-style: italic;
+`;

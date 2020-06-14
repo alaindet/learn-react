@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BurgerStyled } from './Burger.style';
+import { BurgerStyled, MissingIngredients} from './Burger.style';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const Burger = ({ ingredients }) => {
@@ -14,10 +14,23 @@ const Burger = ({ ingredients }) => {
     }
   }
 
+  let renderedList;
+  if (list.length) {
+    renderedList = list.map(ingredient => (
+      <BurgerIngredient key={ingredient.key} type={ingredient.type} />
+    ));
+  } else {
+    renderedList = (
+      <MissingIngredients>
+        Start adding ingredients below
+      </MissingIngredients>
+    );
+  }
+
   return (
     <BurgerStyled>
       <BurgerIngredient type="bread-top" />
-      {list.map(i => <BurgerIngredient key={i.key} type={i.type} />)}
+      {renderedList}
       <BurgerIngredient type="bread-bottom" />
     </BurgerStyled>
   );
