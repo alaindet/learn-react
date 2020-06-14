@@ -14,9 +14,7 @@ const BurgerIngredient = ({ type }) => {
   }
 
   return (
-    <BurgerIngredientStyled type={type}>
-      {type}
-    </BurgerIngredientStyled>
+    <BurgerIngredientStyled type={type} />
   );
 };
 

@@ -123,6 +123,6 @@ const types = {
 };
 
 export const BurgerIngredientStyled = styled.div`
-  border: 1px solid black;
+  border: 3px solid rgba(0, 0, 0, 0.33);
   ${props => types[props.type]}
 `;
