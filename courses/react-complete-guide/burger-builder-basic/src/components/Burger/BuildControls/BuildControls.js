@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { BuildControlsStyled } from './BuildControls.style';
+import {
+  BuildControlsStyled,
+  CallToActionButton,
+} from './BuildControls.style';
 import BuildControl from './BuildControl/BuildControl'
 
 const controls = [
@@ -13,11 +16,13 @@ const controls = [
 const BuildControls = (props) => {
   return (
     <BuildControlsStyled>
+
       <p>
         Total price:
         &nbsp;
         <strong>{props.totalPrice.toFixed(2)}</strong>$
       </p>
+
       {controls.map(control => (
         <BuildControl
           key={control.label}
@@ -27,6 +32,9 @@ const BuildControls = (props) => {
           disabled={props.disabled[control.type]}
         />
       ))}
+
+      <CallToActionButton>Order now</CallToActionButton>
+
     </BuildControlsStyled>
   );
 };
