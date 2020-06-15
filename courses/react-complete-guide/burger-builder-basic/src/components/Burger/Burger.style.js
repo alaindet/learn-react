@@ -5,6 +5,7 @@ export const BurgerStyled = styled.div`
   // box-shadow: 3px 3px 7px rgba(0, 0, 0, .3);
   border-radius: 1rem;
   padding: 1rem;
+  overflow-y: scroll;
 `;
 
 export const MissingIngredients = styled.p`
