@@ -11,7 +11,7 @@ export const Container = styled.div`
   }
 
   ${props => props.withPadding
-    ? 'padding: 1rem;'
+    ? 'padding: 2rem;'
     : ''
   }
 `;
