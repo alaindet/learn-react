@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const BurgerStyled = styled.div`
   height: 50vh;
+  max-width: 500px;
+  margin: 0 auto;
   // box-shadow: 3px 3px 7px rgba(0, 0, 0, .3);
   border-radius: 1rem;
   padding: 1rem;

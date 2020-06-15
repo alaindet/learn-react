@@ -34,6 +34,7 @@ export const CallToActionButton = styled.button`
   padding: 15px 30px;
   margin: 1rem;
   box-shadow: 2px 2px 2px ${theme.colors.primary};
+  text-transform: uppercase;
 
   &:hover,
   &:active {

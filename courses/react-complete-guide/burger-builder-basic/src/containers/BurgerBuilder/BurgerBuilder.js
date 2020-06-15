@@ -13,6 +13,7 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends React.Component {
 
   state = {
+    canBuy: false,
     totalPrice: 4,
     ingredients: {
       salad: 1,
@@ -22,6 +23,18 @@ class BurgerBuilder extends React.Component {
     },
   };
 
+  componentDidMount() {
+    this.updateCanBuyFlag(this.state.ingredients);
+  }
+
+  updateCanBuyFlag = (ingredients) => {
+    let sum = 0;
+    for (const amount of Object.values(ingredients)) {
+      sum += amount;
+    }
+    this.setState({ canBuy: sum > 0 });
+  };
+
   addIngredient = (type) => {
     const priceDelta = INGREDIENT_PRICES[type];
     const totalPrice = this.state.totalPrice + priceDelta;
@@ -29,6 +42,7 @@ class BurgerBuilder extends React.Component {
     const ingredients = { ...this.state.ingredients };
     ingredients[type] = count;
     this.setState({ totalPrice, ingredients });
+    this.updateCanBuyFlag(ingredients);
   };
 
   removeIngredient = (type) => {
@@ -38,6 +52,7 @@ class BurgerBuilder extends React.Component {
     const ingredients = { ...this.state.ingredients };
     ingredients[type] = count;
     this.setState({ totalPrice, ingredients });
+    this.updateCanBuyFlag(ingredients);
   };
 
   render() {
@@ -55,6 +70,7 @@ class BurgerBuilder extends React.Component {
           removeIngredient={this.removeIngredient}
           disabled={disabledInfo}
           totalPrice={this.state.totalPrice}
+          canBuy={this.state.canBuy}
         />
       </React.Fragment>
     );

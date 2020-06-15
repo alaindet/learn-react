@@ -33,7 +33,9 @@ const BuildControls = (props) => {
         />
       ))}
 
-      <CallToActionButton>Order now</CallToActionButton>
+      <CallToActionButton disabled={!props.canBuy}>
+        Order now
+      </CallToActionButton>
 
     </BuildControlsStyled>
   );
