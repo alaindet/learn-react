@@ -35,9 +35,9 @@ const App = () => {
 
     // By column (TODO)
     if (
-      areTheseCellsAllEqualTo([0, 4, 6], player) ||
-      // areTheseCellsAllEqualTo([3, 4, 5], player) ||
-      // areTheseCellsAllEqualTo([6, 7, 8], player)
+      areTheseCellsAllEqualTo([0, 3, 6], player) ||
+      areTheseCellsAllEqualTo([1, 4, 7], player) ||
+      areTheseCellsAllEqualTo([2, 5, 8], player)
     ) {
       return true;
     }
