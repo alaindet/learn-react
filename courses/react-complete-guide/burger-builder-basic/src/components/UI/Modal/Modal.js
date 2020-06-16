@@ -1,12 +1,21 @@
 import React from 'react';
 
 import { ModalStyled } from './Modal.style';
+import Backdrop from './../Backdrop/Backdrop';
 
 const Modal = (props) => {
+
+  const style = {
+    transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
+  };
+
   return (
-    <ModalStyled>
-      {props.children}
-    </ModalStyled>
+    <React.Fragment>
+      <Backdrop show={props.show} onDismiss={props.onDismiss} />
+      <ModalStyled style={style}>
+        {props.children}
+      </ModalStyled>
+    </React.Fragment>
   );
 };
 

@@ -4,25 +4,28 @@ const OrderSummary = (props) => {
 
   const ingredients = [];
   for (const _name in props.ingredients) {
-    const amount = props.ingredients[name];
-    const name = _name[0].toUpperCase() + _name.slice(1);
-    ingredients.push({ name, amount });
+    const amount = props.ingredients[_name];
+    if (amount > 0) {
+      const name = _name[0].toUpperCase() + _name.slice(1);
+      ingredients.push({ name, amount });
+    }
   }
 
-  console.log('props.ingredients', props.ingredients);
-  console.log('ingredients', ingredients);
+  const ingredientsList = (
+    <ul>
+      {ingredients.map((ingredient, index) => (
+        <li key={index}>
+          {ingredient.amount}x {ingredient.name}
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <React.Fragment>
       <h3>Your order</h3>
       <p>You selected these ingredients:</p>
-      <ul>
-        {ingredients.map((ingredient, index) => (
-          <li key={index}>
-            {ingredient.amount}x {ingredient.name}
-          </li>
-        ))}
-      </ul>
+      {ingredientsList}
     </React.Fragment>
   );
 };

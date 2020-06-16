@@ -16,6 +16,7 @@ class BurgerBuilder extends React.Component {
 
   state = {
     canBuy: false,
+    isBuying: false,
     totalPrice: 4,
     ingredients: {
       salad: 1,
@@ -57,6 +58,14 @@ class BurgerBuilder extends React.Component {
     this.updateCanBuyFlag(ingredients);
   };
 
+  onBuying = () => {
+    this.setState({ isBuying: true });
+  }
+
+  onDismissBuying = () => {
+    this.setState({ isBuying: false });
+  };
+
   render() {
     const disabledInfo = {
       ...this.state.ingredients
@@ -66,6 +75,7 @@ class BurgerBuilder extends React.Component {
     }
     return (
       <React.Fragment>
+
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           addIngredient={this.addIngredient}
@@ -73,11 +83,13 @@ class BurgerBuilder extends React.Component {
           disabled={disabledInfo}
           totalPrice={this.state.totalPrice}
           canBuy={this.state.canBuy}
+          onOrder={this.onBuying}
         />
 
-        <Modal>
+        <Modal show={this.state.isBuying} onDismiss={this.onDismissBuying}>
           <OrderSummary ingredients={this.state.ingredients} />
         </Modal>
+
       </React.Fragment>
     );
   }

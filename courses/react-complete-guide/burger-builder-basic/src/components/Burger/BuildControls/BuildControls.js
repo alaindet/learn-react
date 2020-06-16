@@ -33,7 +33,10 @@ const BuildControls = (props) => {
         />
       ))}
 
-      <CallToActionButton disabled={!props.canBuy}>
+      <CallToActionButton
+        disabled={!props.canBuy}
+        onClick={props.onOrder}
+      >
         Order now
       </CallToActionButton>
 
