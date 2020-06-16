@@ -1,27 +1,24 @@
 import React from 'react';
 
-import {
-  BuildControlStyled,
-  BuildControlLabel,
-  BuildControlButton,
-} from './BuildControl.style';
+import { BuildControlStyled, ControlLabel } from './BuildControl.style';
+import Button from './../../../UI/Button/Button';
 
 const BuildControl = (props) => {
   return (
     <BuildControlStyled>
 
-      <BuildControlLabel>{props.label}</BuildControlLabel>
+      <ControlLabel>{props.label}</ControlLabel>
 
-      <BuildControlButton
-        type="less"
+      <Button
+        size="small"
         onClick={props.removeIngredient}
         disabled={props.disabled}
-      >Less</BuildControlButton>
+      >Less</Button>
 
-      <BuildControlButton
-        type="more"
+      <Button
+        size="small"
         onClick={props.addIngredient}
-      >More</BuildControlButton>
+      >More</Button>
 
     </BuildControlStyled>
   );

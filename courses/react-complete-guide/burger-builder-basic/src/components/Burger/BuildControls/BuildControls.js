@@ -1,10 +1,8 @@
 import React from 'react';
 
-import {
-  BuildControlsStyled,
-  CallToActionButton,
-} from './BuildControls.style';
+import { BuildControlsStyled } from './BuildControls.style';
 import BuildControl from './BuildControl/BuildControl'
+import Button from './../../UI/Button/Button';
 
 const controls = [
   { label: 'Salad', type: 'salad' },
@@ -14,14 +12,16 @@ const controls = [
 ];
 
 const BuildControls = (props) => {
+
+  let totalPrice = props.totalPrice.toFixed(2);
+  if (totalPrice < 0) {
+    totalPrice = 0;
+  }
+
   return (
     <BuildControlsStyled>
 
-      <p>
-        Total price:
-        &nbsp;
-        <strong>{props.totalPrice.toFixed(2)}</strong>$
-      </p>
+      <p>Total price: <strong>{totalPrice}</strong>$</p>
 
       {controls.map(control => (
         <BuildControl
@@ -33,12 +33,15 @@ const BuildControls = (props) => {
         />
       ))}
 
-      <CallToActionButton
+      <Button
+        size="large"
+        type="primary"
+        uppercase={true}
         disabled={!props.canBuy}
         onClick={props.onOrder}
       >
         Order now
-      </CallToActionButton>
+      </Button>
 
     </BuildControlsStyled>
   );
