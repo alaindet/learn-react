@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { BuildControlsStyled } from './BuildControls.style';
-import BuildControl from './BuildControl/BuildControl'
-import Button from './../../UI/Button/Button';
+import BuildControl from 'components/Burger/BuildControls/BuildControl/BuildControl'
+import Button from 'components/UI/Button/Button';
 
 const controls = [
   { label: 'Salad', type: 'salad' },

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import theme from './../../../theme/theme';
+import theme from 'theme/theme';
 
 export const BuildControlsStyled = styled.div`
   width: 100%;

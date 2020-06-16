@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from './../../UI/Button/Button';
+import Button from 'components/UI/Button/Button';
 
 const OrderSummary = (props) => {
 

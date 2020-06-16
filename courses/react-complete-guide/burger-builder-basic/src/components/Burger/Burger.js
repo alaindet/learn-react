@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { BurgerStyled, MissingIngredients} from './Burger.style';
-import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
+import { BurgerStyled, MissingIngredients } from './Burger.style';
+import BurgerIngredient from 'components/Burger/BurgerIngredient/BurgerIngredient';
 
 const Burger = ({ ingredients }) => {
 

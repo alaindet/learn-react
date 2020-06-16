@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ModalStyled } from './Modal.style';
-import Backdrop from './../Backdrop/Backdrop';
+import Backdrop from 'components/UI/Backdrop/Backdrop';
 
 const Modal = (props) => {
 
