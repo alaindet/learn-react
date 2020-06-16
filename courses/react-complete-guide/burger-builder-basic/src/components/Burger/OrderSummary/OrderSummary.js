@@ -25,11 +25,19 @@ const OrderSummary = (props) => {
 
   return (
     <React.Fragment>
+
       <h3>Your order</h3>
-      <p>You selected these ingredients:</p>
+
       {ingredientsList}
-      <Button onClick={() => {}} disabled={false}>Cancel</Button>
-      <Button onClick={() => {}} disabled={false}>Continue</Button>
+
+      <Button type="secondary" onClick={props.onCancel}>
+        Cancel
+      </Button>
+
+      <Button type="primary" onClick={props.onContinue}>
+        Continue
+      </Button>
+
     </React.Fragment>
   );
 };

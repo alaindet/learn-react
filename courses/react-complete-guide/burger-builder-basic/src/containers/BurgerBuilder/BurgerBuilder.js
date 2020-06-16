@@ -66,6 +66,10 @@ class BurgerBuilder extends React.Component {
     this.setState({ isBuying: false });
   };
 
+  onContinueBuying = () => {
+    console.log('continuing...');
+  };
+
   render() {
 
     const disabledInfo = {...this.state.ingredients};
@@ -91,7 +95,11 @@ class BurgerBuilder extends React.Component {
           show={this.state.isBuying}
           onDismiss={this.onDismissBuying}
         >
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            onCancel={this.onDismissBuying}
+            onContinue={this.onContinueBuying}
+          />
         </Modal>
 
       </React.Fragment>
