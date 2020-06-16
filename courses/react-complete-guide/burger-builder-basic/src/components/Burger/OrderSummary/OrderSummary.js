@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from './../../UI/Button/Button';
+
 const OrderSummary = (props) => {
 
   const ingredients = [];
@@ -26,6 +28,8 @@ const OrderSummary = (props) => {
       <h3>Your order</h3>
       <p>You selected these ingredients:</p>
       {ingredientsList}
+      <Button onClick={() => {}} disabled={false}>Cancel</Button>
+      <Button onClick={() => {}} disabled={false}>Continue</Button>
     </React.Fragment>
   );
 };
