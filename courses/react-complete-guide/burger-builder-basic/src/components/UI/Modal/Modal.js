@@ -6,7 +6,8 @@ import Backdrop from 'components/UI/Backdrop/Backdrop';
 const Modal = (props) => {
 
   const style = {
-    transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
+    transformOrigin: 'center',
+    transform: props.show ? 'scale(1)' : 'scale(0)',
   };
 
   return (

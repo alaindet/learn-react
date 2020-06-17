@@ -10,5 +10,5 @@ export const BuildControlsStyled = styled.div`
   margin: 0 auto;
   padding: 1rem 0;
   border: 1px solid #ccc;
-  border-bottom: 5px solid ${theme.color.yellow};
+  border-bottom: 5px solid ${theme.color.yellowDark};
 `;
