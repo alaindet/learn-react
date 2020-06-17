@@ -13,15 +13,10 @@ const controls = [
 
 const BuildControls = (props) => {
 
-  let totalPrice = props.totalPrice.toFixed(2);
-  if (totalPrice < 0) {
-    totalPrice = 0;
-  }
-
   return (
     <BuildControlsStyled>
 
-      <p>Total price: <strong>{totalPrice}</strong>$</p>
+      <p>Total price: <strong>{props.totalPrice.toFixed(2)}</strong>$</p>
 
       {controls.map(control => (
         <BuildControl

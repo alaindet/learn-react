@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from 'components/UI/Button/Button';
+import ButtonGroup from 'components/UI/Button/ButtonGroup/ButtonGroup';
 
 const OrderSummary = (props) => {
 
@@ -30,13 +31,16 @@ const OrderSummary = (props) => {
 
       {ingredientsList}
 
-      <Button type="secondary" onClick={props.onCancel}>
-        Cancel
-      </Button>
+      <p>Total price: <strong>{props.totalPrice.toFixed(2)}</strong>$</p>
 
-      <Button type="primary" onClick={props.onContinue}>
-        Continue
-      </Button>
+      <ButtonGroup>
+        <Button type="secondary" onClick={props.onCancel}>
+          Cancel
+        </Button>
+        <Button type="primary" onClick={props.onContinue}>
+          Continue
+        </Button>
+      </ButtonGroup>
 
     </React.Fragment>
   );

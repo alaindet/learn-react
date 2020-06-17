@@ -97,6 +97,7 @@ class BurgerBuilder extends React.Component {
         >
           <OrderSummary
             ingredients={this.state.ingredients}
+            totalPrice={this.state.totalPrice}
             onCancel={this.onDismissBuying}
             onContinue={this.onContinueBuying}
           />
