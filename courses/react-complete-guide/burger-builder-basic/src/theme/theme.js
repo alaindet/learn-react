@@ -8,9 +8,13 @@ const theme = {
     yellow: '#f0c802',
     yellowDark: '#e3be02',
   },
+  height: {
+    toolbar: 56,
+  },
   zIndex: {
     modal: 10,
     backdrop: 9,
+    toolbar: 8,
   },
 };
 
