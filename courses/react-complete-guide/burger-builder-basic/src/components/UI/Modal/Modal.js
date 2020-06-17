@@ -5,15 +5,10 @@ import Backdrop from 'components/UI/Backdrop/Backdrop';
 
 const Modal = (props) => {
 
-  const style = {
-    transformOrigin: 'center',
-    transform: props.show ? 'scale(1)' : 'scale(0)',
-  };
-
   return (
     <React.Fragment>
       <Backdrop show={props.show} onDismiss={props.onDismiss} />
-      <ModalStyled style={style}>
+      <ModalStyled show={props.show}>
         {props.children}
       </ModalStyled>
     </React.Fragment>

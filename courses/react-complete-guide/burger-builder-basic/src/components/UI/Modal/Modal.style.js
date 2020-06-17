@@ -13,6 +13,8 @@ export const ModalStyled = styled.div`
   left: 15%;
   top: 30%;
   transition: all 0.3s ease-out;
+  transform-origin: center;
+  ${props => props.show ? 'scale(1)' : 'scale(0)'}
 
   @media (min-width: 600px) {
     width: 500px;

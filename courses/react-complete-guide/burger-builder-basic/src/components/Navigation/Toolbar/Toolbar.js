@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ToolbarStyled, Navigation } from './Toolbar.style';
+import Logo from 'components/Logo/Logo';
 
 const Toolbar = (props) => {
   return (
@@ -8,9 +9,10 @@ const Toolbar = (props) => {
 
       <div>MENU</div>
 
-      <div>LOGO</div>
+      <Logo />
 
       <Navigation>
+        Nav
       </Navigation>
 
     </ToolbarStyled>
