@@ -16,6 +16,10 @@ const theme = {
     backdrop: 9,
     toolbar: 8,
   },
+  breakpoint: {
+    mobileToTablet: 768,
+    tabletToDesktop: 1024,
+  },
 };
 
 export default theme;

@@ -8,9 +8,7 @@ const Modal = (props) => {
   return (
     <React.Fragment>
       <Backdrop show={props.show} onDismiss={props.onDismiss} />
-      <ModalStyled show={props.show}>
-        {props.children}
-      </ModalStyled>
+      <ModalStyled show={props.show}>{props.children}</ModalStyled>
     </React.Fragment>
   );
 };
