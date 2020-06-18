@@ -4,16 +4,13 @@ import { ToolbarStyled, Navigation } from './Toolbar.style';
 import { Show } from 'theme/responsive';
 import Logo from 'components/Logo/Logo';
 import NavigationItems from 'components/Navigation/NavigationItems/NavigationItems';
-import Button from 'components/UI/Button/Button';
+import SideDrawerToggle from 'components/Navigation/SideDrawer/SideDrawerToggle/SideDrawerToggle';
 
 const Toolbar = (props) => {
   return (
     <ToolbarStyled>
 
-      <Button
-        onClick={props.openSideDrawer}
-        size="small"
-      >MENU</Button>
+      <SideDrawerToggle onClick={props.openSideDrawer} />
 
       <Logo />
 
