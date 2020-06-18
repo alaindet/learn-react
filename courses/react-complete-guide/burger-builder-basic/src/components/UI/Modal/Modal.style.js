@@ -12,7 +12,7 @@ export const ModalStyled = styled.div`
   padding: 16px;
   left: 15%;
   top: 30%;
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
   transform-origin: center;
   ${props => props.show ? 'transform: scale(1)' : 'transform: scale(0)'};
 

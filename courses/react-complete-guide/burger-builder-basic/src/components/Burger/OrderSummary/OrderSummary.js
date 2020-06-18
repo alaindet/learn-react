@@ -46,4 +46,4 @@ const OrderSummary = (props) => {
   );
 };
 
-export default OrderSummary;
+export default React.memo(OrderSummary);
