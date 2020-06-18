@@ -12,7 +12,7 @@ const FullPost = (props) => {
             <h1>Title</h1>
             {post}
             <EditSection>
-                <Button type="primary">Delete</Button>
+                <Button type="button" color="secondary">Delete</Button>
             </EditSection>
         </FullPostStyled>
     );

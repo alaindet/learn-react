@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { NewPostStyled, Label, Input, Textarea, Select, Button } from './NewPost.style';
+import { NewPostStyled, Label, Input, Textarea, Select } from './NewPost.style';
+import Button from 'components/UI/Button/Button';
 
 const AUTHORS = [
   { name: 'Alice' },
@@ -41,7 +42,7 @@ const NewPost = (props) => {
         ))}
       </Select>
 
-      <Button type="submit">
+      <Button type="submit" color="primary">
         Add Post
       </Button>
 

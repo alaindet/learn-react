@@ -24,16 +24,16 @@ export const ButtonStyled = styled.button`
   }
 
   ${props => {
-    switch (props.type) {
+    switch (props.color) {
       case 'primary':
         return `
-          background-color: ${theme.color.black};
+          background-color: ${theme.color.orange};
           color: white;
           border: 2px solid transparent;
           &:hover {
             background-color: white;
-            color: ${theme.color.black};
-            border-color: ${theme.color.black};
+            color: ${theme.color.orange};
+            border-color: ${theme.color.orange};
           }
         `;
       case 'secondary':

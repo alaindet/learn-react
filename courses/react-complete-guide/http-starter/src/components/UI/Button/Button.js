@@ -7,7 +7,7 @@ const Button = (props) => {
     <ButtonStyled
       onClick={props.onClick}
       disabled={props.disabled}
-      type={props.type}
+      color={props.color}
       size={props.size}
       uppercase={props.uppercase}
     >

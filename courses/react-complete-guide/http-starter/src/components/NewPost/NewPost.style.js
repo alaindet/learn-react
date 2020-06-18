@@ -6,6 +6,7 @@ export const NewPostStyled = styled.div`
   width: 80%;
   margin: 1.25rem auto;
   border: 1px solid ${theme.color.greyLight};
+  border-radius: 0.5rem;
   box-shadow: 0 2px 3px ${theme.color.grey};
   text-align: center;
 `;
@@ -20,10 +21,19 @@ export const Label = styled.label`
 const Field = `
   display: block;
   width: 80%;
-  border: 1px solid ${theme.color.black};
+  border: 1px solid ${theme.color.grey};
   outline: none;
   font: inherit;
   margin: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+    border-color: ${theme.color.black};
+  }
 `;
 
 export const Input = styled.input`
