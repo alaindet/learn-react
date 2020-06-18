@@ -15,7 +15,8 @@ const Blog = (props) => {
     (async () => {
       const url = 'https://jsonplaceholder.typicode.com/posts';
       const response = await axios.get(url);
-      setPosts(response.data);
+      const posts = response.data.filter(p => p.id < 6);
+      setPosts(posts);
       setLoading(false);
     })();
   });
@@ -28,9 +29,13 @@ const Blog = (props) => {
     <BlogStyled>
       
       <Posts>
-        <Post />
-        <Post />
-        <Post />
+        {posts.map(post => (
+          <Post
+            key={post.id}
+            title={post.title.substring(0, 20)+'...'}
+            author={post.userId}
+          />
+        ))}
       </Posts>
 
       <section>

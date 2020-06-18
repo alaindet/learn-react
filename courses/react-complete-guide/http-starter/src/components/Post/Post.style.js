@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import theme from 'theme/variables';
 
 export const PostStyled = styled.article`
-  width: 100px;
   padding: 1rem;
   text-align: center;
-  border: 1px solid ${theme.color.greyLight};
+  border: 2px solid ${theme.color.shadowLight};
+  border-radius: 0.5rem;
   box-shadow: 0 2px 3px ${theme.color.grey};
-  margin: 0.625rem;
   cursor: pointer;
+  transition: border-color 0.2s ease-out;
 
   &:hover,
   &:active {
-    background-color: ${theme.color.blueLight};
+    border-color: ${theme.color.orange};
   }
 `;
 

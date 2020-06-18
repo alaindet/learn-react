@@ -7,9 +7,10 @@ const variables = {
   color: {
     grey: '#ccc',
     greyLight: '#eee',
-    blueLight: '#c0ddf5',
     black: '#333',
     orange: '#fa923f',
+    orangeLight: '#fadac0',
+    shadowLight: 'rgba(0,0,0,0.05)',
   }
 };
 

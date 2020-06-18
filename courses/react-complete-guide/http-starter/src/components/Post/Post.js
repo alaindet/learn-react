@@ -5,9 +5,9 @@ import { PostStyled, PostMeta, Author } from './Post.style';
 const Post = (props) => {
   return (
     <PostStyled>
-      <h1>Title</h1>
+      <h1>{props.title}</h1>
       <PostMeta>
-        <Author>Author</Author>
+        <Author>{props.author}</Author>
       </PostMeta>
     </PostStyled>
   );
