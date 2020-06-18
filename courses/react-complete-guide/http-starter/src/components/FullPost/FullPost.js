@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import './FullPost.css';
+import { FullPostStyled, EditSection } from './FullPost.style';
+import Button from 'components/UI/Button/Button';
 
-class FullPost extends Component {
-    render () {
-        let post = <p>Please select a Post!</p>;
-        post = (
-            <div className="FullPost">
-                <h1>Title</h1>
-                <p>Content</p>
-                <div className="Edit">
-                    <button className="Delete">Delete</button>
-                </div>
-            </div>
+const FullPost = (props) => {
 
-        );
-        return post;
-    }
-}
+    const post = <p>Please select a Post!</p>
+
+    return (
+        <FullPostStyled>
+            <h1>Title</h1>
+            {post}
+            <EditSection>
+                <Button type="primary">Delete</Button>
+            </EditSection>
+        </FullPostStyled>
+    );
+};
 
 export default FullPost;

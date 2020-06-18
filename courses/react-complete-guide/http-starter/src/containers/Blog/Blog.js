@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Post from '../../components/Post/Post';
-import FullPost from '../../components/FullPost/FullPost';
-import NewPost from '../../components/NewPost/NewPost';
-import './Blog.css';
+import Post from 'components/Post/Post';
+import FullPost from 'components/FullPost/FullPost';
+import NewPost from 'components/NewPost/NewPost';
+import { BlogStyled, Posts } from './Blog.style';
 
-class Blog extends Component {
-    render () {
-        return (
-            <div>
-                <section className="Posts">
-                    <Post />
-                    <Post />
-                    <Post />
-                </section>
-                <section>
-                    <FullPost />
-                </section>
-                <section>
-                    <NewPost />
-                </section>
-            </div>
-        );
-    }
-}
+const Blog = (props) => {
+  return (
+    <BlogStyled>
+      
+      <Posts>
+        <Post />
+        <Post />
+        <Post />
+      </Posts>
+
+      <section>
+        <FullPost />
+      </section>
+
+      <section>
+        <NewPost />
+      </section>
+
+    </BlogStyled>
+  );
+};
 
 export default Blog;
