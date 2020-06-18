@@ -1,19 +1,27 @@
 import React from 'react';
 
 import { ToolbarStyled, Navigation } from './Toolbar.style';
+import { Show } from 'theme/responsive';
 import Logo from 'components/Logo/Logo';
+import NavigationItems from 'components/Navigation/NavigationItems/NavigationItems';
+import Button from 'components/UI/Button/Button';
 
 const Toolbar = (props) => {
   return (
     <ToolbarStyled>
 
-      <div>MENU</div>
+      <Button
+        onClick={props.openSideDrawer}
+        size="small"
+      >MENU</Button>
 
       <Logo />
 
-      <Navigation>
-        Nav
-      </Navigation>
+      <Show from="tablet" dir="up">
+        <Navigation>
+          <NavigationItems />
+        </Navigation>
+      </Show>
 
     </ToolbarStyled>
   );

@@ -1,11 +1,14 @@
 import React from 'react';
 
-import { NavigationItemStyled } from './NavigationItem.style';
+import { NavigationItemStyled, NavigationItemLink } from './NavigationItem.style';
 
-const NavigationItems = (props) => {
+const NavigationItem = (props) => {
+
   return (
-    <NavigationItemStyled>
-      <a href="#">A link</a>
+    <NavigationItemStyled display={props.display}>
+      <NavigationItemLink href={props.link} active={props.active}>
+        {props.children}
+      </NavigationItemLink>
     </NavigationItemStyled>
   );
 };

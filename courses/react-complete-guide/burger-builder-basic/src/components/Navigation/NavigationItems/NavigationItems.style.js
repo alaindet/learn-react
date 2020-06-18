@@ -7,4 +7,10 @@ export const NavigationItemsStyled = styled.ul`
   display: flex;
   align-items: center;
   height: 100%;
+
+  ${props => props.dir === 'vertical' ? `
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+  ` : ''}
 `;

@@ -1,29 +1,34 @@
 import styled from 'styled-components';
 
-const activeLinkStyling = `
+import theme from 'theme/theme';
 
+const activeLinkStyling = `
+  background-color: ${theme.color.yellow};
+  text-shadow: 0 0 .66px ${theme.color.black}, 0 0 .66px ${theme.color.black};
 `;
 
 export const NavigationItemLink = styled.a`
-  color: white;
-  text-decoration: none;
-  height: 100%;
-  padding: 1rem; 0.75rem;
-  border-bottom: 4px solid transparent;
   display: block;
-
+  color: ${theme.color.black};
+  text-decoration: none;
+  padding: 1rem 0.75rem;
+  transition: all 0.2s ease-in-out;
   ${props => props.active ? activeLinkStyling : ''}
 
-  a:hover,
-  a:active {
+  &:hover,
+  &:active {
     ${activeLinkStyling}
   }
 `;
 
 export const NavigationItemStyled = styled.li`
   margin: 0;
-  display: flex;
   height: 100%;
-  width: auto;
+  display: flex;
   align-items: center;
+
+  ${props => props.display === 'block' ? `
+    display: block;
+    width: 100%;
+  ` : ''}
 `;

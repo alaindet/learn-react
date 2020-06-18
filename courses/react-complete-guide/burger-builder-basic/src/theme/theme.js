@@ -12,9 +12,10 @@ const theme = {
     toolbar: 56,
   },
   zIndex: {
-    modal: 10,
-    backdrop: 9,
     toolbar: 8,
+    backdrop: 9,
+    modal: 10,
+    sideDrawer: 11,
   },
   breakpoint: {
     mobileToTablet: 768,
