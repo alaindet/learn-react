@@ -38,7 +38,7 @@ const NewPost = (props) => {
         onChange={(event) => setAuthor(event.target.value)}
       >
         {AUTHORS.map(author => (
-          <option value={author.name}>{author.name}</option>
+          <option key={author.name} value={author.name}>{author.name}</option>
         ))}
       </Select>
 
