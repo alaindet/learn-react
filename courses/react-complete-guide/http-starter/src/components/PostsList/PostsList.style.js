@@ -11,8 +11,8 @@ export const PostsListStyled = styled.section`
   overflow-y: auto;
 
   & > ${PostListItemStyled} {
-    flex-basis: 30%;
-    margin: 1rem 1.5%;
+    width: 46%;
+    margin: 1rem 2%;
   }
 `;
 

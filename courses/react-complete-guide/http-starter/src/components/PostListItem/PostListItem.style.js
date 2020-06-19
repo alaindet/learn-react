@@ -6,7 +6,7 @@ export const PostListItemStyled = styled.article`
   padding: 0.5rem 1rem;
   border: 2px solid ${theme.color.shadowLight};
   border-radius: 0.5rem;
-  box-shadow: 0 2px 3px ${theme.color.grey};
+  box-shadow: 3px 3px 7px ${theme.color.shadowLight};
   cursor: pointer;
   transition: border-color 0.2s ease-out;
 

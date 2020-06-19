@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FullPostStyled, PostBody, EditSection } from './FullPost.style';
+import { FullPostStyled, PostBody, EditSection, DismissButton } from './FullPost.style';
 import Button from 'components/UI/Button/Button';
 
 const FullPost = (props) => {
@@ -26,6 +26,9 @@ const FullPost = (props) => {
           Delete
         </Button>
       </EditSection>
+      <DismissButton onClick={props.onPostDeselect}>
+        &times;
+      </DismissButton>
     </FullPostStyled>
   );
 };
