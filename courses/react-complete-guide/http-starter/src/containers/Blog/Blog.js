@@ -17,6 +17,10 @@ const Blog = (props) => {
     setSelectedPost(post);
   };
 
+  const onPostDeselect = () => {
+    setSelectedPost(null);
+  };
+
   const processPosts = (posts) => {
     const result = [];
     for (const post of posts) {
@@ -30,7 +34,7 @@ const Blog = (props) => {
 
   useEffect(() => {
     (async () => {
-      const url = 'https://jsonplaceholder.typicode.com/posts?_page=5';
+      const url = 'http://localhost:4242/posts?_page=5';
       const response = await axios.get(url);
       const posts = processPosts(response.data);
       setPosts(posts);
@@ -40,7 +44,7 @@ const Blog = (props) => {
   return (
     <BlogStyled>
       <PostsList posts={posts} onPostSelect={onPostSelect} />
-      <FullPost post={selectedPost} />
+      <FullPost post={selectedPost} onPostDeselect={onPostDeselect}/>
       <NewPost />
     </BlogStyled>
   );
