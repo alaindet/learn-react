@@ -9,12 +9,12 @@ export const NewPostStyled = styled.div`
   border-radius: 0.5rem;
   box-shadow: 3px 3px 7px rgba(0,0,0,0.1);
   text-align: center;
+  position: relative;
 `;
 
 export const Label = styled.label`
   display: block;
   margin: 10px auto;
-  text-align: center;
   font-weight: bold;
 `;
 
@@ -28,7 +28,10 @@ const Field = `
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
 
-  &:hover,
+  &:hover {
+    border-color: ${theme.color.greyDark};
+  }
+
   &:active,
   &:focus {
     outline: none;
@@ -48,18 +51,22 @@ export const Select = styled.select`
   ${Field}
 `;
 
-export const Button = styled.button`
-  margin: 0.375rem 0;
-  padding: 0.625rem;
-  font: inherit;
-  border: 1px solid ${theme.color.orange};
-  background-color: transparent;
-  color: ${theme.color.orange};
-  cursor: pointer;
+export const Centered = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-  &:hover,
-  &:active {
-    color: white;
-    background-color: ${theme.color.orange};
+export const DismissButton = styled.span`
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2 ease-out;
+
+  &:hover {
+    color: ${theme.color.orange};
   }
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from 'theme/variables';
 
 export const ButtonStyled = styled.button`
-  margin: 1rem;
+  margin: 1rem 0;
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;

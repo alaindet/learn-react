@@ -1,60 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Post from 'components/Post/Post';
+import strings from 'services/string-utils';
+import PostsList from 'components/PostsList/PostsList';
 import FullPost from 'components/FullPost/FullPost';
 import NewPost from 'components/NewPost/NewPost';
-import Spinner from 'components/UI/Spinner/Spinner';
-import { BlogStyled, Posts, PostsLoading } from './Blog.style';
+import { BlogStyled } from './Blog.style';
 
 const Blog = (props) => {
 
   const [posts, setPosts] = useState([]);
+  const [selectedPost, setSelectedPost] = useState(null);
+
+  const onPostSelect = (id) => {
+    const post = posts.find(post => post.id === id);
+    setSelectedPost(post);
+  };
+
+  const processPosts = (posts) => {
+    const result = [];
+    for (const post of posts) {
+      result.push({
+        ...post,
+        title: strings.capitalize(post.title),
+      });
+    }
+    return result;
+  };
 
   useEffect(() => {
     (async () => {
       const url = 'https://jsonplaceholder.typicode.com/posts?_page=5';
       const response = await axios.get(url);
-      setPosts(response.data);
+      const posts = processPosts(response.data);
+      setPosts(posts);
     })();
   }, []);
 
-  const renderPosts = (posts) => {
-
-    if (posts.length === 0) {
-      return (
-        <PostsLoading>
-          <Spinner />
-        </PostsLoading>
-      );
-    }
-
-    return (
-      <Posts>
-        {posts.map(post => (
-          <Post
-            key={post.id}
-            title={post.title.substring(0, 20) + '...'}
-            author={post.userId}
-          />
-        ))}
-      </Posts>
-    );
-  };
-
   return (
     <BlogStyled>
-      
-      {renderPosts(posts)}
-
-      <section>
-        <FullPost />
-      </section>
-
-      <section>
-        <NewPost />
-      </section>
-
+      <PostsList posts={posts} onPostSelect={onPostSelect} />
+      <FullPost post={selectedPost} />
+      <NewPost />
     </BlogStyled>
   );
 };

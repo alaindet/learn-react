@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 import theme from 'theme/variables';
 
-export const PostStyled = styled.article`
-  padding: 1rem;
-  text-align: center;
+export const PostListItemStyled = styled.article`
+  padding: 0.5rem 1rem;
   border: 2px solid ${theme.color.shadowLight};
   border-radius: 0.5rem;
   box-shadow: 0 2px 3px ${theme.color.grey};

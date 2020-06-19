@@ -5,6 +5,7 @@ const variables = {
     desktopToOver: 1440,
   },
   color: {
+    greyDark: '#aaa',
     grey: '#ccc',
     greyLight: '#eee',
     black: '#333',
