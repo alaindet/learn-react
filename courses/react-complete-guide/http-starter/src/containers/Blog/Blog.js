@@ -4,39 +4,48 @@ import axios from 'axios';
 import Post from 'components/Post/Post';
 import FullPost from 'components/FullPost/FullPost';
 import NewPost from 'components/NewPost/NewPost';
-import { BlogStyled, Posts } from './Blog.style';
+import Spinner from 'components/UI/Spinner/Spinner';
+import { BlogStyled, Posts, PostsLoading } from './Blog.style';
 
 const Blog = (props) => {
 
-  const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const url = 'https://jsonplaceholder.typicode.com/posts';
+      const url = 'https://jsonplaceholder.typicode.com/posts?_page=5';
       const response = await axios.get(url);
-      const posts = response.data.filter(p => p.id < 6);
-      setPosts(posts);
-      setLoading(false);
+      setPosts(response.data);
     })();
-  });
+  }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const renderPosts = (posts) => {
 
-  return (
-    <BlogStyled>
-      
+    if (posts.length === 0) {
+      return (
+        <PostsLoading>
+          <Spinner />
+        </PostsLoading>
+      );
+    }
+
+    return (
       <Posts>
         {posts.map(post => (
           <Post
             key={post.id}
-            title={post.title.substring(0, 20)+'...'}
+            title={post.title.substring(0, 20) + '...'}
             author={post.userId}
           />
         ))}
       </Posts>
+    );
+  };
+
+  return (
+    <BlogStyled>
+      
+      {renderPosts(posts)}
 
       <section>
         <FullPost />

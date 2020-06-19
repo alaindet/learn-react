@@ -7,7 +7,7 @@ export const FullPostStyled = styled.div`
   margin: 1.25rem auto;
   border: 1px solid ${theme.color.greyLight};
   border-radius: 0.5rem;
-  box-shadow: 0 2px 3px ${theme.color.grey};
+  box-shadow: 3px 3px 7px rgba(0,0,0,0.1);
   text-align: center;
 `;
 
