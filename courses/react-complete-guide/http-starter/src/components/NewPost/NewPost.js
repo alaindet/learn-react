@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 
 import { NewPostStyled, Label, Input, Textarea, Select, Centered, DismissButton } from './NewPost.style';
 import Button from 'components/UI/Button/Button';
-
-const AUTHORS = [
-  { name: 'Alice' },
-  { name: 'Bob' },
-];
+import AUTHORS from 'data/authors';
 
 const NewPost = (props) => {
 

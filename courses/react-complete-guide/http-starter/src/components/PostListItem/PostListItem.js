@@ -7,7 +7,7 @@ const Post = (props) => {
     <PostListItemStyled onClick={() => props.onClick(props.id)}>
       <h1>{props.title}</h1>
       <PostMeta>
-        <Author>Author: {props.author}</Author>
+        <Author>{props.author}</Author>
       </PostMeta>
     </PostListItemStyled>
   );

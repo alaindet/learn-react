@@ -4,6 +4,7 @@ import strings from 'services/string-utils';
 import { PostsListStyled, PostsLoading } from './PostsList.style';
 import Spinner from 'components/UI/Spinner/Spinner';
 import PostListItem from 'components/PostListItem/PostListItem';
+import Pagination from 'components/UI/Pagination/Pagination';
 
 const PostsList = (props) => {
 
@@ -22,10 +23,16 @@ const PostsList = (props) => {
           key={post.id}
           id={post.id}
           title={strings.truncate(post.title, 20)}
-          author={post.userId}
+          author={post.author}
           onClick={props.onPostSelect}
         />
       ))}
+      <Pagination
+        page={props.page}
+        lastPage={props.lastPage}
+        onPrev={props.onPrevPage}
+        onNext={props.onNextPage}
+      />
     </PostsListStyled>
   );
 };
