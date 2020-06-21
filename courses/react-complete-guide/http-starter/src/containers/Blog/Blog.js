@@ -1,81 +1,101 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 import AUTHORS from 'data/authors';
-import strings from 'services/string-utils';
+import stringUtils from 'services/string-utils';
+import arrayUtils from 'services/array-utils';
 import PostsList from 'components/PostsList/PostsList';
 import FullPost from 'components/FullPost/FullPost';
 import NewPost from 'components/NewPost/NewPost';
 import { BlogStyled } from './Blog.style';
 
-const Blog = (props) => {
+class Blog extends React.Component {
 
-  const LAST_PAGE = 10;
-  const [page, setPage] = useState(1);
-  const [posts, setPosts] = useState([]);
-  const [selectedPost, setSelectedPost] = useState(null);
+  LAST_PAGE = 10;
 
-  const onPostSelect = (id) => {
-    const post = posts.find(post => post.id === id);
-    setSelectedPost(post);
+  state = {
+    page: 1,
+    posts: [],
+    selectedPostId: null,
   };
 
-  const onPostDeselect = () => {
-    setSelectedPost(null);
-  };
+  componentDidMount() {
+    this.fetchPosts();
+  }
 
-  const onPrevPage = () => {
-    const prev = page - 1;
-    setPage(prev < 0 ? 0 : prev);
-  };
-
-  const onNextPage = () => {
-    const next = page + 1;
-    setPage(next > LAST_PAGE ? LAST_PAGE : next);
-  };
-
-  const getMapFromCollectionByKey = (collection, key) => {
-    const map = {};
-    for (const item of collection) {
-      map[item[key]] = item;
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.page !== this.state.page) {
+      this.fetchPosts(this.state.page);
     }
-    return map;
+  }
+
+  async fetchPosts(page) {
+    const url = `http://localhost:4242/posts?_page=${page}`;
+    const response = await axios.get(url);
+    const posts = this.processPosts(response.data);
+    this.setState({ posts });
+  }
+
+  onPostSelect = (id) => {
+    this.setState({ selectedPostId: id });
   };
 
-  const processPosts = (posts) => {
-    const authorsMap = getMapFromCollectionByKey(AUTHORS, 'id');
+  onPostDeselect = () => {
+    this.setState({ selectedPostId: null });
+  };
+
+  onPostDelete = (id) => {
+    console.log(`TODO: You are deleting post #${id}`);
+  };
+
+  onPrevPage = () => {
+    const prev = this.state.page - 1;
+    const page = prev < 0 ? 0 : prev;
+    this.setState({ page });
+  };
+
+  onNextPage = () => {
+    const next = this.state.page + 1;
+    const page = next > this.LAST_PAGE ? this.LAST_PAGE : next;
+    this.setState({ page });
+  };
+
+  processPosts(posts) {
+    const authorsMap = arrayUtils.getMapFromArrayByKey(AUTHORS, 'id');
     return posts.map(post => {
       return {
         ...post,
-        title: strings.capitalize(post.title),
+        title: stringUtils.capitalize(post.title),
         author: authorsMap[post.authorId].name,
       };
     });
-  };
+  }
 
-  useEffect(() => {
-    (async () => {
-      const url = `http://localhost:4242/posts?_page=${page}`;
-      const response = await axios.get(url);
-      const posts = processPosts(response.data);
-      setPosts(posts);
-    })();
-  }, [page]);
+  render() {
+    return (
+      <BlogStyled>
 
-  return (
-    <BlogStyled>
-      <PostsList
-        posts={posts}
-        onPostSelect={onPostSelect}
-        page={page}
-        lastPage={LAST_PAGE}
-        onPrevPage={onPrevPage}
-        onNextPage={onNextPage}
-      />
-      <FullPost post={selectedPost} onPostDeselect={onPostDeselect}/>
-      <NewPost />
-    </BlogStyled>
-  );
-};
+        <PostsList
+          posts={this.state.posts}
+          page={this.state.page}
+          lastPage={this.LAST_PAGE}
+          onPostSelect={this.onPostSelect}
+          onPrevPage={this.onPrevPage}
+          onNextPage={this.onNextPage}
+        />
+
+        <FullPost
+          id={this.state.selectedPostId}
+          onDeselect={this.onPostDeselect}
+          onDelete={this.onPostDelete}
+        />
+
+        <NewPost />
+
+      </BlogStyled>
+    );
+  }
+}
+
 
 export default Blog;

@@ -1,36 +1,66 @@
 import React from 'react';
+import axios from 'axios';
 
 import { FullPostStyled, PostBody, EditSection, DismissButton } from './FullPost.style';
 import Button from 'components/UI/Button/Button';
 
-const FullPost = (props) => {
+class FullPost extends React.Component {
 
-  const onDeleteClick = () => {
-    console.log('FullPost.onDeleteClick');
+  state = {
+    post: null,
   };
 
-  if (!props.post) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.id && prevProps.id !== this.props.id) {
+      this.fetchPost(this.props.id);
+    }
+  }
+
+  onDeleteClick = () => {
+    console.log('FullPost.onDeleteClick');
+    this.props.onDelete(this.props.id);
+  }
+
+  onDeselectClick = () => {
+    this.setState({ post: null });
+    this.props.onDeselect();
+  };
+
+  async fetchPost(id) {
+    const url = `http://localhost:4242/posts/${id}`;
+    const response = await axios.get(url);
+    this.setState({ post: response.data });
+  }
+
+  render() {
+
+    if (!this.state.post) {
+      return (
+        <FullPostStyled>
+          <p>Please a select a post from above</p>
+        </FullPostStyled>
+      );
+    }
+
     return (
       <FullPostStyled>
-        <p>Please a select a post from above</p>
+
+        <h1>{this.state.post.title}</h1>
+        <PostBody>{this.state.post.body}</PostBody>
+        
+        <EditSection>
+          <Button type="button" color="secondary" onClick={this.onDeleteClick}>
+            Delete
+          </Button>
+        </EditSection>
+
+        <DismissButton onClick={this.onDeselectClick}>
+          &times;
+        </DismissButton>
+
       </FullPostStyled>
     );
   }
-
-  return (
-    <FullPostStyled>
-      <h1>{props.post.title}</h1>
-      <PostBody>{props.post.body}</PostBody>
-      <EditSection>
-        <Button type="button" color="secondary" onClick={onDeleteClick}>
-          Delete
-        </Button>
-      </EditSection>
-      <DismissButton onClick={props.onPostDeselect}>
-        &times;
-      </DismissButton>
-    </FullPostStyled>
-  );
-};
+}
 
 export default FullPost;
