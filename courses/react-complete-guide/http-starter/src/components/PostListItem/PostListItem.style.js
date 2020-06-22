@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import theme from 'theme/variables';
 
+const orangeBorder = `border-color: ${theme.color.orange};`;
+
 export const PostListItemStyled = styled.article`
   padding: 0.5rem 1rem;
   border: 2px solid ${theme.color.shadowLight};
@@ -10,9 +12,11 @@ export const PostListItemStyled = styled.article`
   cursor: pointer;
   transition: border-color 0.2s ease-out;
 
+  ${props => props.active ? orangeBorder : ''}
+
   &:hover,
   &:active {
-    border-color: ${theme.color.orange};
+    ${orangeBorder}
   }
 `;
 

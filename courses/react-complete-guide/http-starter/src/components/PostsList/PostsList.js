@@ -24,6 +24,7 @@ const PostsList = (props) => {
           id={post.id}
           title={strings.truncate(post.title, 20)}
           author={post.author}
+          active={props.selectedPostId === post.id}
           onClick={props.onPostSelect}
         />
       ))}

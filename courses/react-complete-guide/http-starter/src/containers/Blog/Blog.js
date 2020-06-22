@@ -79,6 +79,7 @@ class Blog extends React.Component {
           posts={this.state.posts}
           page={this.state.page}
           lastPage={this.LAST_PAGE}
+          selectedPostId={this.state.selectedPostId}
           onPostSelect={this.onPostSelect}
           onPrevPage={this.onPrevPage}
           onNextPage={this.onNextPage}
