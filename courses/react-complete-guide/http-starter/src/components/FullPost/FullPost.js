@@ -16,9 +16,11 @@ class FullPost extends React.Component {
     }
   }
 
-  onDeleteClick = () => {
-    console.log('FullPost.onDeleteClick');
-    this.props.onDelete(this.props.id);
+  onDeleteClick = async () => {
+    const url = `http://localhost:4242/posts/${this.state.post.id}`;
+    const response = await axios.delete(url);
+    console.log(response);
+    this.setState({ post: null });
   }
 
   onDeselectClick = () => {
