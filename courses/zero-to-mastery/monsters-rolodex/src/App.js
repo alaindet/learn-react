@@ -1,41 +1,30 @@
 import React, { Component } from 'react';
+
 import './App.css';
+import { CardList } from './components/card-list/card-list.component';
 
 class App extends Component {
 
+  api = 'https://jsonplaceholder.typicode.com';
   state = {
-    monsters: [
-      {
-        id: 'frnk',
-        name: 'Frankenstein',
-      },
-      {
-        id: 'drac',
-        name: 'Dracula',
-      },
-      {
-        id: 'zmbi',
-        name: 'Zombie',
-      },
-    ],
+    monsters: [],
   };
 
-  constructor() {
-    super();
+  async componentDidMount() {
+    const url = `${this.api}/users`;
+    const response = await fetch(url);
+    const monsters = await response.json();
+    this.setState({ monsters });
   }
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <header>
           <h1>Monsters Rolodex</h1>
         </header>
         <main>
-          <ul>
-            {this.state.monsters.map(monster => (
-              <li key={monster.id}>{monster.name}</li>
-            ))}
-          </ul>
+          <CardList monsters={this.state.monsters} />
         </main>
       </div>
     );
