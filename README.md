@@ -13,3 +13,7 @@ This repository contains the learning material, demo, tests and everything I use
 - Modern React with Redux [2020 Update]
   - **Course**: [Modern React with Redux [2020 Update]](https://www.udemy.com/course/react-redux/)
   - **Teacher**: [Stephen Grider](https://www.udemy.com/user/sgslo/)
+
+- Complete React Developer in 2021 (w/ Redux, Hooks, GraphQL)
+  - **Course** [Complete React Developer in 2021 (w/ Redux, Hooks, GraphQL)](https://www.udemy.com/course/complete-react-developer-zero-to-mastery)
+  - **Teacher** [Andrei Neagoie](https://www.udemy.com/user/andrei-neagoie/)
