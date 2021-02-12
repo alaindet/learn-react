@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 
 import './app.style.css';
-import { Search } from './components/search/search.component';
+import { SearchBox } from './components/search-box/search-box.component';
 import { CardList } from './components/card-list/card-list.component';
 
 class App extends Component {
 
-  api = 'http://localhost:4242';
+  title = process.env.REACT_APP_NAME;
+  api = process.env.REACT_APP_API_URL;
   state = {
     monsters: [],
     filteredMonsters: [],
-    searchedMonster: '',
+    query: '',
   };
 
   async componentDidMount() {
@@ -21,21 +22,27 @@ class App extends Component {
     this.setState({ monsters, filteredMonsters });
   }
 
-  onMonsterSearch = (event) => {
-    const searchedMonster = event.target.value;
+  filterMonsters(query) {
     const filteredMonsters = this.state.monsters
-      .filter(m => m.name.toLowerCase().includes(searchedMonster));
-    this.setState({ searchedMonster, filteredMonsters });
+      .filter(m => m.name.toLowerCase().includes(query));
+    this.setState({ filteredMonsters });
   }
+
+  onMonsterSearch(event) {
+    const query = event.target.value;
+    this.setState({ query });
+    this.filterMonsters(query);
+  };
 
   render() {
     return (
       <div className="app">
         <header>
-          <h1>Monsters Rolodex</h1>
-          <Search
-            value={this.state.searchedMonster}
-            onChange={this.onMonsterSearch}
+          <h1>{this.title}</h1>
+          <SearchBox
+            value={this.state.query}
+            onChange={e => this.onMonsterSearch(e)}
+            placeholder={'Search monsters...'}
           />
         </header>
         <main>

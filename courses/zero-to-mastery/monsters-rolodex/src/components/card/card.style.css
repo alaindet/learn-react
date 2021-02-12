@@ -2,11 +2,9 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: 0.15s transform ease-out;
-  background-image: linear-gradient(
-    var(--color-grey-lightest),
-    var(--color-grey-mid-light)
-  );
+  transition: 0.15s all ease-out;
+  border: 1px solid var(--color-grey-dark);
+  overflow-wrap: break-word;
 }
 
 @media screen and (min-width: 768px) {
@@ -22,7 +20,8 @@
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px var(--color-grey-dark);
 }
 
 .card .header {

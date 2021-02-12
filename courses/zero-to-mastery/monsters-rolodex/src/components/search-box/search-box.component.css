@@ -5,9 +5,15 @@ input.search {
   transition: 0.15s all ease-out;
 }
 
+input.search:hover {
+  border-color: black;
+  transform: translate(-1px,-1px);
+  box-shadow: 3px 3px 0 0 var(--color-grey-mid-light);
+}
+
 input.search:focus {
   outline: none;
   border-color: black;
   transform: translate(-1px,-1px);
-  box-shadow: 3px 3px 0 0 var(--color-grey-mid-light);
+  box-shadow: 3px 3px 0 0 var(--color-grey-dark) !important;
 }
