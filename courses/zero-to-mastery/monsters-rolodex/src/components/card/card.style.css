@@ -1,6 +1,5 @@
 .card {
   padding: 0.5rem 1rem;
-  background-color: var(--color-grey-light);
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.15s transform ease-out;
@@ -21,7 +20,6 @@
     padding: 1.5rem 2rem;
   }
 }
-
 
 .card:hover {
   transform: scale(1.03);

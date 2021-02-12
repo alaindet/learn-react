@@ -1,0 +1,13 @@
+input.search {
+  padding: 0.5rem 1rem;
+  border-radius: 0.33rem;
+  border: 1px solid var(--color-grey-mid-light);
+  transition: 0.15s all ease-out;
+}
+
+input.search:focus {
+  outline: none;
+  border-color: black;
+  transform: translate(-1px,-1px);
+  box-shadow: 3px 3px 0 0 var(--color-grey-mid-light);
+}

@@ -13,7 +13,13 @@
 
 .app main:not(:empty) {
   margin-top: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
   padding-top: 2rem;
   border-top: 2px solid var(--color-grey-mid-light);
+}
+
+@media screen and (min-width: 768px) {
+  .app main:not(:empty) {
+    padding: 1rem;
+  }
 }
