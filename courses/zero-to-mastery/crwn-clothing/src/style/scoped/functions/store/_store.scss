@@ -1,0 +1,9 @@
+/// Alias of app-store-get and app-store-set
+@function store($query, $value: null)
+{
+  @if ($value != null) {
+    @return app-store-set($query, $value);
+  } @else {
+    @return app-store-get($query);
+  }
+}

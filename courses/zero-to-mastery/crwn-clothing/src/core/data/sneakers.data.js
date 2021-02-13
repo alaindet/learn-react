@@ -1,4 +1,4 @@
-export const sneakers = [
+export const SNEAKERS = [
   {
     id: 1,
     name: 'Adidas NMD',

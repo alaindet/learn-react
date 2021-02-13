@@ -1,4 +1,4 @@
-export const sections = [
+export const SECTIONS = [
   {
     id: 1,
     path: 'hats',
@@ -7,26 +7,26 @@ export const sections = [
   },
   {
     id: 2,
-    path: '',
+    path: 'jackets',
     title: 'jackets',
     imageUrl: 'images/sections/jackets.jpg',
   },
   {
     id: 3,
-    path: '',
+    path: 'sneakers',
     title: 'sneakers',
     imageUrl: 'images/sections/sneakers.jpg',
   },
   {
     id: 4,
-    path: '',
+    path: 'women',
     title: 'women',
     imageUrl: 'images/sections/women.jpg',
     size: 'large',
   },
   {
     id: 5,
-    path: '',
+    path: 'men',
     title: 'men',
     imageUrl: 'images/sections/men.jpg',
     size: 'large',

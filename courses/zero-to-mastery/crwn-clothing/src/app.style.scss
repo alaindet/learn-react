@@ -1,0 +1,5 @@
+@import 'scoped';
+
+.main-content {
+  margin-top: store('size.header') + store('size.header-margin');
+}

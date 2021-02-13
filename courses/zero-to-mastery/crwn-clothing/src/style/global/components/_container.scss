@@ -1,0 +1,19 @@
+@mixin container-component()
+{
+  .container {
+    margin: 0 20px;
+
+    @include media-from('tablet') {
+      margin: 0 32px;
+    }
+
+    @include media-from('desktop') {
+      margin: 0 72px;
+    }
+
+    @include media-from('widest') {
+      margin: 0 auto;
+      max-width: 1440px - 72px * 2;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-export const women = [
+export const WOMEN = [
   {
     id: 1,
     name: 'Blue Tanktop',

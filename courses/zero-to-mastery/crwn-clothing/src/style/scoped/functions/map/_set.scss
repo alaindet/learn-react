@@ -1,0 +1,5 @@
+/// Saves values into a map
+@function app-map-set($map, $key, $value)
+{
+  @return map-merge($map, ('#{$key}': $value));
+}

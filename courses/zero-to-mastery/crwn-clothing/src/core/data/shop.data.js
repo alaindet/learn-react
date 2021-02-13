@@ -1,38 +1,38 @@
-import { hats } from './hats.data';
-import { sneakers } from './sneakers.data';
-import { jackets } from './jackets.data';
-import { women } from './women.data';
-import { men } from './men.data';
+import { HATS } from './hats.data';
+import { SNEAKERS } from './sneakers.data';
+import { JACKETS } from './jackets.data';
+import { WOMEN } from './women.data';
+import { MEN } from './men.data';
 
-export const SHOP_DATA = [
+export const SHOP = [
   {
     id: 1,
     title: 'Hats',
     routeName: 'hats',
-    items: hats,
+    items: HATS,
   },
   {
     id: 2,
     title: 'Sneakers',
     routeName: 'sneakers',
-    items: sneakers,
+    items: SNEAKERS,
   },
   {
     id: 3,
     title: 'Jackets',
     routeName: 'jackets',
-    items: jackets,
+    items: JACKETS,
   },
   {
     id: 4,
     title: 'Womens',
     routeName: 'womens',
-    items: women,
+    items: WOMEN,
   },
   {
     id: 5,
     title: 'Mens',
     routeName: 'mens',
-    items: men,
+    items: MEN,
   },
 ];

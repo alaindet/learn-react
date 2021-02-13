@@ -5,14 +5,16 @@
   align-items: center;
   justify-content: center;
   border: 1px solid var(--color-black);
-  margin: 0 0.5rem 1rem;
+  margin: 1rem 0.5rem;
   height: 15rem;
+  background-color: var(--color-black);
   cursor: pointer;
   overflow: hidden;
 
   &:hover {
     .background-image {
       transform: scale(1.03);
+      opacity: 0.66;
     }
   }
 
@@ -33,7 +35,7 @@
     height: 100%;
     background-position: center;
     background-size: cover;
-    transition: transform 0.5s ease-out;
+    transition: 0.5s all ease-out;
   }
 
   .content {

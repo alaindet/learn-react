@@ -1,5 +1,6 @@
-$APP: map-merge($APP, ('device': (
+$_: store('device', (
   'tablet': 768px,
   'desktop': 1024px,
   'wide': 1280px,
-)));
+  'widest': 1440px,
+));

@@ -1,0 +1,16 @@
+@mixin typography-links()
+{
+  a:not(.unstyled-link) {
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 0.25rem;
+    transition: 0.15s all ease-out;
+    border-bottom: 1px solid transparent;
+
+    &:hover,
+    &:active {
+      color: var(--color-grey);
+      border-bottom-color: var(--color-grey);
+    }
+  }
+}

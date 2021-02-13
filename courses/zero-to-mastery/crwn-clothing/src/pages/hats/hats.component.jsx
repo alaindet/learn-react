@@ -1,12 +1,10 @@
 import React from 'react';
 
-const HatsPage = () => {
+export const HatsPage = () => {
   return (
-    <div className="hats">
-      <h1>Hats</h1>
-      <img src="/images/sections/hats.jpg" alt="Hats" />
-    </div>
+    <article>
+      <h2>Hats</h2>
+      <p>Todo...</p>
+    </article>
   );
 };
-
-export default HatsPage;

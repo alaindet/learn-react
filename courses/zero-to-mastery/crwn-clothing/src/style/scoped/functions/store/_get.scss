@@ -1,0 +1,4 @@
+@function app-store-get($query)
+{
+  @return app-map-get($APP-STORE, $query);
+}

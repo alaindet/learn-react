@@ -1,4 +1,4 @@
-export const hats = [
+export const HATS = [
   {
     id: 1,
     name: 'Brown Brim',

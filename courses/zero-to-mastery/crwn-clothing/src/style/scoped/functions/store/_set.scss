@@ -1,0 +1,5 @@
+@function app-store-set($key, $value)
+{
+  $APP-STORE: app-map-set($APP-STORE, $key, $value) !global;
+  @return null;
+}

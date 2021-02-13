@@ -1,4 +1,4 @@
-export const men = [
+export const MEN = [
   {
     id: 1,
     name: 'Camo Down Vest',

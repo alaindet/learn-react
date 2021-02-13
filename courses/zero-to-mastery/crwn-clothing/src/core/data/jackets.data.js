@@ -1,4 +1,4 @@
-export const jackets = [
+export const JACKETS = [
   {
     id: 1,
     name: 'Black Jean Shearling',
