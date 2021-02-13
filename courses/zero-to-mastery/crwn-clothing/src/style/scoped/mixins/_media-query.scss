@@ -1,0 +1,6 @@
+@mixin media-up($device: 'tablet') {
+  $width: map-get(map-get($APP, 'device'), $device);
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}

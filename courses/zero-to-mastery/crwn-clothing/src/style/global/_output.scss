@@ -1,0 +1,7 @@
+:root {
+  @include variables-color();
+}
+
+@include reset();
+
+@include typography-root();

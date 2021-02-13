@@ -1,0 +1,6 @@
+@mixin typography-root() {
+  html {
+    font-size: 16px;
+    font-family: 'Miriam Libre', sans-serif;
+  }
+}
