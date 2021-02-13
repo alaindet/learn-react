@@ -2,7 +2,10 @@ import React from 'react';
 
 const HatsPage = () => {
   return (
-    <h1>Hats</h1>
+    <div className="hats">
+      <h1>Hats</h1>
+      <img src="/images/sections/hats.jpg" alt="Hats" />
+    </div>
   );
 };
 
