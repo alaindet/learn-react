@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './sign-in.style.scss';
+import { signInWithGoogle } from '../../core/firebase/utils';
 import { FormInput } from '../../components/form-input/form-input.component';
 import { Button } from '../../components/button/button.component';
 
@@ -11,7 +12,6 @@ export const SignIn = () => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log('handleOnSubmit', email, password);
   };
 
   return (
@@ -36,7 +36,18 @@ export const SignIn = () => {
           handleChange={e => setPassword(e.target.value)}
         />
 
-        <Button type="submit">Sign In</Button>
+        <Button type="submit">
+          Sign In
+        </Button>
+
+        <Button
+          type="button"
+          onClick={signInWithGoogle}
+          isSignedWithGoogle={true}
+          style={{ marginLeft: '1rem' }}
+        >
+          Sign In with Google
+        </Button>
 
       </form>
     </div>

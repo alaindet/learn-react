@@ -42,7 +42,7 @@
     pointer-events: none;
     left: 0.312rem;
     top: 0.625rem;
-    transition: 300ms ease all;
+    transition: 0.15s ease all;
 
     &.shrink {
       @include form-label-shrinked(var(--color-black));

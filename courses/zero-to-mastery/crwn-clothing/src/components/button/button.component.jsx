@@ -1,10 +1,17 @@
 import React from 'react';
 
 import './button.style.scss';
+import { pickClassNames } from '../../utils/pick-classnames.util';
 
-export const Button = ({ children, ...otherProps }) => {
+export const Button = ({ children, isSignedWithGoogle, ...otherProps }) => {
+
+  const className = pickClassNames({
+    'button': true,
+    'google-sign-in': !!isSignedWithGoogle,
+  });
+
   return (
-    <button className="button" {...otherProps}>
+    <button className={className} {...otherProps}>
       {children}
     </button>
   );

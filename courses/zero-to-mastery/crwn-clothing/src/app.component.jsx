@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import './app.style.scss';
+import { auth } from './core/firebase/utils';
 import { Header } from './components/header/header.component';
 import { HomePage } from './pages/home/home.component';
 import { SignInPage } from './pages/sign-in/sign-in.component';
@@ -14,9 +15,18 @@ import { MenPage } from './pages/men/men.component';
 import { ContactPage } from './pages/contact/contact.component';
 
 export const App = () => {
+
+  const [currentUser, setCurrentUser] = useState(null);
+  
+  useEffect(() => {
+    const authSub = auth.onAuthStateChanged(user => setCurrentUser(user));
+    return () => authSub();
+  }, []);
+
   return (
     <>
-      <Header />
+      {console.log('currentUser', currentUser)}
+      <Header currentUser={currentUser} />
       <main className="main-content container">
         <Switch>
           <Route path="/" exact component={HomePage} />

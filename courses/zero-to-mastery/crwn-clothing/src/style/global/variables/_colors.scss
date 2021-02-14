@@ -1,3 +1,5 @@
+/// Just add here dynamic colors, not static ones
+/// Use SASS variables for static colors
 @mixin variables-color() {
   --color-black: #111;
   --color-grey-dark: #333;

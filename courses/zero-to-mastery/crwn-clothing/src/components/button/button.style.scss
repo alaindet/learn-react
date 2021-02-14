@@ -1,8 +1,10 @@
+@import 'scoped';
+
 .button {
   width: auto;
   letter-spacing: 1px;
-  padding: 0.66rem 2.5rem;
-  font-size: 0.94rem;
+  padding: 0.66rem 2rem;
+  font-size: 0.95rem;
   background-color: var(--color-black);
   color: var(--color-white);
   text-transform: uppercase;
@@ -15,5 +17,16 @@
   &:hover {
     background-color: var(--color-white);
     color: var(--color-black);
+  }
+
+  // Google
+  &.google-sign-in {
+    background-color: store('color.google.blue');
+    color: store('color.white');
+    border: none;
+
+    &:hover {
+      background-color: store('color.google.blue-dark');
+    }
   }
 }
