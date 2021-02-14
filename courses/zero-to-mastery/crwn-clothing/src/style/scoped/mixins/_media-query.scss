@@ -1,6 +1,5 @@
 @mixin media-from($device: 'tablet') {
   $width: store('device.#{$device}');
-  @debug $width;
   @media screen and (min-width: $width) {
     @content;
   }

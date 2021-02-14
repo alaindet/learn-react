@@ -1,0 +1,51 @@
+@import 'scoped';
+
+.form-input-group {
+  position: relative;
+  margin: 2.825rem 0;
+
+  .form-input {
+    background: none;
+    background-color: var(-color-white);
+    color: var(--color-grey);
+    font-size: 1.125rem;
+    padding: 0.625rem;
+    padding-left: 0.312rem;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--color-grey);
+    margin: 1.5rem 0;
+    transition: 0.15s all ease-out;
+
+    &:focus {
+      outline: none;
+      background-color: var(--color-grey-light);
+      border-bottom: 1px solid var(--color-black);
+    }
+
+    &:focus ~ .form-input-label {
+      @include form-label-shrinked(var(--color-black));
+    }
+  }
+
+  input[type='password'] {
+    letter-spacing: 0.3em;
+  }
+
+  .form-input-label {
+    color: var(--color-grey);
+    font-size: 1rem;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0.312rem;
+    top: 0.625rem;
+    transition: 300ms ease all;
+
+    &.shrink {
+      @include form-label-shrinked(var(--color-black));
+    }
+  }
+}

@@ -1,7 +1,7 @@
 @mixin typography-root() {
   html {
-    font-size: 16px;
-    font-family: 'Work Sans', sans-serif;
+    font-size: store('typography.font-size');
+    font-family: store('typography.font-family');
   }
   
   body {

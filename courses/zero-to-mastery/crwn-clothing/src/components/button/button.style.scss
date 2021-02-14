@@ -1,0 +1,19 @@
+.button {
+  width: auto;
+  letter-spacing: 1px;
+  padding: 0.66rem 2.5rem;
+  font-size: 0.94rem;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-transform: uppercase;
+  font-family: inherit;
+  font-weight: bolder;
+  border: 1px solid var(--color-black);
+  cursor: pointer;
+  transition: 0.15s all ease-out;
+
+  &:hover {
+    background-color: var(--color-white);
+    color: var(--color-black);
+  }
+}
