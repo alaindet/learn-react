@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import './app.style.scss';
-import { auth } from './core/firebase/utils';
+import { auth, createUserProfileDocument } from './core/firebase/utils';
 import { Header } from './components/header/header.component';
 import { HomePage } from './pages/home/home.component';
 import { SignInPage } from './pages/sign-in/sign-in.component';
@@ -17,15 +17,30 @@ import { ContactPage } from './pages/contact/contact.component';
 export const App = () => {
 
   const [currentUser, setCurrentUser] = useState(null);
-  
+
+  const updateCurrentUser = useCallback(snapshot => setCurrentUser({
+    id: snapshot.id,
+    ...snapshot.data(),
+  }), []);
+
+  const onAuthStateChanged = useCallback(async user => {
+    if (user !== null) {
+      const userRef = await createUserProfileDocument(user);
+      userRef.onSnapshot(updateCurrentUser);
+    }
+  }, [updateCurrentUser]);
+
   useEffect(() => {
-    const authSub = auth.onAuthStateChanged(user => setCurrentUser(user));
+    const authSub = auth.onAuthStateChanged(onAuthStateChanged);
     return () => authSub();
-  }, []);
+  }, [onAuthStateChanged]);
 
   return (
     <>
+
+      {/* Remove */}
       {console.log('currentUser', currentUser)}
+
       <Header currentUser={currentUser} />
       <main className="main-content container">
         <Switch>
