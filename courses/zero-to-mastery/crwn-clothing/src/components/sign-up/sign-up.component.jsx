@@ -12,10 +12,42 @@ export const SignUp = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  const handleOnSubmit = (event) => {
+  const isFormValid = () => {
+
+    if (password !== passwordConfirm) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const resetForm = () => {
+    setDisplayName('');
+    setEmail('');
+    setPassword('');
+    setPasswordConfirm('');
+  };
+
+  const storeNewUser = async () => {
+    const { user } = await auth.createUserWithEmailAndPassword(email, password);
+    await createUserProfileDocument(user, { displayName });
+  };
+
+  const handleOnSubmit = async (event) => {
     event.preventDefault();
-    console.log('handleOnSubmit');
-    // TODO
+
+    if (!isFormValid()) {
+      return;
+    }
+
+    try {
+      await storeNewUser();
+      resetForm();
+    }
+
+    catch (error) {
+      console.error('ERROR', error);
+    }
   };
 
   return (
