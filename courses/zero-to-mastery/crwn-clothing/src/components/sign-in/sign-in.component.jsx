@@ -12,6 +12,7 @@ export const SignIn = () => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
+    // TODO
   };
 
   return (
@@ -19,7 +20,7 @@ export const SignIn = () => {
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleOnSubmit}>
-        
+
         <FormInput
           name="email"
           label="Email"
