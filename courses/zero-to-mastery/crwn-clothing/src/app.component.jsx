@@ -39,7 +39,10 @@ export const App = () => {
 
   return (
     <>
-      <Header currentUser={currentUser} />
+      <Header
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+      />
       <main className="main-content container">
         <Switch>
           {ROUTES.map((route, i) => (

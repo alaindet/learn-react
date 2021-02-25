@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import './sign-in.style.scss';
-import { signInWithGoogle } from '../../core/firebase/utils';
+import { auth, signInWithGoogle } from '../../core/firebase/utils';
 import { FormInput } from '../../components/form-input/form-input.component';
 import { Button } from '../../components/button/button.component';
 
@@ -10,9 +10,22 @@ export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleOnSubmit = (event) => {
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+  };
+
+  const handleOnSubmit = async (event) => {
     event.preventDefault();
-    // TODO
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      resetForm();
+    }
+
+    catch (error) {
+      console.error('ERROR', error);
+    }
   };
 
   return (

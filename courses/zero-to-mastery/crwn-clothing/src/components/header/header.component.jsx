@@ -5,11 +5,17 @@ import './header.style.scss';
 import { auth } from '../../core/firebase/utils';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 
-const SignInOrOut = ({ currentUser }) => {
+// TODO: Refactor this, it seems like prop drilling
+const SignInOrOut = ({ currentUser, setCurrentUser }) => {
+
+  const signOut = () => {
+    auth.signOut();
+    setCurrentUser(null);
+  };
 
   if (currentUser) {
     return (
-      <span className="option like-link" onClick={() => auth.signOut()}>
+      <span className="option like-link" onClick={signOut}>
         SIGN OUT
       </span>
     );
@@ -18,7 +24,7 @@ const SignInOrOut = ({ currentUser }) => {
   return <Link className="option" to="/signin">SIGN IN</Link>;
 };
 
-export const Header = ({ currentUser }) => {
+export const Header = ({ currentUser, setCurrentUser }) => {
   return (
     <header>
       <div className="header-content container">
@@ -29,7 +35,10 @@ export const Header = ({ currentUser }) => {
         <div className="options">
           <Link to="/shop" className="option">SHOP</Link>
           <Link to="/contact" className="option">CONTACT</Link>
-          <SignInOrOut currentUser={currentUser} />
+          <SignInOrOut
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
         </div>
       </div>
     </header>
