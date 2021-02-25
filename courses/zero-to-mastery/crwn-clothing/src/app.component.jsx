@@ -1,22 +1,22 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './app.style.scss';
+import { setCurrentUser } from './redux';
 import { auth, createUserProfileDocument } from './core/firebase/utils';
 import { Header } from './components/header/header.component';
 import { ROUTES } from './core/routes';
 
-export const App = () => {
-
-  const [currentUser, setCurrentUser] = useState(null);
+const App_ = (props) => {
 
   const updateCurrentUser = useCallback(
     snapshot => {
       const { id } = snapshot;
       const user = { id, ...snapshot.data() };
-      setCurrentUser(user);
+      props.setCurrentUser(user);
     },
-    [setCurrentUser]
+    [props]
   );
 
   const onAuthStateChanged = useCallback(
@@ -38,11 +38,8 @@ export const App = () => {
   );
 
   return (
-    <>
-      <Header
-        currentUser={currentUser}
-        setCurrentUser={setCurrentUser}
-      />
+    <React.Fragment>
+      <Header />
       <main className="main-content container">
         <Switch>
           {ROUTES.map((route, i) => (
@@ -55,6 +52,15 @@ export const App = () => {
           ))}
         </Switch>
       </main>
-    </>
+    </React.Fragment>
   );
 };
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+});
+
+export const App = connect(
+  null,
+  mapDispatchToProps,
+)(App_);

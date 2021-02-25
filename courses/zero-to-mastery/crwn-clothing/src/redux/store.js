@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
 
 import { middlewares } from './middlewares';
-import { rootReducer } from './reducer';
+import { reducers } from './reducer';
 
 export const store = createStore(
-  rootReducer,
+  reducers,
   applyMiddleware(...middlewares),
 );
