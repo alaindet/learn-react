@@ -8,15 +8,17 @@ import { auth, createUserProfileDocument } from './core/firebase/utils';
 import { Header } from './components/header/header.component';
 import { ROUTES } from './core/routes';
 
-const App_ = (props) => {
+const App_ = ({
+  setCurrentUser,
+}) => {
 
   const updateCurrentUser = useCallback(
     snapshot => {
       const { id } = snapshot;
       const user = { id, ...snapshot.data() };
-      props.setCurrentUser(user);
+      setCurrentUser(user);
     },
-    [props]
+    [setCurrentUser]
   );
 
   const onAuthStateChanged = useCallback(
@@ -43,11 +45,9 @@ const App_ = (props) => {
       <main className="main-content container">
         <Switch>
           {ROUTES.map((route, i) => (
-            <Route
-              key={i}
-              path={route.path}
-              exact={route.exact}
-              component={route.component}
+            <Route key={i}
+              render={currentUser => route.render(currentUser)}
+              {...route}
             />
           ))}
         </Switch>
@@ -56,11 +56,15 @@ const App_ = (props) => {
   );
 };
 
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+});
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
 });
 
 export const App = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(App_);
