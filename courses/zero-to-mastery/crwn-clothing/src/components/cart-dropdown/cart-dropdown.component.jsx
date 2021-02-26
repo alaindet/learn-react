@@ -9,7 +9,7 @@ export const CartDropdown = () => {
       <div className="cart-items">
         TODO: Show list of items here...
       </div>
-      <Button>GO TO CHECKOUT</Button>
+      <Button outline>GO&nbsp;TO&nbsp;CHECKOUT</Button>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './collection-item.style.scss';
+import { Button } from '../button/button.component';
 
 export const CollectionItem = (props) => {
 
@@ -12,6 +13,9 @@ export const CollectionItem = (props) => {
       <div className="collection-footer">
         <span className="name">{props.name}</span>
         <span className="price">{props.price}</span>
+      </div>
+      <div className="cta">
+        <Button outline>Add to cart</Button>
       </div>
     </div>
   );

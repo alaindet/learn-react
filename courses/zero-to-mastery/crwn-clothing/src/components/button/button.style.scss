@@ -3,23 +3,16 @@
 .button {
   width: auto;
   letter-spacing: 1px;
-  padding: 0.66rem 2rem;
+  padding: 0.6rem 1.75rem;
   font-size: 0.95rem;
-  background-color: var(--color-black);
-  color: var(--color-white);
   text-transform: uppercase;
   font-family: inherit;
   font-weight: bolder;
-  border: 1px solid var(--color-black);
+  border: 2px solid transparent;
   cursor: pointer;
   transition: 0.15s all ease-out;
 
-  &:hover {
-    background-color: var(--color-white);
-    color: var(--color-black);
-  }
-
-  // Google
+  // Google style
   &.google-sign-in {
     background-color: store('color.google.blue');
     color: store('color.white');
@@ -27,6 +20,30 @@
 
     &:hover {
       background-color: store('color.google.blue-dark');
+    }
+  }
+
+  // Filled style
+  &.filled {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border-color: var(--color-black);
+
+    &:hover {
+      background-color: var(--color-white);
+      color: var(--color-black);
+    }
+  }
+
+  // Outline style
+  &.outline {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-color: var(--color-black);
+
+    &:hover {
+      background-color: var(--color-black);
+      color: var(--color-white);
     }
   }
 }
