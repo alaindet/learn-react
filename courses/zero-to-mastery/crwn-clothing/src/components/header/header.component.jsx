@@ -6,6 +6,7 @@ import './header.style.scss';
 import { SignInOrOut } from '../sign-in-or-out/sign-in-or-out.component';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { CartIcon } from '../cart-icon/cart-icon.component';
+import { CartDropdown } from '../cart-dropdown/cart-dropdown.component';
 
 const Header_ = (props) => {
   return (
@@ -21,6 +22,7 @@ const Header_ = (props) => {
           <SignInOrOut />
           <CartIcon />
         </div>
+        <CartDropdown />
       </div>
     </header>
   );
