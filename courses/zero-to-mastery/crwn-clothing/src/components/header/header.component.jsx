@@ -22,7 +22,7 @@ const Header_ = (props) => {
           <SignInOrOut />
           <CartIcon />
         </div>
-        <CartDropdown />
+        {props.isCartVisible && <CartDropdown />}
       </div>
     </header>
   );
@@ -30,6 +30,7 @@ const Header_ = (props) => {
 
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
+  isCartVisible: state.cart.visible,
 });
 
 export const Header = connect(

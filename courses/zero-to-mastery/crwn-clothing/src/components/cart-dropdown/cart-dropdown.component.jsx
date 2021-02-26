@@ -7,7 +7,7 @@ export const CartDropdown = () => {
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
-        {/* TODO */}
+        TODO: Show list of items here...
       </div>
       <Button>GO TO CHECKOUT</Button>
     </div>
