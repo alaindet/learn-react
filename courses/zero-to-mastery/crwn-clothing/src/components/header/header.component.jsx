@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import './header.style.scss';
 import { SignInOrOut } from '../sign-in-or-out/sign-in-or-out.component';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import { CartIcon } from '../cart-icon/cart-icon.component';
 
 const Header_ = (props) => {
   return (
@@ -18,6 +19,7 @@ const Header_ = (props) => {
           <Link to="/shop" className="option">SHOP</Link>
           <Link to="/contact" className="option">CONTACT</Link>
           <SignInOrOut />
+          <CartIcon />
         </div>
       </div>
     </header>
