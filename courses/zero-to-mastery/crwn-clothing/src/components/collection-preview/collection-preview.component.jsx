@@ -11,8 +11,8 @@ export const CollectionPreview = (props) => {
     <div className="collection-preview">
       <h3 className="title">{props.title}</h3>
       <div className="preview">
-        {firstFourItems.map(({ id, ...item }) => (
-          <CollectionItem key={id} {...item} />
+        {firstFourItems.map(item => (
+          <CollectionItem key={item.id} item={item} />
         ))}
       </div>
     </div>

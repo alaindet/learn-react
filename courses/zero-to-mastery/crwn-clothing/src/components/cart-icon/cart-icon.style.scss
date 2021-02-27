@@ -9,6 +9,7 @@ $shopping-icon-size: 1.5rem;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  top: -0.2rem;
 
   .shopping-icon {
     width: $shopping-icon-size;
@@ -19,6 +20,6 @@ $shopping-icon-size: 1.5rem;
     position: absolute;
     font-size: 0.625rem;
     font-weight: bold;
-    bottom: 0.75rem;
+    bottom: 0.95rem;
   }
 }
