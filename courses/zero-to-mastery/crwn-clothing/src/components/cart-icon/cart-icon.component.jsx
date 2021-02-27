@@ -9,16 +9,23 @@ const CartIcon_ = (props) => {
   return (
     <div className="cart-icon" onClick={props.setVisible}>
       <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">0</span>
+      <span className="item-count">{props.count}</span>
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  count: state.cart.items.reduce(
+    (total, item) => total += item.quantity,
+    0
+  ),
+});
 
 const mapDispatchToProps = dispatch => ({
   setVisible: () => dispatch(toggleCartVisibility()),
 });
 
 export const CartIcon = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(CartIcon_);
