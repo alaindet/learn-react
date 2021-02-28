@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import './header.style.scss';
+import { selectCartIsVisible, selectCurrentUser } from '../../redux';
 import { SignInOrOut } from '../sign-in-or-out/sign-in-or-out.component';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { CartIcon } from '../cart-icon/cart-icon.component';
@@ -28,9 +30,9 @@ const Header_ = (props) => {
   );
 };
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
-  isCartVisible: state.cart.visible,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  isCartVisible: selectCartIsVisible,
 });
 
 export const Header = connect(

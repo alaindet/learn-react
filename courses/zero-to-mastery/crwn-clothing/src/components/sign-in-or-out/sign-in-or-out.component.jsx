@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { auth } from '../../core/firebase/utils';
-import { setCurrentUser } from '../../redux';
+import { setCurrentUser, selectCurrentUser } from '../../redux';
 
 const SignInOrOut_ = (props) => {
 
@@ -20,11 +20,11 @@ const SignInOrOut_ = (props) => {
     );
   }
 
-  return <Link className="option" to="/signin">SIGN IN</Link>;
+  return <Link className="option" to="/sign-in">SIGN IN</Link>;
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({

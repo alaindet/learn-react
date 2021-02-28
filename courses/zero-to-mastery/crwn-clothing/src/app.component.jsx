@@ -1,12 +1,11 @@
 import React, { useEffect, useCallback } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './app.style.scss';
-import { setCurrentUser } from './redux';
+import { setCurrentUser, selectCurrentUser } from './redux';
 import { auth, createUserProfileDocument } from './core/firebase/utils';
 import { Header } from './components/header/header.component';
-import { ROUTES } from './core/routes';
+import { AppRoutes } from './core/routes.component';
 
 const App_ = ({
   setCurrentUser,
@@ -43,21 +42,14 @@ const App_ = ({
     <React.Fragment>
       <Header />
       <main className="main-content container">
-        <Switch>
-          {ROUTES.map((route, i) => (
-            <Route key={i}
-              render={currentUser => route.render(currentUser)}
-              {...route}
-            />
-          ))}
-        </Switch>
+        <AppRoutes />
       </main>
     </React.Fragment>
   );
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({
