@@ -4,6 +4,15 @@
   flex-direction: column;
   height: 21rem;
   align-items: center;
+  position: relative;
+
+  &:hover {
+    .cta {
+      .button {
+        opacity: 0.5;
+      }
+    }
+  }
 
   .background-image {
     width: 100%;
@@ -28,6 +37,26 @@
 
     .price {
       width: 10%;
+    }
+  }
+
+  .cta {
+    position: absolute;
+    top: 66%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s opacity ease-out;
+
+    .button {
+      opacity: 0;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

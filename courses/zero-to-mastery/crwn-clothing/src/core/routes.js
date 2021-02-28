@@ -1,3 +1,6 @@
+import { React } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import { HomePage } from '../pages/home/home.component';
 import { SignInPage } from '../pages/sign-in/sign-in.component';
 import { ShopPage } from '../pages/shop/shop.component';
@@ -16,7 +19,10 @@ export const ROUTES = [
   },
   {
     path: '/signin',
-    component: SignInPage,
+    exact: true,
+    render: user => user
+      ? <Redirect to="/" />
+      : <SignInPage />,
   },
   {
     path: '/shop',

@@ -3,16 +3,16 @@ import React from 'react';
 import './collection-preview.style.scss';
 import { CollectionItem } from '../collection-item/collection-item.component';
 
-export const CollectionPreview = ({ title, items }) => {
+export const CollectionPreview = (props) => {
 
-  const firstFourItems = items.slice(0, 4);
+  const firstFourItems = props.items.slice(0, 4);
 
   return (
     <div className="collection-preview">
-      <h3 className="title">{title}</h3>
+      <h3 className="title">{props.title}</h3>
       <div className="preview">
-        {firstFourItems.map(({ id, ...item }) => (
-          <CollectionItem key={id} {...item} />
+        {firstFourItems.map(item => (
+          <CollectionItem key={item.id} item={item} />
         ))}
       </div>
     </div>

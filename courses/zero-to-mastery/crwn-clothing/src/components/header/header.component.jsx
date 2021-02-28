@@ -1,30 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './header.style.scss';
-import { auth } from '../../core/firebase/utils';
+import { SignInOrOut } from '../sign-in-or-out/sign-in-or-out.component';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import { CartIcon } from '../cart-icon/cart-icon.component';
+import { CartDropdown } from '../cart-dropdown/cart-dropdown.component';
 
-// TODO: Refactor this, it seems like prop drilling
-const SignInOrOut = ({ currentUser, setCurrentUser }) => {
-
-  const signOut = () => {
-    auth.signOut();
-    setCurrentUser(null);
-  };
-
-  if (currentUser) {
-    return (
-      <span className="option like-link" onClick={signOut}>
-        SIGN OUT
-      </span>
-    );
-  }
-
-  return <Link className="option" to="/signin">SIGN IN</Link>;
-};
-
-export const Header = ({ currentUser, setCurrentUser }) => {
+const Header_ = (props) => {
   return (
     <header>
       <div className="header-content container">
@@ -35,12 +19,20 @@ export const Header = ({ currentUser, setCurrentUser }) => {
         <div className="options">
           <Link to="/shop" className="option">SHOP</Link>
           <Link to="/contact" className="option">CONTACT</Link>
-          <SignInOrOut
-            currentUser={currentUser}
-            setCurrentUser={setCurrentUser}
-          />
+          <SignInOrOut />
+          <CartIcon />
         </div>
+        {props.isCartVisible && <CartDropdown />}
       </div>
     </header>
   );
 };
+
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+  isCartVisible: state.cart.visible,
+});
+
+export const Header = connect(
+  mapStateToProps,
+)(Header_);

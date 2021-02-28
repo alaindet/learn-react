@@ -1,0 +1,29 @@
+@import 'scoped';
+
+$dropdown-width: 15rem;
+$dropdown-height: 21.25rem;
+
+.cart-dropdown {
+  position: absolute;
+  width: $dropdown-width;
+  height: $dropdown-height;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid black;
+  background-color: white;
+  top: 4.2rem;
+  right: -2rem;
+  z-index: store('z-index.cart-dropdown');
+
+  .cart-items {
+    height: $dropdown-width;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+
+  button {
+    margin-top: auto;
+  }
+}
