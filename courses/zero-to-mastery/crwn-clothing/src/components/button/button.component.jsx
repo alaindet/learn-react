@@ -5,16 +5,17 @@ import { pickClassNames } from '../../utils/pick-classnames.util';
 
 export const Button = ({
   children,
-  isSignedWithGoogle,
+  color,
   outline,
   ...otherProps
 }) => {
 
   const className = pickClassNames({
     'button': true,
-    'outline': outline,
-    'filled': !outline,
-    'google-sign-in': !!isSignedWithGoogle,
+    'style-outline': outline,
+    'style-filled': !outline,
+    'color-default': !color,
+    'color-google': color === 'google',
   });
 
   return (

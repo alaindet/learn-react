@@ -12,19 +12,8 @@
   cursor: pointer;
   transition: 0.15s all ease-out;
 
-  // Google style
-  &.google-sign-in {
-    background-color: store('color.google.blue');
-    color: store('color.white');
-    border: none;
-
-    &:hover {
-      background-color: store('color.google.blue-dark');
-    }
-  }
-
   // Filled style
-  &.filled {
+  &.style-filled {
     background-color: var(--color-black);
     color: var(--color-white);
     border-color: var(--color-black);
@@ -36,7 +25,7 @@
   }
 
   // Outline style
-  &.outline {
+  &.style-outline {
     background-color: var(--color-white);
     color: var(--color-black);
     border-color: var(--color-black);
@@ -44,6 +33,18 @@
     &:hover {
       background-color: var(--color-black);
       color: var(--color-white);
+    }
+  }
+
+  // Google style
+  &.color-google {
+    background-color: store('color.google.blue');
+    color: store('color.white');
+    border-color: transparent;
+
+    &:hover {
+      background-color: store('color.google.blue-dark');
+      color: store('color.white');
     }
   }
 }

@@ -57,7 +57,7 @@ export const SignIn = () => {
         <Button
           type="button"
           onClick={signInWithGoogle}
-          isSignedWithGoogle={true}
+          color="google"
           style={{ marginLeft: '1rem' }}
         >
           Sign In with Google

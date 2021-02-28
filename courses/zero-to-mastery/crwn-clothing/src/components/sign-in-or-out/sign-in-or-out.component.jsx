@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import { auth } from '../../core/firebase/utils';
 import { setCurrentUser, selectCurrentUser } from '../../redux';
@@ -23,8 +24,8 @@ const SignInOrOut_ = (props) => {
   return <Link className="option" to="/sign-in">SIGN IN</Link>;
 };
 
-const mapStateToProps = state => ({
-  currentUser: selectCurrentUser(state),
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = dispatch => ({

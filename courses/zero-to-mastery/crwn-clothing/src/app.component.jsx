@@ -1,13 +1,15 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import './app.style.scss';
 import { setCurrentUser, selectCurrentUser } from './redux';
 import { auth, createUserProfileDocument } from './core/firebase/utils';
 import { Header } from './components/header/header.component';
-import { AppRoutes } from './core/routes.component';
+import { Routes } from './core/routes.component';
 
 const App_ = ({
+  currentUser,
   setCurrentUser,
 }) => {
 
@@ -42,14 +44,14 @@ const App_ = ({
     <React.Fragment>
       <Header />
       <main className="main-content container">
-        <AppRoutes />
+        <Routes currentUser={currentUser} />
       </main>
     </React.Fragment>
   );
 };
 
-const mapStateToProps = state => ({
-  currentUser: selectCurrentUser(state),
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = dispatch => ({
