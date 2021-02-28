@@ -16,13 +16,6 @@ $dropdown-height: 21.25rem;
   right: -2rem;
   z-index: store('z-index.cart-dropdown');
 
-  .cart-items {
-    height: $dropdown-width;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-  }
-
   button {
     margin-top: auto;
   }

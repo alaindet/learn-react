@@ -1,34 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
 
-import './cart-dropdown.style.scss';
+import { goToCheckout } from '../../redux';
+import { CartItems } from '../cart-items/cart-items.component';
 import { Button } from '../button/button.component';
-import { CartItem } from '../cart-item/cart-item.component';
-import { selectCartItems } from '../../redux';
+import './cart-dropdown.style.scss';
 
-const CartDropdown_ = (props) => {
+const CartDropdown_ = ({ history, goToCheckout }) => {
 
-  const { items } = props;
-
-  console.log('items', items);
+  const onCheckout = () => {
+    goToCheckout();
+    history.push('/checkout');
+  }
 
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
-        {items.map(item => (
-          <CartItem key={item.id} item={item} />
-        ))}
+        <CartItems />
       </div>
-      <Button outline>GO&nbsp;TO&nbsp;CHECKOUT</Button>
+      <Button outline onClick={onCheckout}>
+        GO&nbsp;TO&nbsp;CHECKOUT
+      </Button>
     </div>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  items: selectCartItems,
+const mapDispatchToProps = dispatch => ({
+  goToCheckout: () => dispatch(goToCheckout())
 });
 
-export const CartDropdown = connect(
-  mapStateToProps,
+export const CartDropdown = compose(
+  withRouter,
+  connect(null, mapDispatchToProps)
 )(CartDropdown_);

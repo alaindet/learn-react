@@ -8,3 +8,7 @@ export const addItemToCart = item => ({
   type: CartActionTypes.AddItem,
   payload: item,
 });
+
+export const goToCheckout = () => ({
+  type: CartActionTypes.GoToCheckout,
+});

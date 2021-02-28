@@ -9,14 +9,21 @@ const INITIAL_STATE = {
 export const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
 
-    case CartActionTypes.ToggleVisibility:
+    case CartActionTypes.ToggleVisibility: {
       const visible = !state.visible;
-      return {...state, visible};
+      return { ...state, visible };
+    }
 
-    case CartActionTypes.AddItem:
+    case CartActionTypes.AddItem: {
       const item = action.payload;
       const items = addItemToCart(state.items, item);
-      return {...state, items};
+      return { ...state, items };
+    }
+
+    case CartActionTypes.GoToCheckout: {
+      const visible = false;
+      return { ...state, visible };
+    }
 
     default:
       return state;

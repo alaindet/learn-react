@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+// import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 
-import { middlewares } from './middlewares';
 import { rootReducer } from './root-reducer';
+import { middlewares } from './middlewares';
 
 export const store = createStore(
   rootReducer,
-  applyMiddleware(...middlewares),
+  composeWithDevTools(applyMiddleware(...middlewares)),
 );

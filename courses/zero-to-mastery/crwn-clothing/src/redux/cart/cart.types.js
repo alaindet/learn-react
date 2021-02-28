@@ -1,4 +1,5 @@
 export const CartActionTypes = {
   ToggleVisibility: 'cart/toggleVisibility',
-  AddItem: 'cart/add',
+  AddItem: 'cart/addItem',
+  GoToCheckout: 'cart/goToCheckout',
 };
