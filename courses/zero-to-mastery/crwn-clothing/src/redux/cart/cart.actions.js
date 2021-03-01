@@ -12,3 +12,8 @@ export const addItemToCart = item => ({
 export const goToCheckout = () => ({
   type: CartActionTypes.GoToCheckout,
 });
+
+export const removeItemFromCart = item => ({
+  type: CartActionTypes.RemoveItem,
+  payload: item,
+});

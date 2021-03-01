@@ -1,33 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './checkout-item.style.scss';
+import { removeItemFromCart, addItemToCart } from '../../redux';
 
-const ItemAction = ({ name, children, handler }) => {
-  return (
-    <button className={`action action-${name}`} onClick={handler}>
-      {children}
-    </button>
-  );
-};
-
-export const CheckoutItem = (props) => {
+const CheckoutItem_ = (props) => {
 
   const { imageUrl, name, quantity, price } = props.item;
 
-  const onIncrementQuantity = () => {
-    // TODO
-    console.log('onIncrementQuantity');
-  };
-
-  const onDecrementQuantity = () => {
-    // TODO
-    console.log('onDecrementQuantity');
-  };
-
-  const onRemove = () => {
-    // TODO
-    console.log('onRemove');
-  };
+  const onAdd = () => props.addItemToCart(props.item);
+  const onRemove = () => props.removeItemFromCart(props.item);
+  const onRemoveAll = () => console.log('onRemoveAll', props.item); // TODO
 
   return (
     <div className="checkout-item">
@@ -38,16 +21,22 @@ export const CheckoutItem = (props) => {
       <div className="col quantity">{quantity}</div>
       <div className="col price">${price}</div>
       <div className="col actions">
-        <ItemAction name="increment" handler={onIncrementQuantity}>
-          +
-        </ItemAction>
-        <ItemAction name="decrement" handler={onDecrementQuantity}>
-          -
-        </ItemAction>
-        <ItemAction name="remove" handler={onRemove}>
-          &times;
-        </ItemAction>
+        <button className="action" onClick={onAdd}>+</button>
+        <button className="action" onClick={onRemove}>-</button>
+        <button className="action" onClick={onRemoveAll}>&times;</button>
       </div>
     </div>
   );
 };
+
+const mapStateToProps = null;
+
+const mapDispatchToProps = dispatch => ({
+  removeItemFromCart: item => dispatch(removeItemFromCart(item)),
+  addItemToCart: item => dispatch(addItemToCart(item)),
+});
+
+export const CheckoutItem = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CheckoutItem_);
