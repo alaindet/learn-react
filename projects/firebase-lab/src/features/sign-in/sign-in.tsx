@@ -1,4 +1,3 @@
-import process from 'process';
 import React, { useState } from 'react';
 
 import { auth } from '../../core/firebase';
@@ -15,6 +14,7 @@ export const SignInFeature = () => {
       <h2>Sign in</h2>
       <Components.SignIn />
       {!isProduction && <Components.SignUp />}
+      <p>process.env.NODE_ENV: {process.env.NODE_ENV}</p>
     </div>
   );
 };
