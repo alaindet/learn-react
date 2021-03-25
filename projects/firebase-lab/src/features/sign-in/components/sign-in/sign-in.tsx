@@ -16,6 +16,7 @@ export const SignIn = () => {
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      console.log('User logged in');
       resetForm();
     }
 

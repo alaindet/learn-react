@@ -3,6 +3,7 @@ import React, { useState, useCallback, useEffect} from 'react';
 import './app.scss';
 import { createUserProfileDocument, auth } from './core/firebase';
 import { Routes } from './core/routes';
+import { Navigation } from './core/components';
 
 export const App = () => {
 
@@ -37,6 +38,7 @@ export const App = () => {
 
   return (
     <div className="app">
+      <Navigation />
       <Routes currentUser={currentUser} />
     </div>
   );
