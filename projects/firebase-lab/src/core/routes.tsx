@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { SignInFeature } from '../features/sign-in/sign-in';
@@ -10,7 +10,7 @@ const renderSignInPage = (currentUser: any) => (
     : <SignInFeature />
 );
 
-export const Routes = ({ currentUser }) => (
+export const Routes: FunctionComponent<any> = ({ currentUser }) => (
   <Switch>
     <Route exact path="/" render={() => renderSignInPage(currentUser)} />
     <Route exact path="/shopping-list" component={ShoppingListFeature} />
