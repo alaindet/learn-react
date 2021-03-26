@@ -13,6 +13,7 @@ export const App = () => {
     (snapshot: any) => {
       const { id } = snapshot;
       const user = { id, ...snapshot.data() };
+      console.log('user', user);
       setCurrentUser(user);
     },
     [setCurrentUser]

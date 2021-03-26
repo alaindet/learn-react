@@ -8,8 +8,7 @@ export const Navigation = () => {
     <div className="navigation">
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/sign-in">Shopping List</Link></li>
+          <li><Link to={'/'}>Home</Link></li>
         </ul>
       </nav>
     </div>
