@@ -1,31 +1,31 @@
-import React, { FunctionComponent } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React, { FC } from 'react';
+import { Switch, Route, RouteProps, Redirect } from 'react-router-dom';
 
 import { SignInFeature } from '../features/sign-in/sign-in';
 import { ShoppingListFeature } from '../features/shopping-list/shopping-list';
 
-export const Routes: FunctionComponent<any> = ({ user }) => {
+export interface GuardedRouteProps extends RouteProps {
+  user: any;
+}
 
+export const LoggedRoute: FC<GuardedRouteProps> = ({ user, component, ...rest }) => {
+  return !!user
+    ? <Route component={component} {...rest} />
+    : <Route {...rest} render={() => <Redirect to="/sign-in" />} />;
+};
+
+export const GuestRoute: FC<GuardedRouteProps> = ({ user, component, ...rest }) => {
+  return !user
+    ? <Route component={component} {...rest} />
+    : <Route {...rest} render={() => <Redirect to="/" />} />;
+};
+
+export const Routes: FC<any> = ({ user }) => {
   return (
     <Switch>
-      <Route
-        path="/"
-        exact
-        render={
-          () => !!user
-            ? <ShoppingListFeature />
-            : <Redirect to="/sign-in" />
-        }
-      />
-      <Route
-        exact
-        path="/sign-in"
-        render={
-          () => !user
-            ? <SignInFeature />
-            : <Redirect to="/" />
-        }
-      />
+      <LoggedRoute path="/" exact user={user} component={ShoppingListFeature} />
+      <LoggedRoute path="/shopping-list" user={user} component={ShoppingListFeature} />
+      <GuestRoute path="/sign-in" user={user} component={SignInFeature} />
     </Switch>
   );
 };

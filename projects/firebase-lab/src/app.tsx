@@ -9,11 +9,15 @@ export const App = () => {
 
   const [currentUser, setCurrentUser] = useState<any>(null);
 
+  const onLogout = () => {
+    auth.signOut();
+    setCurrentUser(null);
+  };
+
   const updateCurrentUser = useCallback(
     (snapshot: any) => {
       const { id } = snapshot;
       const user = { id, ...snapshot.data() };
-      console.log('user', user);
       setCurrentUser(user);
     },
     [setCurrentUser]
@@ -39,8 +43,8 @@ export const App = () => {
 
   return (
     <div className="app">
-      <Navigation />
-      <Routes currentUser={currentUser} />
+      <Navigation user={currentUser} onLogout={onLogout} />
+      <Routes user={currentUser} />
     </div>
   );
 }
