@@ -1,1 +1,1 @@
-- [ ] Move @types/react-router-dom to dependencies
+- [ ] Firebase Firestore security rules
