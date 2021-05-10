@@ -26,5 +26,11 @@
   "homepage": "https://github.com/alaindet/learn-react#readme",
   "devDependencies": {
     "express": "^4.17.1"
+  },
+  "dependencies": {
+    "dotenv": "^9.0.2",
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.2",
+    "sequelize-cli": "^6.2.0"
   }
 }

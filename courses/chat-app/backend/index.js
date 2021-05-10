@@ -1,7 +1,5 @@
 const express = require('express');
-
-const APP_NAME = 'Simple Chat App';
-const APP_PORT = 3000;
+const config = require('./config/app');
 
 const app = express();
 
@@ -11,6 +9,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(APP_PORT, () => {
-  console.log(`${APP_NAME} started on port ${APP_PORT}`);
+app.listen(+config.appPort, () => {
+  console.log(`${config.appName} started on port ${config.appPort}`);
 });
