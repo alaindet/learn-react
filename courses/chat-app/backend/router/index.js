@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const authRouter = require('./auth');
+const authRouter = require('./auth.router');
 
 router.get('/', (req, res) => {
   return res.status(200).send({
