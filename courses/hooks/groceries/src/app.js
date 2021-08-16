@@ -20,20 +20,29 @@ export const App = () => {
     setList(newList);
   };
 
-  return (
-    <div className="app">
-      <h1>Groceries App</h1>
+  const removeItem = name => {
+    const newList = list.filter(item => item.name !== name);
+    setList(newList);
+  };
 
-      <div className="groceries-list">
-        {list.map((item, i) => (
-          <GroceriesItem key={i} {...item} />
-        ))}
-      </div>
+  return (
+    <div className="groceries">
+      <h1>Groceries App</h1>
 
       <div className="groceries-controls">
         <button onClick={removeMostCaloric}>
-          Remove items with &gt; {CALORIES_THRESHOLD}
+          Remove items with {CALORIES_THRESHOLD}+ calories
         </button>
+      </div>
+
+      <div className="groceries-list">
+        {list.map((item, i) => (
+          <GroceriesItem
+            key={i}
+            {...item}
+            onRemove={removeItem}
+          />
+        ))}
       </div>
 
     </div>

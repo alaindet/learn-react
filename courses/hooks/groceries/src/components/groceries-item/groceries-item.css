@@ -2,4 +2,10 @@
   border: 2px dashed grey;
   padding: 1rem;
   margin: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.item__info {
+  flex-grow: 1;
 }

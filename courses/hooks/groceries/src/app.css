@@ -1,4 +1,4 @@
-.app {
+.groceries {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,6 +6,14 @@
   height: 100vh;
 }
 
+.groceries-controls {
+  border: 2px dashed #ccc;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
 .groceries-list {
-  border: 2px dashed black;
+  border: 2px dashed #ccc;
+  width: 500px;
+  max-width: 100%;
 }
