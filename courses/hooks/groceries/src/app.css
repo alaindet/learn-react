@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.groceries-list {
+  border: 2px dashed black;
+}

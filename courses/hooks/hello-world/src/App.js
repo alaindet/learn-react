@@ -13,6 +13,8 @@ const PEOPLE = [
 function App() {
 
   const [counter, setCounter] = React.useState(0);
+  const [people, setPeople] = React.useState(PEOPLE);
+
   const decrementCounter = () => setCounter(counter + 1);
   const incrementCounter = () => setCounter(counter + 1);
 
@@ -21,7 +23,7 @@ function App() {
 
       <div className="people">
         <h1>People</h1>
-        <People people={PEOPLE} />
+        <People people={people} />
       </div>
 
       <div className="counter">
