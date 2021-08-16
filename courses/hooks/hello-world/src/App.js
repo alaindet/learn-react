@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { People } from './components';
 import './App.scss';
 
@@ -9,10 +11,25 @@ const PEOPLE = [
 ];
 
 function App() {
+
+  const [counter, setCounter] = React.useState(0);
+  const decrementCounter = () => setCounter(counter + 1);
+  const incrementCounter = () => setCounter(counter + 1);
+
   return (
     <div className="app">
-      <h1>People</h1>
-      <People people={PEOPLE} />
+
+      <div className="people">
+        <h1>People</h1>
+        <People people={PEOPLE} />
+      </div>
+
+      <div className="counter">
+        <span>{counter}</span>
+        <button onClick={decrementCounter}>-1</button>
+        <button onClick={incrementCounter}>+1</button>
+      </div>
+
     </div>
   );
 }
