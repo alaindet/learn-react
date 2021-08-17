@@ -14,15 +14,29 @@ const CALORIES_THRESHOLD = 50;
 export const App = () => {
 
   const [list, setList] = React.useState(GROCERIES_LIST);
+  const [isEditing, setIsEditing] = React.useState(false);
 
-  const removeMostCaloric = () => {
+  function onRemoveMostCaloric() {
     const newList = list.filter(i => i.calories <= CALORIES_THRESHOLD);
     setList(newList);
   };
 
-  const removeItem = name => {
-    const newList = list.filter(item => item.name !== name);
+  function onRemoveItem(index) {
+    const newList = list.filter((_, i) => i !== index);
     setList(newList);
+    if (isEditing) {
+      setIsEditing(false);
+    }
+  };
+
+  function onStartEditing() {
+    setIsEditing(true);
+  };
+
+  function onStopEditing(item, index) {
+    setIsEditing(false);
+    const newList = list.map((_item, i) => i === index ? item : _item);
+    setList([...newList]);
   };
 
   return (
@@ -30,7 +44,7 @@ export const App = () => {
       <h1>Groceries App</h1>
 
       <div className="groceries-controls">
-        <button onClick={removeMostCaloric}>
+        <button onClick={onRemoveMostCaloric}>
           Remove items with {CALORIES_THRESHOLD}+ calories
         </button>
       </div>
@@ -39,8 +53,13 @@ export const App = () => {
         {list.map((item, i) => (
           <GroceriesItem
             key={i}
-            {...item}
-            onRemove={removeItem}
+            index={i}
+            name={item.name}
+            calories={item.calories}
+            isEditing={isEditing}
+            onRemove={onRemoveItem}
+            onStartEditing={onStartEditing}
+            onStopEditing={onStopEditing}
           />
         ))}
       </div>
