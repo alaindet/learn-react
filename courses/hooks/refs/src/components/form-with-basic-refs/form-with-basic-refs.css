@@ -1,0 +1,41 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form > * {
+  margin: 0.5rem 0;
+  padding: 0.66rem;
+  border: 2px dashed #ccc;
+}
+
+.form label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form input[type="text"],
+.form input[type="number"] {
+  margin: 0.5rem;
+  padding: 0.33rem 0.66rem;
+  font-size: 1.1em;
+  border: 2px solid #ccc;
+  transition: 0.15s all ease-in-out;
+  border-radius: 4px;
+}
+
+.form input[type="text"]:hover,
+.form input[type="number"]:hover {
+  border-color: #a0ccff;
+}
+
+.form button {
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: 0.15s all ease-in-out;
+}
+
+.form button:hover {
+  background-color: rgba(0,0,0,0.2);
+}

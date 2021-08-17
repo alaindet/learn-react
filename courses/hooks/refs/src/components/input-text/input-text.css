@@ -1,0 +1,12 @@
+.input-text {
+  margin: 0.5rem;
+  padding: 0.33rem 0.66rem;
+  font-size: 1.1em;
+  border: 2px solid #ccc;
+  transition: 0.15s all ease-in-out;
+  border-radius: 4px;
+}
+
+.input-text:hover {
+  border-color: #a0ccff;
+}

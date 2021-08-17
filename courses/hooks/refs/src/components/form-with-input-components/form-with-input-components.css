@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form > * {
+  margin: 0.5rem 0;
+  padding: 0.66rem;
+  border: 2px dashed #ccc;
+}
+
+.form label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form button {
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: 0.15s all ease-in-out;
+}
+
+.form button:hover {
+  background-color: rgba(0,0,0,0.2);
+}
