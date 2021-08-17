@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { GroceriesItem } from './components/groceries-item';
+import { useList } from './hooks/use-list';
 import './app.css';
 
 const GROCERIES_LIST = [
@@ -13,30 +14,27 @@ const CALORIES_THRESHOLD = 50;
 
 export const App = () => {
 
-  const [list, setList] = React.useState(GROCERIES_LIST);
+  const items = useList(GROCERIES_LIST);
   const [isEditing, setIsEditing] = React.useState(false);
 
-  function onRemoveMostCaloric() {
-    const newList = list.filter(i => i.calories < CALORIES_THRESHOLD);
-    setList(newList);
+  const onRemoveMostCaloric = () => {
+    items.removeWithCaloriesMoreThan(CALORIES_THRESHOLD);
   };
 
-  function onRemoveItem(index) {
-    const newList = list.filter((_, i) => i !== index);
-    setList(newList);
+  const onRemoveItem = index => {
+    items.removeItem(index);
     if (isEditing) {
       setIsEditing(false);
     }
   };
 
-  function onStartEditing() {
+  const onStartEditing = () => {
     setIsEditing(true);
   };
 
-  function onStopEditing(item, index) {
+  const onStopEditing = (item, index) => {
     setIsEditing(false);
-    const newList = list.map((_item, i) => i === index ? item : _item);
-    setList([...newList]);
+    items.saveItem(index, item);
   };
 
   return (
@@ -50,7 +48,7 @@ export const App = () => {
       </div>
 
       <div className="groceries-list">
-        {list.map((item, i) => (
+        {items.list.map((item, i) => (
           <GroceriesItem
             key={i}
             index={i}
