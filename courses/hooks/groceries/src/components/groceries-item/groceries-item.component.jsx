@@ -5,30 +5,60 @@ import './groceries-item.css';
 export const GroceriesItemForm = ({
   name,
   calories,
-  onChangeName,
-  onChangeCalories
+  onUpdateItem,
+  submitFromOutside,
 }) => {
+
+  const [_name, setName] = React.useState(name);
+  const [_calories, setCalories] = React.useState(calories);
+
+  const onChangeName = newName => setName(newName);
+
+  const onChangeCalories = newCalories => setCalories(newCalories);
+
+  const onSubmit = React.useCallback(() => {
+    console.log('Submitting');
+    const item = { name: _name, calories: _calories };
+    onUpdateItem(item);
+  }, [_name, _calories, onUpdateItem]);
+
+  const onPressEnter = key => {
+    if (key === 'Enter') {
+      onSubmit();
+    }
+  };
+
+  React.useEffect(() => {
+    if (submitFromOutside) {
+      onSubmit();
+    }
+  }, [submitFromOutside, onSubmit]);
+
   return (
-    <ul className="item__info">
-      <li>
-        <strong>Name</strong>:
-        <input
-          type="text"
-          value={name}
-          onChange={e => onChangeName(e.target.value)}
-          placeholder="Name..."
-        />
-      </li>
-      <li>
-        <strong>Calories</strong>:
-        <input
-          type="number"
-          value={calories}
-          onChange={e => onChangeCalories(e.target.value)}
-          placeholder="Calories..."
-        />
-      </li>
-    </ul>
+    <form onSubmit={onSubmit}>
+      <ul className="item__info">
+        <li>
+          <strong>Name</strong>:
+          <input
+            type="text"
+            value={_name}
+            placeholder="Name..."
+            onChange={e => onChangeName(e.target.value)}
+            onKeyPress={e => onPressEnter(e.key)}
+          />
+        </li>
+        <li>
+          <strong>Calories</strong>:
+          <input
+            type="number"
+            value={_calories}
+            onChange={e => onChangeCalories(e.target.value)}
+            onKeyPress={e => onPressEnter(e.key)}
+            placeholder="Calories..."
+          />
+        </li>
+      </ul>
+    </form>
   );
 };
 
@@ -58,16 +88,13 @@ export const GroceriesItem = ({
   onStopEditing,
 }) => {
 
-  const [_name, setName] = React.useState(name);
-  const [_calories, setCalories] = React.useState(calories);
+  const [submitFromOutside, setSubmitFromOutside] = React.useState(false);
 
-  const onChangeName = newName => setName(newName);
-  const onChangeCalories = newCalories => setCalories(newCalories);
-  const _onRemove = () => onRemove(index);
-  
-  const _onStopEditing = () => {
-    const item = { name: _name, calories: _calories };
-    onStopEditing(item, index);
+  const onRemoveItem = () => onRemove(index);
+  const onForceSave = () => setSubmitFromOutside(true);
+  const onUpdateItem = newItem => {
+    setSubmitFromOutside(false);
+    onStopEditing(newItem, index);
   };
 
   return (
@@ -76,10 +103,10 @@ export const GroceriesItem = ({
       {isEditing
         ? (
           <GroceriesItemForm
-            name={_name}
-            calories={_calories}
-            onChangeName={onChangeName}
-            onChangeCalories={onChangeCalories}
+            name={name}
+            calories={calories}
+            onUpdateItem={onUpdateItem}
+            submitFromOutside={submitFromOutside}
           />
         ) : (
           <GroceriesItemDescription
@@ -90,9 +117,9 @@ export const GroceriesItem = ({
       }
 
       <div className="item__controls">
-        <button onClick={_onRemove}>Remove</button>
+        <button onClick={onRemoveItem}>Remove</button>
         {isEditing
-          ? <button onClick={_onStopEditing}>Save</button>
+          ? <button onClick={onForceSave}>Save</button>
           : <button onClick={onStartEditing}>Edit</button>
         }
       </div>

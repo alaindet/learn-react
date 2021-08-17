@@ -17,7 +17,7 @@ export const App = () => {
   const [isEditing, setIsEditing] = React.useState(false);
 
   function onRemoveMostCaloric() {
-    const newList = list.filter(i => i.calories <= CALORIES_THRESHOLD);
+    const newList = list.filter(i => i.calories < CALORIES_THRESHOLD);
     setList(newList);
   };
 
