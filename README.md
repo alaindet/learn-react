@@ -6,9 +6,9 @@ This repository contains the learning material, demo, tests and everything I use
 
 ## References
 
-- React 16 - The Complete Guide (incl. React Router 4 &amp; Redux)
-  - **Course**: [React 16 - The Complete Guide (incl. React Router 4 &amp; Redux)](https://www.udemy.com/react-the-complete-guide-incl-redux)
-  - **Teacher**: [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)
+- React - The Complete Guide (incl Hooks, React Router, Redux)
+  - **Course**: [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux)
+  - **Teacher**: [Academind by Maximilian Schwarzmüller](https://www.udemy.com/user/academind/)
 
 - Modern React with Redux [2020 Update]
   - **Course**: [Modern React with Redux [2020 Update]](https://www.udemy.com/course/react-redux/)
