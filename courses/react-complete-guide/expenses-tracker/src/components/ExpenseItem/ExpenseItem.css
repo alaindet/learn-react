@@ -1,0 +1,27 @@
+.expense-item {
+  border: 3px solid var(--clr-accent-light);
+  border-radius: 1rem;
+  background-color: var(--clr-light);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.expense-item__date {
+  font-style: italic;
+  font-size: 0.8em;
+  color: var(--clr-accent);
+}
+
+.expense-item__title {
+  margin: 0;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--clr-accent);
+  flex-grow: 1;
+}
+
+.expense-item__amount {
+  color: var(--clr-primary);
+  font-weight: bold;
+}

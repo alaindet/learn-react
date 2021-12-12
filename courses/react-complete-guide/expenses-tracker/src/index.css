@@ -1,0 +1,26 @@
+:root {
+  /* Suicune theme */
+  --clr-accent-light: #83b4b8;
+  --clr-accent: #457d88;
+  --clr-accent-dark: #305c64;
+  --clr-light: #f2f6e9;
+  --clr-primary-light: #9b7799;
+  --clr-primary: #73597e;
+  --clr-primary-dark: #422e4b;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 18px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--clr-primary);
+}
