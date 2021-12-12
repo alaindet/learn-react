@@ -1,11 +1,6 @@
-import React, { useContext } from 'react';
-
-import GameContext from './../../context/game';
+import React from 'react';
 
 const ScoreBoard = () => {
-
-  const gameContext = useContext(GameContext);
-
   return (
     <div className="ScoreBoard">
       ScoreBoard
