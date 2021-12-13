@@ -1,5 +1,5 @@
 import { ExpenseItemDate } from '../ExpenseItemDate/ExpenseItemDate';
-import { Card } from '../Card/Card';
+import { Card } from '../../Ui';
 import './ExpenseItem.css';
 
 export const ExpenseItem = ({

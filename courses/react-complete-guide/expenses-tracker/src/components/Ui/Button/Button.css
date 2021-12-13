@@ -1,6 +1,12 @@
 button {
   border: none;
   cursor: pointer;
+  transition: 0.15s all ease-out;
+}
+
+button:hover {
+  filter: brightness(90%);
+  transform: scale(1.01);
 }
 
 button.--color-primary {
@@ -8,17 +14,15 @@ button.--color-primary {
   color: var(--clr-light);
 }
 
-button.--color-primary:hover {
-  background-color: var(--clr-primary-dark);
-}
-
 button.--color-accent {
   background-color: var(--clr-accent-light);
   color: var(--clr-light);
 }
 
-button.--color-accent:hover {
-  background-color: var(--clr-accent-dark);
+button.--size-small {
+  padding: 0.33rem 0.66rem;
+  border-radius: 0.4rem;
+  font-size: 1rem;
 }
 
 button.--size-regular {

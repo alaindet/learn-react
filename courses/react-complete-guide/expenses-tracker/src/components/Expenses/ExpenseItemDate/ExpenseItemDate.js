@@ -1,4 +1,4 @@
-import { Card } from '../Card/Card';
+import { Card } from '../../Ui';
 import './ExpenseItemDate.css';
 
 export const ExpenseItemDate = ({ date }) => {

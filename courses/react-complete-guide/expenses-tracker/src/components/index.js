@@ -1,3 +1,2 @@
-export * from './ExpenseItem/ExpenseItem';
-export * from './ExpenseItemDate/ExpenseItemDate';
-export * from './Expenses/Expenses';
+export * from './Expenses';
+export * from './Ui';

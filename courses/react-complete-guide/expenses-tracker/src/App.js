@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { Expenses } from './components';
+import { Expenses, NewExpense } from './components/Expenses';
 import { MOCK_EXPENSES } from './mocks';
 import './App.css';
-import { SelectedExpense } from './components/SelectedExpense/SelectedExpense';
+import { SelectedExpense } from './components/Expenses/SelectedExpense/SelectedExpense';
 
 export const App = () => {
 
@@ -22,6 +22,7 @@ export const App = () => {
   return (
     <div className="App">
       <h1>Expenses Tracker</h1>
+      <NewExpense />
       {currentExpense && (
         <SelectedExpense item={currentExpense} onClick={onDeselectItem} />
       )}

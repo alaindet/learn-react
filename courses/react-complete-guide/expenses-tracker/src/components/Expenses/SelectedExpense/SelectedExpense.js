@@ -1,4 +1,4 @@
-import { Button } from '../Button/Button';
+import { Button } from '../../Ui';
 import './SelectedExpense.css';
 
 export const SelectedExpense = ({ item, onClick }) => {
