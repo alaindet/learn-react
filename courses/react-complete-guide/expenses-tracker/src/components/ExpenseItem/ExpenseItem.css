@@ -1,33 +1,24 @@
-.expense-item {
+.expense {
   border-radius: 1rem;
   background-color: var(--clr-light);
-  padding: 1rem;
+  padding: 0.66rem;
   display: flex;
   align-items: center;
   background-color: var(--clr-accent-light);
   color: var(--clr-light);
 }
 
-.expense-item__date {
-  font-style: italic;
-  font-size: 0.8em;
-  opacity: 0.8;
-  border-radius: 1rem;
-  border: 1px solid var(--clr-light);
-  padding: 1rem;
-}
-
-.expense-item__title {
+.expense__title {
   margin: 0;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   font-size: 1.2rem;
   color: inherit;
   flex-grow: 1;
 }
 
-.expense-item__amount {
-  border: 2px solid var(--clr-primary-light);
+.expense__amount {
+  background-color: var(--clr-primary);
   border-radius: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
   font-weight: 700;
 }

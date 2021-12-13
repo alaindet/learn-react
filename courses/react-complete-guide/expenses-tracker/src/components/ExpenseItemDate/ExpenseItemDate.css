@@ -1,0 +1,17 @@
+.expense__date {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 1rem;
+  border: 1px solid var(--clr-light);
+  padding: 1rem;
+  text-align: center;
+}
+
+.date__year {
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.date__month_day {
+  font-size: 1.1em;
+  letter-spacing: -1px;
+}

@@ -1,4 +1,4 @@
-// import { useParseTimestamp } from '../../hooks';
+import { ExpenseItemDate } from '../ExpenseItemDate/ExpenseItemDate';
 import './ExpenseItem.css';
 
 export const ExpenseItem = ({
@@ -6,16 +6,11 @@ export const ExpenseItem = ({
   date,
   amount,
 }) => {
-
-  // const parsedDate = useParseTimestamp(date);
-
   return (
-    <div className="expense-item">
-      <div className="expense-item__date">
-        TODO: Date
-      </div>
-      <h2 className="expense-item__title">{title}</h2>
-      <div className="expense-item__amount">{amount}€</div>
+    <div className="expense">
+      <ExpenseItemDate date={date} />
+      <h2 className="expense__title">{title}</h2>
+      <div className="expense__amount">€ {amount}</div>
     </div>
   );
 };

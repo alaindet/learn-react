@@ -1,20 +1,8 @@
 import { useState } from 'react';
 
+import { Expenses } from './components';
+import { MOCK_EXPENSES } from './mocks';
 import './App.css';
-import { ExpenseItem, ExpenseItems } from './components';
-
-export const MOCK_EXPENSES = [
-  {
-    title: 'Some expense',
-    date: Date.now(),
-    amount: 16.90,
-  },
-  {
-    title: 'Another expense',
-    date: Date.now(),
-    amount: 104.90,
-  },
-];
 
 export const App = () => {
 
@@ -23,16 +11,7 @@ export const App = () => {
   return (
     <div className="App">
       <h1>Expenses Tracker</h1>
-      <ExpenseItems>
-        {expenses.map(expense => (
-          <ExpenseItem
-            key={expense.title}
-            title={expense.title}
-            date={expense.date}
-            amount={expense.amount}
-          />
-        ))}
-      </ExpenseItems>
+      <Expenses items={expenses} />
     </div>
   );
 }
