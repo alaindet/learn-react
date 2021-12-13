@@ -1,5 +1,9 @@
 import './Card.css';
 
-export const Card = ({ children, className }) => {
-  return <div className={`card ${className}`}>{children}</div>;
+export const Card = ({ children, className, ...theRest }) => {
+  return (
+    <div className={`card ${className}`} {...theRest}>
+      {children}
+    </div>
+  );
 };
