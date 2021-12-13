@@ -1,3 +1,4 @@
+import { Card } from '../Card/Card';
 import './ExpenseItemDate.css';
 
 export const ExpenseItemDate = ({ date }) => {
@@ -9,9 +10,9 @@ export const ExpenseItemDate = ({ date }) => {
   const day = d.getDate();
 
   return (
-    <div className="expense__date">
+    <Card className="expense__date">
       <div className="date__year">{year}</div>
       <div className="date__month_day">{month}&nbsp;{day}</div>
-    </div>
+    </Card>
   );
 };

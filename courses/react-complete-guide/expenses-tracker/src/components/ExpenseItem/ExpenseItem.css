@@ -1,5 +1,4 @@
 .expense {
-  border-radius: 1rem;
   background-color: var(--clr-light);
   padding: 0.66rem;
   display: flex;
@@ -18,7 +17,6 @@
 
 .expense__amount {
   background-color: var(--clr-primary);
-  border-radius: 1rem;
   padding: 1rem;
   font-weight: 700;
 }
