@@ -5,12 +5,22 @@
   color: var(--clr-accent-dark);
   padding: 1rem;
   border-radius: 1rem;
+  transition: 0.2s all ease-in-out;
+  max-height: 100vh;
 }
 
 .expense-form.--closed {
   max-height: 0;
   margin-bottom: 2rem;
   overflow: hidden;
+}
+
+.expense-form.--closed .expense-form__controls {
+  opacity: 0;
+}
+
+.expense-form__controls {
+  transition: 0.5s all ease-in-out;
 }
 
 .expense-form__control {
