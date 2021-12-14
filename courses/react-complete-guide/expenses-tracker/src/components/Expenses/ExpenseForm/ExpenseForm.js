@@ -1,59 +1,37 @@
-import { useReducer, useState } from 'react';
-
 import { formatAsDate } from '../../../utils';
 import { Button, CardWithActions } from '../../Ui';
+import { useExpenseForm, useCollapsablePanel } from './hooks';
+import { FORM_FIELD, PANEL_ACTION } from './data';
 import './ExpenseForm.css';
 
-const ACTION = {
-  MINIMIZE: { name: 'minimize', label: 'Minimize' },
-  MAXIMIZE: { name: 'maximize', label: 'Maximize' },
+export const useDateRange = (center, radius) => {
+  return [center - radius, center + radius];
 };
 
-const FORM_FIELD = {
-  TITLE: { name: 'expense-title', label: 'Title' },
-  AMOUNT: { name: 'expense-amount', label: 'Amount' },
-  DATE: { name: 'expense-date', label: 'Date' },
-};
+export const ExpenseForm = ({
+  onSaveExpense,
+}) => {
 
-export const useExpenseForm = (initialState) => {
-  // const names = Object.keys(FORM_FIELD).map(field => field.name);
-  return useReducer(initialState, (state, action) => {
-    console.log('useReducer', state, action);
-    return state;
-    // return names.includes(action.type)
-    //   ? { ...state, [action.type]: action.value }
-    //   : state;
-  });
-};
-
-export const ExpenseForm = () => {
-
-  const [isOpen, setIsOpen] = useState(true);
-  const [actions, setActions] = useState([ACTION.MINIMIZE]);
+  const [panel, togglePanel] = useCollapsablePanel(true);
   const [form, updateForm] = useExpenseForm({
-    title: null,
-    amount: null,
-    date: null,
+    [FORM_FIELD.TITLE.name]: '',
+    [FORM_FIELD.AMOUNT.name]: 0,
+    [FORM_FIELD.DATE.name]: formatAsDate(Date.now()),
   });
+  const [from, to] = useDateRange(new Date().getTime(), 1000 * 60 * 60 * 24 * 30);
 
-  const now = new Date().getTime();
-  const aMonth = 1000 * 60 * 60 * 24 * 30;
-  const aMonthAgo = formatAsDate(now - aMonth);
-  const inAMonth = formatAsDate(now + aMonth);
   const cssClasses = [
     'expense-form',
-    isOpen ? '--open' : '--closed',
+    panel.isOpen ? '--open' : '--closed',
   ].join(' ');
 
-  const onActionClick = (actionName) => {
+  const onPanelActionClick = (actionName) => {
     switch (actionName) {
-      case ACTION.MAXIMIZE.name:
-        setIsOpen(true);
-        setActions([ACTION.MINIMIZE]);
+      case PANEL_ACTION.MAXIMIZE.name:
+        togglePanel(false);
         break;
-      case ACTION.MINIMIZE.name:
-        setIsOpen(false);
-        setActions([ACTION.MAXIMIZE]);
+      case PANEL_ACTION.MINIMIZE.name:
+        togglePanel(true);
         break;
       default:
         break;
@@ -62,18 +40,22 @@ export const ExpenseForm = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log('onSubmit'); // TODO
+    const item = {
+      title: form['expense-title'],
+      date: new Date(form['expense-date']).getTime(),
+      amount: parseFloat(form['expense-amount']),
+    };
+    onSaveExpense(item);
   };
 
   const onUpdateForm = (event, inputName) => {
-    console.log('onUpdateForm', inputName, event.target.value); // TODO
     updateForm({ type: inputName, value: event.target.value });
   };
 
   return (
     <CardWithActions
-      actions={actions}
-      onActionClick={onActionClick}
+      actions={panel.actions}
+      onActionClick={onPanelActionClick}
     >
       <form className={cssClasses} onSubmit={onSubmit}>
         <div className="expense-form__controls">
@@ -97,7 +79,7 @@ export const ExpenseForm = () => {
               {FORM_FIELD.AMOUNT.label}
             </label>
             <input
-              type="text"
+              type="number"
               id={FORM_FIELD.AMOUNT.name}
               value={form[FORM_FIELD.AMOUNT.name]}
               onChange={e => onUpdateForm(e, FORM_FIELD.AMOUNT.name)}
@@ -112,8 +94,8 @@ export const ExpenseForm = () => {
             <input
               type="date"
               id={FORM_FIELD.DATE.name}
-              min={aMonthAgo}
-              max={inAMonth}
+              min={formatAsDate(from)}
+              max={formatAsDate(to)}
               value={form[FORM_FIELD.DATE.name]}
               onChange={e => onUpdateForm(e, FORM_FIELD.DATE.name)}
             />
