@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { MOCK_EXPENSES } from './mocks';
-import { ExpenseForm, ExpensesList, CreateExpense, Button } from './components';
+import { ExpenseForm, ExpensesList, CreateExpense } from './components';
 import './App.css';
 
 export const App = () => {
