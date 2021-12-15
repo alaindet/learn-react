@@ -1,8 +1,10 @@
 .app {
-  margin: 10vh auto;
+  margin: 0 auto;
   padding: 1rem;
   max-width: min(90vw, 600px);
-  height: 80vh;
+  min-height: 100vh;
   box-shadow: 0 0 20px -10px rgba(0,0,0,0.2);
   border-radius: 1rem;
+  position: relative;
+  background-color: var(--color-background);
 }

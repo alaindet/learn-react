@@ -1,8 +1,20 @@
+:root {
+  --color-background: white;
+  --color-background-contrast-low: #f0f0f0;
+  --color-background-contrast: #ccc;
+  --color-foreground: #303030;
+  --color-foreground-contrast: #505050;
+
+  --radius: 0.5rem;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
+  background-color: var(--color-background-contrast-low);
+  color: var(--color-foreground);
   margin: 0;
   font-size: 18px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

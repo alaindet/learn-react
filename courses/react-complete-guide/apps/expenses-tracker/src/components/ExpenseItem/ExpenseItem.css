@@ -1,3 +1,37 @@
 .expense-item {
+  border-radius: var(--radius);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border: 2px solid var(--color-foreground);
+}
 
+.expense-item__date {
+  margin-right: 1rem;
+  padding-right: 1rem;
+  padding: 0.5rem;
+  border-right: 2px solid var(--color-foreground);
+}
+
+.date__year {
+  letter-spacing: 2px;
+  font-size: 1.1em;
+}
+
+.date__month-day {
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.expense-item__title {
+  flex-grow: 1;
+}
+
+.expense-item__amount {
+  border-radius: var(--radius);
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+  padding: 0.5rem;
 }

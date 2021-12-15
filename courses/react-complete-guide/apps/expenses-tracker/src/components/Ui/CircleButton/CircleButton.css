@@ -1,0 +1,34 @@
+button.ui-circle-button {
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.15s all ease-in-out;
+}
+
+button.ui-circle-button:hover {
+  background-color: var(--color-foreground-contrast);
+  transform: scale(1.05);
+}
+
+button.ui-circle-button.--size-small {
+  width: 2rem;
+  height: 2rem;
+  font-size: 2rem;
+}
+
+button.ui-circle-button.--size-medium {
+  width: 3rem;
+  height: 3rem;
+  font-size: 2.625rem;
+}
+
+button.ui-circle-button.--size-large {
+  width: 4rem;
+  height: 4rem;
+  font-size: 3.5rem;
+}
