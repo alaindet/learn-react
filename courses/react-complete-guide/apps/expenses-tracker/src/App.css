@@ -3,6 +3,7 @@
   padding: 1rem;
   max-width: min(90vw, 600px);
   min-height: 100vh;
+  max-height: 100vh;
   box-shadow: 0 0 20px -10px rgba(0,0,0,0.2);
   border-radius: 1rem;
   position: relative;

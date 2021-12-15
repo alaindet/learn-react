@@ -1,3 +1,10 @@
 .expense-item__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
 
+.expense-item__actions > * {
+  margin: 0 1rem;
 }

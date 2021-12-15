@@ -6,6 +6,13 @@
   padding: 0.5rem;
   margin: 1rem 0;
   border: 2px solid var(--color-foreground);
+  cursor: pointer;
+  transition: 0.15s background-color ease-in-out;
+}
+
+.expense-item:not(.--active):hover {
+  border-radius: var(--radius);
+  background-color: var(--color-background-contrast);
 }
 
 .expense-item__date {

@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { ExpenseItemActions } from '../ExpenseItemActions/ExpenseItemActions';
 import './ExpenseItem.css';
 
@@ -7,13 +5,22 @@ export const ExpenseItem = ({
   date,
   title,
   amount,
+  isActive,
+  onActivate,
+  onCancel,
+  onEdit,
+  onDelete,
 }) => {
-  const [isShowingActions, setIsShowingActions] = useState(false);
 
-  if (isShowingActions) {
+  if (isActive) {
+    // TODO: Delete confirmation?
     return (
-      <li className="expense-item">
-        <ExpenseItemActions />
+      <li className="expense-item --active">
+        <ExpenseItemActions
+          onCancel={onCancel}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
       </li>
     );
   }
@@ -24,7 +31,7 @@ export const ExpenseItem = ({
   const day = d.getDate();
 
   return (
-    <li className="expense-item">
+    <li className="expense-item" onClick={onActivate}>
       <div className="expense-item__date">
         <div className="date__year">{year}</div>
         <div className="date__month-day">{month} {day}</div>
