@@ -10,6 +10,10 @@
   transition: 0.15s background-color ease-in-out;
 }
 
+.expense-item.--active {
+  padding: 1.3rem 0;
+}
+
 .expense-item:not(.--active):hover {
   border-radius: var(--radius);
   background-color: var(--color-background-contrast);
