@@ -1,0 +1,21 @@
+.expense-form {
+  margin: 1rem 0;
+  border: 2px solid var(--color-foreground);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.expense-form__submit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.form-control-inline.--left {
+  padding-right: 0.3rem;
+}
+
+.form-control-inline.--right {
+  padding-left: 0.3rem;
+}

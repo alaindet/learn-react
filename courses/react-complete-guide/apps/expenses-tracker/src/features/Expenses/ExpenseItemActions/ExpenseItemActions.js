@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button } from '../Ui';
+import { Button } from '../../../common/Ui';
 import './ExpenseItemActions.css';
 
 const MODE = {

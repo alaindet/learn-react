@@ -1,6 +1,6 @@
 import { MdAdd } from 'react-icons/md';
 
-import { CircleButton } from '../Ui';
+import { CircleButton } from '../../../common/Ui';
 import './CreateExpense.css';
 
 export const CreateExpense = ({ onClick }) => {

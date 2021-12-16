@@ -1,0 +1,9 @@
+.ui-form-control {
+  margin: 1rem 0;
+}
+
+.ui-form-control label {
+  display: block;
+  font-style: italic;
+  margin-bottom: 0.2rem;
+}

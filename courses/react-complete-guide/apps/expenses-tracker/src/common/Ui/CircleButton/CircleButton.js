@@ -12,10 +12,14 @@ export const CircleButton = ({
   children,
   type,
   size,
+  className,
   ...theRest
 }) => {
   type = type ?? 'button';
-  const cssClasses = ['ui-circle-button'];
+  const cssClasses = [
+    'ui-circle-button',
+    className,
+  ];
   const cssStyle = {};
 
   if (!size) {

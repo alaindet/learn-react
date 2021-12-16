@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { MOCK_EXPENSES } from './mocks';
-import { ExpenseForm, ExpensesList, CreateExpense } from './components';
+import { ExpensesChart, ExpenseForm, ExpensesList, CreateExpense } from './features/Expenses';
 import './App.css';
 
 export const App = () => {
@@ -46,7 +46,7 @@ export const App = () => {
   return (
     <main className="app">
       <h1>Expenses Tracker</h1>
-      <CreateExpense onClick={onOpenCreateExpenseForm}/>
+      <ExpensesChart />
       <ExpenseForm
         isOpen={isExpenseFormOpen}
         expense={expense}
@@ -57,6 +57,9 @@ export const App = () => {
         expenses={expenses}
         onSelectExpense={onSelectExpense}
         onDeleteExpense={onDeleteExpense}
+      />
+      <CreateExpense
+        onClick={onOpenCreateExpenseForm}
       />
     </main>
   );

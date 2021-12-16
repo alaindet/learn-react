@@ -12,6 +12,11 @@ button.ui-button:hover {
   transform: scale(1.03);
 }
 
+button.ui-button:focus {
+  outline: 1px dashed var(--color-foreground-contrast);
+  outline-offset: 2px;
+}
+
 button.ui-button.--fill-outline {
   background-color: var(--color-background);
   color: var(--color-foreground);

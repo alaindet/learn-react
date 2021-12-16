@@ -6,6 +6,7 @@ export const Button = ({
   type, // 'button' | 'submit'
   size, // 'small' | 'medium' | 'large'
   fill, // 'outline' | 'solid'
+  className,
   children,
   ...theRest
 }) => {
@@ -17,6 +18,7 @@ export const Button = ({
     'ui-button',
     `--size-${size}`,
     `--fill-${fill}`,
+    className,
   ];
 
   return (

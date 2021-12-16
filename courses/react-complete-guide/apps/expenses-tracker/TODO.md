@@ -1,3 +1,5 @@
 - [ ] Dark/Light theme switch via custom hook and localStorage
-- [ ] Add formatDate utility function
-- [ ] Style Input
+- [ ] Add expenses chart
+- [x] Add formatDate utility function
+- [x] Style Input
+- [ ] Better imports

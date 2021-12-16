@@ -1,6 +1,7 @@
 .expenses {
   max-height: 100%;
   overflow-y: auto;
+  margin-bottom: 4rem;
 }
 
 .expenses ul {
