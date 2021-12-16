@@ -1,0 +1,3 @@
+- [ ] Dark/Light theme switch via custom hook and localStorage
+- [ ] Add formatDate utility function
+- [ ] Style Input

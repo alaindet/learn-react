@@ -11,23 +11,23 @@ const MODE = {
 
 export const ExpenseItemActions = ({
   onCancel,
-  onEdit,
-  onDelete,
+  onEdit: propOnEdit,
+  onDelete: propOnDelete,
 }) => {
   const [mode, setMode] = useState(MODE.CHOOSING);
 
-  const onEditClicked = () => {
+  const onEdit= () => {
     setMode(MODE.EDITING);
-    onEdit();
+    propOnEdit();
   };
 
-  const onDeleteClicked = () => {
+  const onDelete = () => {
     setMode(MODE.DELETING);
   };
 
   const onDeleteConfirm = () => {
     setMode(MODE.CHOOSING);
-    onDelete();
+    propOnDelete();
   };
 
   return (
@@ -44,8 +44,8 @@ export const ExpenseItemActions = ({
 
       {mode === MODE.CHOOSING && (
         <>
-          <Button fill="solid" type="button" onClick={onEditClicked}>Edit</Button>
-          <Button fill="solid" type="button" onClick={onDeleteClicked}>Delete</Button>
+          <Button fill="solid" type="button" onClick={onEdit}>Edit</Button>
+          <Button fill="solid" type="button" onClick={onDelete}>Delete</Button>
         </>
       )}
     </div>
