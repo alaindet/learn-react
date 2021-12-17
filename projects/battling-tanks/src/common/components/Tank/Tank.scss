@@ -1,0 +1,46 @@
+$tank-color-fill: #f04030;
+$tank-color-border: #ffffff;
+$width: 100px;
+$height: $width * 2;
+
+.tank {
+  width: $width;
+  height: $height;
+  border: 2px solid $tank-color-border;
+  position: relative;
+  border-radius: $width * 0.1;
+  background: $tank-color-fill;
+
+  &-head-1 {
+    position: absolute;
+    background: $tank-color-fill;
+    border: 2px solid $tank-color-border;
+    width: $width * 0.1;
+    height: $width;
+    bottom: -0.4 * $width;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-head-2 {
+    position: absolute;
+    background: $tank-color-fill;
+    border: 2px solid $tank-color-border;
+    width: 0.35 * $width;
+    height: 1 * $width;
+    top: 50%;
+    right: 50%;
+    transform: translate(+50%, -50%);
+  }
+
+  &-head-3 {
+    position: absolute;
+    background: $tank-color-fill;
+    border: 2px solid $tank-color-border;
+    width: 0.8 * $width;
+    height: 0.6 * $width;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
