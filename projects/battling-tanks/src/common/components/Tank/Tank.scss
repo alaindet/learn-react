@@ -1,44 +1,40 @@
-$tank-color-fill: #f04030;
-$tank-color-border: #ffffff;
-$width: 100px;
-$height: $width * 2;
-
 .tank {
-  width: $width;
-  height: $height;
-  border: 2px solid $tank-color-border;
-  position: relative;
-  border-radius: $width * 0.1;
-  background: $tank-color-fill;
+  --tank-color: #f04030;
+  --tank-color-border: #ffffff;
+  --tank-width: 100px;
 
-  &-head-1 {
+  width: var(--tank-width);
+  height: calc( var(--tank-width) * 2 );
+  border: 2px solid var(--tank-color-border);
+  position: relative;
+  border-radius: 10%;
+  background: var(--tank-color);
+
+  & > * {
+    background: var(--tank-color);
     position: absolute;
-    background: $tank-color-fill;
-    border: 2px solid $tank-color-border;
-    width: $width * 0.1;
-    height: $width;
-    bottom: -0.4 * $width;
+    border: 2px solid var(--tank-color-border);
+  }
+
+  &-tip {
+    width: 10%;
+    height: 50%;
+    bottom: -20%;
     left: 50%;
     transform: translateX(-50%);
   }
 
-  &-head-2 {
-    position: absolute;
-    background: $tank-color-fill;
-    border: 2px solid $tank-color-border;
-    width: 0.35 * $width;
-    height: 1 * $width;
+  &-shaft {
+    width: 35%;
+    height: 50%;
     top: 50%;
     right: 50%;
     transform: translate(+50%, -50%);
   }
 
-  &-head-3 {
-    position: absolute;
-    background: $tank-color-fill;
-    border: 2px solid $tank-color-border;
-    width: 0.8 * $width;
-    height: 0.6 * $width;
+  &-head {
+    width: 80%;
+    height: 30%;
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
