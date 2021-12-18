@@ -1,0 +1,123 @@
+@import 'src/styles/variables';
+
+@mixin die-set-color($color, $dot-color: #ffffff) {
+  border-color: $dot-color;
+  background-color: $color;
+
+  .die-dot,
+  .die-dot::before,
+  .die-dot::after {
+    background-color: $dot-color;
+  }
+}
+
+.die {
+  --die-width: 100px;
+  --die-width-border: max(calc(var(--die-width) * 0.02), 1px);
+  --die-radius: calc(var(--die-width) * 0.2);
+
+  width: var(--die-width);
+  height: var(--die-width);
+  border-radius: var(--die-radius);
+  padding: calc(var(--die-width) * 0.1) calc(var(--die-width) * 0.15);
+
+  &-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 33.33%;
+    position: relative;
+  }
+
+  &-dot,
+  &-dot::before,
+  &-dot::after {
+    border-radius: 50%;
+    width: calc(var(--die-width) * 0.2);
+    height: calc(var(--die-width) * 0.2);
+  }
+
+  &-dot::before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+  }
+
+  &-dot::after {
+    content: ' ';
+    position: absolute;
+    right: 0;
+  }
+
+  // Color
+  &.--color-black { @include die-set-color($color-black) }
+  &.--color-blue { @include die-set-color($color-blue) }
+  &.--color-green { @include die-set-color($color-green) }
+  &.--color-red { @include die-set-color($color-red) }
+  &.--color-purple { @include die-set-color($color-purple) }
+  &.--color-yellow { @include die-set-color($color-yellow, $color-black) }
+
+  // Values
+  &.--value-1 {
+    .die-row-1 .die-dot,
+    .die-row-1 .die-dot::before,
+    .die-row-1 .die-dot::after,
+    .die-row-2 .die-dot::before,
+    .die-row-2 .die-dot::after,
+    .die-row-3 .die-dot::before,
+    .die-row-3 .die-dot,
+    .die-row-3 .die-dot::after {
+      background-color: transparent;
+    }
+  }
+
+  &.--value-2 {
+    .die-row-1 .die-dot,
+    .die-row-1 .die-dot::after,
+    .die-row-2 .die-dot::before,
+    .die-row-2 .die-dot,
+    .die-row-2 .die-dot::after,
+    .die-row-3 .die-dot::before,
+    .die-row-3 .die-dot {
+      background-color: transparent;
+    }
+  }
+
+  &.--value-3 {
+    .die-row-1 .die-dot,
+    .die-row-1 .die-dot::after,
+    .die-row-2 .die-dot::before,
+    .die-row-2 .die-dot::after,
+    .die-row-3 .die-dot::before,
+    .die-row-3 .die-dot {
+      background-color: transparent;
+    }
+  }
+
+  &.--value-4 {
+    .die-row-1 .die-dot,
+    .die-row-2 .die-dot::before,
+    .die-row-2 .die-dot,
+    .die-row-2 .die-dot::after,
+    .die-row-3 .die-dot {
+      background-color: transparent;
+    }
+  }
+
+  &.--value-5 {
+    .die-row-1 .die-dot,
+    .die-row-2 .die-dot::before,
+    .die-row-2 .die-dot::after,
+    .die-row-3 .die-dot {
+      background-color: transparent;
+    }
+  }
+
+  &.--value-6 {
+    .die-row-1 .die-dot,
+    .die-row-2 .die-dot,
+    .die-row-3 .die-dot {
+      background-color: transparent;
+    }
+  }
+}

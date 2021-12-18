@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import './Input.css';
 
@@ -21,7 +21,7 @@ export const Input = ({
 
   return (
     <input
-      className={classnames(cssClasses)}
+      className={classNames(cssClasses)}
       type={type}
       {...theRest}
     />

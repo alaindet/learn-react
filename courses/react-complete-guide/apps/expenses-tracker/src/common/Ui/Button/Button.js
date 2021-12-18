@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import './Button.css';
 
@@ -22,7 +22,7 @@ export const Button = ({
   ];
 
   return (
-    <button type={type} className={classnames(cssClasses)} {...theRest}>
+    <button type={type} className={classNames(cssClasses)} {...theRest}>
       {children}
     </button>
   );
