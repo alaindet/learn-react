@@ -1,0 +1,11 @@
+.player-board__tanks {
+  padding: 2rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > * {
+    margin: 0 1rem;
+  }
+}

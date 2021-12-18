@@ -57,7 +57,26 @@
   &.--color-purple { @include die-set-color($color-purple) }
   &.--color-yellow { @include die-set-color($color-yellow, $color-black) }
 
+  // Rolling
+  &.--rolling {
+    animation: die-rotating 0.5s ease-in-out infinite;
+  }
+
   // Values
+  &.--value-0 {
+    .die-row-1 .die-dot::before,
+    .die-row-1 .die-dot,
+    .die-row-1 .die-dot::after,
+    .die-row-2 .die-dot::before,
+    .die-row-2 .die-dot,
+    .die-row-2 .die-dot::after,
+    .die-row-3 .die-dot::before,
+    .die-row-3 .die-dot,
+    .die-row-3 .die-dot::after {
+      background-color: transparent;
+    }
+  }
+
   &.--value-1 {
     .die-row-1 .die-dot,
     .die-row-1 .die-dot::before,
@@ -120,4 +139,9 @@
       background-color: transparent;
     }
   }
+}
+
+@keyframes die-rotating {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
 }
