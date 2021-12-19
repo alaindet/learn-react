@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import { PlayerBoard } from 'src/common/components';
-import { PlayerColor, DieValue } from 'src/common/types';
+import { PlayerColor, DieValue, PlayerRole } from 'src/common/types';
 import { randomInteger, compareDescending } from 'src/common/utils';
 import './App.scss';
 
@@ -19,6 +19,8 @@ export const range = (n: number): number[] => {
 
 export const App = () => {
 
+  const fightingTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const [attackingPlayer, setAttackingPlayer] = useState<PlayerState>({
     color: 'red',
     tanks: 3,
@@ -31,6 +33,8 @@ export const App = () => {
 
   const [isRolling, setIsRolling] = useState(false);
 
+  const [outcome, setOutcome] = useState<PlayerRole[] | null>(null);
+
   const rollDice = (n: number): DieValue[] => {
     let result = [];
     for (let i = 0; i < n; i++) {
@@ -40,15 +44,31 @@ export const App = () => {
   };
 
   const onFight = () => {
-    setIsRolling(true);
-    setTimeout(() => {
-      const attackingDice = rollDice(attackingPlayer.tanks);
-      setAttackingPlayer({...attackingPlayer, dice: attackingDice });
+    if (fightingTimeout.current) {
+      clearTimeout(fightingTimeout.current);
+    }
 
+    setIsRolling(true);
+    fightingTimeout.current = setTimeout(() => {
+      const attackingDice = rollDice(attackingPlayer.tanks);
       const defendingDice = rollDice(defendingPlayer.tanks);
+
+      let result: PlayerRole[] = [];
+      for (let i = 0; i < attackingDice.length; i++) {
+        const attacking = attackingDice[i];
+        const defending = defendingDice[i];
+        result.push(compareDice(attacking, defending));
+      }
+      setOutcome(result);
+
+      setAttackingPlayer({...attackingPlayer, dice: attackingDice });
       setDefendingPlayer({...defendingPlayer, dice: defendingDice });
       setIsRolling(false);
-    }, 1000);
+    }, 500);
+  };
+
+  const compareDice = (attacking: number, defending: number): PlayerRole => {
+    return (attacking > defending ? 'attacker' : 'defender') as PlayerRole;
   };
 
   return (
@@ -73,6 +93,14 @@ export const App = () => {
           dice={attackingPlayer.dice}
         />
 
+      </div>
+
+      <div className="outcome">
+        <ul>
+          {outcome?.length && outcome.map((winning, i) => (
+            <li key={i}>{winning}</li>
+          ))}
+        </ul>
       </div>
 
       <div className="controls">
