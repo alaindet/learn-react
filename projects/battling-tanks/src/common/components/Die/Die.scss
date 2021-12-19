@@ -35,6 +35,7 @@
     border-radius: 50%;
     width: calc(var(--die-width) * 0.2);
     height: calc(var(--die-width) * 0.2);
+    transition: 0.15s background-color linear;
   }
 
   &-dot::before {
