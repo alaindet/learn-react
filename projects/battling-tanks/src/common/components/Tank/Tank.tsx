@@ -8,16 +8,23 @@ export interface TankProps {
   color?: PlayerColor;
   width?: string;
   facing?: TankDirection;
+  isShooting?: boolean;
+  isDisabled?: boolean;
 }
 
 export const Tank: FunctionComponent<TankProps> = ({
   color,
   width,
   facing,
+  isShooting,
+  isDisabled,
 }) => {
+
   color = color ?? 'red';
   width = width ?? '100px';
   facing = facing ?? 'down';
+  isShooting = isShooting ?? false;
+  isDisabled = isDisabled ?? false;
 
   const cssVars = {
     '--tank-width': width,
@@ -26,7 +33,9 @@ export const Tank: FunctionComponent<TankProps> = ({
   const cssClasses = [
     'tank',
     `--color-${color}`,
-    facing === 'up' ? '--flipped' : '',
+    `--facing-${facing}`,
+    isDisabled ? '--disabled' : null,
+    isShooting ? '--shooting' : null,
   ];
 
   return (
@@ -34,6 +43,7 @@ export const Tank: FunctionComponent<TankProps> = ({
       <div className="tank-head"></div>
       <div className="tank-cannon-body"></div>
       <div className="tank-cannon-tip"></div>
+      <div className="tank-shot"></div>
     </div>
   );
 };

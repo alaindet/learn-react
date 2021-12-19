@@ -1,18 +1,17 @@
 import { FunctionComponent } from 'react';
 
 import { PlayerBoardDice, PlayerBoardTanks } from 'src/common/components';
-import { PlayerColor, PlayerRole, DieValue } from 'src/common/types';
-import { fill } from 'src/common/utils';
+import { PlayerColor, PlayerRole, DieValue, TankState } from 'src/common/types';
 import './PlayerBoard.scss';
 
 export interface PlayerBoardProps {
   role: PlayerRole;
   color: PlayerColor;
-  tanks: number;
+  tanks: TankState[];
   tankWidth?: string;
   dieWidth?: string;
-  isRolling?: boolean;
-  dice?: DieValue[];
+  isRolling: boolean;
+  dice: DieValue[];
 }
 
 export const PlayerBoard: FunctionComponent<PlayerBoardProps> = ({
@@ -24,10 +23,6 @@ export const PlayerBoard: FunctionComponent<PlayerBoardProps> = ({
   dieWidth,
   isRolling,
 }) => {
-
-  isRolling = isRolling ?? false;
-  dice = dice ?? (fill(Math.min(tanks, 3), 0) as DieValue[]);
-
   const tanksTemplate = (
     <PlayerBoardTanks
       key="tanks"
@@ -35,6 +30,7 @@ export const PlayerBoard: FunctionComponent<PlayerBoardProps> = ({
       color={color}
       tanks={tanks}
       tankWidth={tankWidth}
+      isShooting={isRolling}
     />
   );
 

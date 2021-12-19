@@ -2,7 +2,6 @@ import { FunctionComponent, CSSProperties } from 'react';
 import classNames from 'classnames';
 
 import { PlayerColor } from 'src/common/types';
-import { asBoolean } from 'src/common/utils';
 import './Die.scss';
 
 export interface DieProps {
@@ -10,6 +9,7 @@ export interface DieProps {
   width?: string;
   value: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   isRolling?: boolean;
+  isDisabled?: boolean;
 }
 
 export const Die: FunctionComponent<DieProps> = ({
@@ -17,11 +17,13 @@ export const Die: FunctionComponent<DieProps> = ({
   width,
   value,
   isRolling,
+  isDisabled,
 }) => {
   color = color ?? 'red';
   width = width ?? '100px';
-  isRolling = asBoolean(isRolling);
-  value = isRolling ? 0 : value;
+  isRolling = isRolling ?? false;
+  isDisabled = isDisabled ?? false;
+  value = (isRolling || isDisabled) ? 0 : value;
 
   const cssVars = {
     '--die-width': width,
@@ -31,7 +33,8 @@ export const Die: FunctionComponent<DieProps> = ({
     'die',
     `--color-${color}`,
     `--value-${value}`,
-    isRolling ? '--rolling' : '',
+    isRolling ? '--rolling' : null,
+    isDisabled ? '--disabled' : null,
   ];
 
   return (

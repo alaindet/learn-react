@@ -63,6 +63,12 @@
     animation: die-rotating 0.5s ease-in-out infinite;
   }
 
+  // Disabled
+  &.--disabled {
+    background: #ccc;
+    border: 1px dashed #666;
+  }
+
   // Values
   &.--value-0 {
     .die-row-1 .die-dot::before,

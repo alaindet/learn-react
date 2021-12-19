@@ -1,0 +1,58 @@
+@import 'src/styles/variables';
+
+@mixin arrow-set-color($color) {
+  background-color: $color;
+
+  &::after {
+    border-bottom-color: $color;
+  }
+}
+
+.board__arrows {
+  --width-arrow: 1vw;
+  --width-die: 6vw;
+  --margin-horizontal: calc(3rem + var(--width-die)/2 - var(--width-arrow)/2);
+
+  height: 4vh;
+  position: absolute;
+  top: 50%;
+  left: var(--margin-horizontal);
+  right: var(--margin-horizontal);
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board__arrow {
+  height: 100%;
+  width: var(--width-arrow);
+  position: relative;
+  transition: 0.15s transform ease-in-out;
+
+  &::after {
+    --width-tip: calc(1.5 * var(--width-arrow));
+
+    content: '';
+    z-index: 1;
+    top: calc(-0.4 * var(--width-tip));
+    left: calc(-1 * var(--width-tip) + var(--width-arrow)/2);
+    position: absolute;
+    border-top: 0;
+    border-left: var(--width-tip) solid transparent;
+    border-right: var(--width-tip) solid transparent;
+    border-bottom: var(--width-tip) solid black;
+  }
+
+  &.--facing-down {
+    transform: rotate(180deg);
+  }
+
+  // Color
+  &.--color-black { @include arrow-set-color($color-black) }
+  &.--color-blue { @include arrow-set-color($color-blue) }
+  &.--color-green { @include arrow-set-color($color-green) }
+  &.--color-red { @include arrow-set-color($color-red) }
+  &.--color-purple { @include arrow-set-color($color-purple) }
+  &.--color-yellow { @include arrow-set-color($color-yellow) }
+}
