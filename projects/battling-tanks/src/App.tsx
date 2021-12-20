@@ -6,9 +6,7 @@ export const App = () => {
 
   const {
     state,
-    setAttacker,
-    setDefender,
-    fight,
+    actions
   } = useBattlingTanks();
 
   const onLogState = () => {
@@ -16,8 +14,8 @@ export const App = () => {
   };
 
   const onInitState = () => {
-    setAttacker({ color: 'red', tanks: 5 });
-    setDefender({ color: 'blue', tanks: 2 });
+    actions.setAttacker({ color: 'green', tanks: 5 });
+    actions.setDefender({ color: 'purple', tanks: 2 });
   };
 
   return (
@@ -55,7 +53,7 @@ export const App = () => {
       </div>
 
       <div className="controls">
-        <Button disabled={state.isRolling} onClick={fight} size="larger" fullWidth>
+        <Button disabled={state.isRolling} onClick={actions.fight} size="larger" fullWidth>
           FIGHT!
         </Button>
         <button onClick={onLogState}>Log state</button>
