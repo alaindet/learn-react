@@ -1,5 +1,5 @@
 import { PlayerBoard, BoardArrows, Button } from 'src/common/components';
-import { useBattlingTanks } from './hooks';
+import { useBattlingTanks } from './store';
 import './App.scss';
 
 export const App = () => {
@@ -56,7 +56,7 @@ export const App = () => {
 
       <div className="controls">
         <Button disabled={state.isRolling} onClick={fight} size="larger" fullWidth>
-          Fight!
+          FIGHT!
         </Button>
         <button onClick={onLogState}>Log state</button>
         <button onClick={onInitState}>Init state</button>

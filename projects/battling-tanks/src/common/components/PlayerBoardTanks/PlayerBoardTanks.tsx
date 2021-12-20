@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 import { Tank } from 'src/common/components';
 import { PlayerColor, PlayerRole, TankState } from 'src/common/types';
-import { fill } from 'src/common/utils';
+import { MAX_VISIBLE_TANKS } from 'src/common/data';
 import './PlayerBoardTanks.scss';
 
 export interface PlayerBoardTanksProps {
@@ -20,16 +20,14 @@ export const PlayerBoardTanks: FunctionComponent<PlayerBoardTanksProps> = ({
   tankWidth,
   isShooting,
 }) => {
-
   tankWidth = tankWidth ?? '6vw';
   isShooting = isShooting ?? false;
 
-  const tanksShowing = Math.min(tanks.length, 3);
-  const tanksList = fill(tanksShowing, 0);
+  const visibleTanks = tanks.slice(0, MAX_VISIBLE_TANKS)
 
   return (
     <div className="player-board__tanks">
-      {tanksList.map((tank, i) => (
+      {visibleTanks.map((tank, i) => (
         <Tank
           key={i}
           color={color}

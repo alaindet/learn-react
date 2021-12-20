@@ -1,4 +1,5 @@
 export type DieValue = (
+  | -1
   | 0
   | 1
   | 2

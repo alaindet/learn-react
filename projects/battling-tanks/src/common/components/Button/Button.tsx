@@ -6,6 +6,7 @@ import './Button.scss';
 export interface ButtonProps {
   size?: 'small' | 'medium' | 'large' | 'larger';
   fullWidth?: boolean;
+  fill?: 'solid' | 'outline';
   type?: 'button' | 'submit';
   [other: string]: any;
   onClick?: Function;
@@ -13,6 +14,7 @@ export interface ButtonProps {
 
 export const Button: FunctionComponent<ButtonProps> = ({
   size,
+  fill,
   type,
   children,
   fullWidth,
@@ -22,10 +24,12 @@ export const Button: FunctionComponent<ButtonProps> = ({
   size = size ?? 'medium';
   type = type ?? 'button';
   fullWidth = fullWidth ?? false;
+  fill = fill ?? 'solid';
 
   const cssClasses = [
     'ui-button',
     `--size-${size}`,
+    `--fill-${fill}`,
     fullWidth ? '--full-width' : null,
   ];
 

@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 
-import { PlayerBoardDice, PlayerBoardTanks } from 'src/common/components';
+import { PlayerBoardDice, PlayerBoardTanks, Button } from 'src/common/components';
 import { PlayerColor, PlayerRole, DieValue, TankState } from 'src/common/types';
 import './PlayerBoard.scss';
 
@@ -44,11 +44,17 @@ export const PlayerBoard: FunctionComponent<PlayerBoardProps> = ({
     />
   );
 
+  const controlsTemplate = (
+    <div key="controls" className="player-board__controls">
+      <Button fill="outline">Change</Button>
+    </div>
+  );
+
   return (
     <div className="player-board">
       {role === 'attacker'
-        ? [diceTemplate, tanksTemplate]
-        : [tanksTemplate, diceTemplate]}
+        ? [diceTemplate, tanksTemplate, controlsTemplate]
+        : [controlsTemplate, tanksTemplate, diceTemplate]}
     </div>
   );
 };
