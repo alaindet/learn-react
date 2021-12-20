@@ -44,17 +44,11 @@ export const PlayerBoard: FunctionComponent<PlayerBoardProps> = ({
     />
   );
 
-  const controlsTemplate = (
-    <div key="controls" className="player-board__controls">
-      <Button fill="outline">Change</Button>
-    </div>
-  );
-
   return (
     <div className="player-board">
       {role === 'attacker'
-        ? [diceTemplate, tanksTemplate, controlsTemplate]
-        : [controlsTemplate, tanksTemplate, diceTemplate]}
+        ? [diceTemplate, tanksTemplate]
+        : [tanksTemplate, diceTemplate]}
     </div>
   );
 };

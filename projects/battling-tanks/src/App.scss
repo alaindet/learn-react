@@ -1,15 +1,23 @@
 .App {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin: 2rem auto;
+  margin: 0 auto;
+  max-width: min(90vw, 960px);
+  border: 1px dashed black;
 }
 
 .board {
   position: relative;
 }
 
+.board__attacker,
+.board__defender {
+  background-color: #e0e0e0;
+  padding: 2rem;
+  width: 100%;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}
+
 .controls {
-  width: 33vw;
+  margin-top: 2rem;
+  border: 1px dashed red;
 }

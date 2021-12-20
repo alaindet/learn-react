@@ -18,11 +18,23 @@ export const App = () => {
     actions.setDefender({ color: 'purple', tanks: 2 });
   };
 
+  const onChangePlayers = () => {
+    console.log('onChangePlayers');
+  };
+
   return (
     <div className="App">
       <div className="board">
 
-        {state.defender && (
+        <div className="board__attacker">
+          Attacker slot
+        </div>
+
+        <div className="board__defender">
+          Defender slot
+        </div>
+
+        {/* {state.defender && (
           <PlayerBoard
             role={state.defender.role}
             color={state.defender.color}
@@ -30,9 +42,9 @@ export const App = () => {
             isRolling={state.isRolling}
             dice={state.defender.diceList}
           />
-        )}
+        )} */}
 
-        {state.attacker && (
+        {/* {state.attacker && (
           <PlayerBoard
             role={state.attacker.role}
             color={state.attacker.color}
@@ -40,7 +52,7 @@ export const App = () => {
             isRolling={state.isRolling}
             dice={state.attacker.diceList}
           />
-        )}
+        )} */}
 
         {/* {outcome && (
           <BoardArrows
@@ -52,12 +64,14 @@ export const App = () => {
 
       </div>
 
+      {/* TODO: Remove */}
       <div className="controls">
         <Button disabled={state.isRolling} onClick={actions.fight} size="larger" fullWidth>
           FIGHT!
         </Button>
         <button onClick={onLogState}>Log state</button>
         <button onClick={onInitState}>Init state</button>
+        <button onClick={onChangePlayers}>Change Players</button>
       </div>
 
     </div>
