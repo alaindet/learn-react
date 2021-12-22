@@ -1,4 +1,5 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
+import { PlayerColor } from 'src/common/types';
 
 import { useBattlingTanks, BattlingTanksContext } from 'src/context';
 import { ActionType } from 'src/store';
@@ -12,6 +13,10 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
   onChangePlayers,
 }) => {
   const { state, dispatch } = useBattlingTanks() as BattlingTanksContext;
+  const [attackerTanks, setAttackerTanks] = useState(3);
+  const [attackerColor, setAttackerColor] = useState<PlayerColor | null>(null);
+  const [defenderTanks, setDefenderTanks] = useState(3);
+  const [defenderColor, setDefenderColor] = useState<PlayerColor | null>(null);
 
   const onLogState = () => {
     console.log(state);
@@ -30,11 +35,49 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
     });
   };
 
+  // Debounce?!
+  const onAttackerColorChange = (color: string): void => {
+    console.log('onAttackerColorChange', color);
+  };
+
+  // Debounce?!
+  const onAttackerTanksChange = (tanks: string): void => {
+    console.log('onAttackerTanksChange', parseInt(tanks));
+  };
+
   return (
     <div className="battlefield">
 
       <div className="battlefield__attacker">
-        Attacker slot
+        <label htmlFor="attacker-color">
+          Attacker color
+          <button type="button" onClick={() => onAttackerColorChange('red')}>
+            Red
+          </button>
+          <button type="button" onClick={() => onAttackerColorChange('blue')}>
+            Blue
+          </button>
+          <button type="button" onClick={() => onAttackerColorChange('green')}>
+            Green
+          </button>
+          <button type="button" onClick={() => onAttackerColorChange('purple')}>
+            Purple
+          </button>
+          <button type="button" onClick={() => onAttackerColorChange('yellow')}>
+            Yellow
+          </button>
+          <button type="button" onClick={() => onAttackerColorChange('black')}>
+            Black
+          </button>
+        </label>
+        <label htmlFor="attacker-tanks">
+          Attacker tanks
+          <input
+            type="number"
+            onChange={e => onAttackerTanksChange(e.target.value)}
+            id="attacker-tanks"
+          />
+        </label>
       </div>
 
       <div className="battlefield__defender">
