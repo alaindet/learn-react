@@ -5,9 +5,13 @@ import { createContext, useReducer, useContext, ReactNode, Reducer } from 'react
 
 import { Action, State, INITIAL_STATE, mainReducer } from 'src/store';
 
-const BattlingTanksContext = createContext<(
-  | { state: State, dispatch: (action: Action) => void }
-  | undefined
+export interface BattlingTanksContext {
+  state: State;
+  dispatch: (action: Action) => void;
+}
+
+const BattlingTanksContextPrivate = createContext<(
+  BattlingTanksContext | undefined
 )>(undefined);
 
 const BattlingTanksProvider = ({ children }: { children: ReactNode }) => {
@@ -19,13 +23,13 @@ const BattlingTanksProvider = ({ children }: { children: ReactNode }) => {
   const value = { state, dispatch };
 
   return (
-    <BattlingTanksContext.Provider value={value}>
+    <BattlingTanksContextPrivate.Provider value={value}>
       {children}
-    </BattlingTanksContext.Provider>
+    </BattlingTanksContextPrivate.Provider>
   );
 };
 
-const useBattlingTanks = () => useContext(BattlingTanksContext);
+const useBattlingTanks = () => useContext(BattlingTanksContextPrivate);
 
 export {
   BattlingTanksProvider,

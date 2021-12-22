@@ -1,28 +1,33 @@
 import { FunctionComponent } from 'react';
-import './Board.scss';
 
-import { useBattlingTanks } from '../../hooks';
+import { useBattlingTanks, BattlingTanksContext } from 'src/context';
+import { ActionType } from 'src/store';
+import './BattleField.scss';
 
 export interface BattleFieldProps {
-
+  onChangePlayers: () => void;
 }
 
 export const BattleField: FunctionComponent<BattleFieldProps> = ({
-
+  onChangePlayers,
 }) => {
-  const { state, actions } = useBattlingTanks();
+  const { state, dispatch } = useBattlingTanks() as BattlingTanksContext;
 
   const onLogState = () => {
     console.log(state);
   };
 
-  const onInitState = () => {
-    actions.setAttacker({ color: 'green', tanks: 5 });
-    actions.setDefender({ color: 'purple', tanks: 2 });
-  };
-
-  const onChangePlayers = () => {
-    console.log('onChangePlayers');
+  const onSetAttacker = () => {
+    dispatch({
+      type: ActionType.SetAttacker,
+      payload: {
+        role: 'attacker',
+        color: 'red',
+        tanks: 3,
+        tanksList: [1, 1, 1],
+        diceList: [0, 0, 0],
+      },
+    });
   };
 
   return (
@@ -34,6 +39,12 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
 
       <div className="battlefield__defender">
         Defender slot
+      </div>
+
+      <div className="battlefield__controls">
+        <button onClick={onChangePlayers}>Change Players</button>
+        <button onClick={onLogState}>Log state</button>
+        <button onClick={onSetAttacker}>Set attacker</button>
       </div>
 
       {/* {state.defender && (
