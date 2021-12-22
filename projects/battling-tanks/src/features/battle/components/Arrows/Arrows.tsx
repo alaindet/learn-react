@@ -2,25 +2,25 @@ import { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { PlayerColor, PlayerRole } from 'src/common/types';
-import './BoardArrows.scss';
+import './Arrows.scss';
 
-export interface BoardArrowsProps {
+export interface ArrowsProps {
   attackerColor: PlayerColor;
   defenderColor: PlayerColor;
   outcome: PlayerRole[];
 }
 
-export const BoardArrows: FunctionComponent<BoardArrowsProps> = ({
+export const Arrows: FunctionComponent<ArrowsProps> = ({
   attackerColor,
   defenderColor,
   outcome,
 }) => {
   return (
-    <div className="board__arrows">
+    <div className="battlefield__arrows">
       {outcome.map((winner, i) => {
 
         const cssClasses = [
-          'board__arrow',
+          'battlefield__arrow',
         ];
 
         if (winner === 'attacker') {

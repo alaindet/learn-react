@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 
-import { PlayerBoardDice, PlayerBoardTanks, Button } from 'src/common/components';
+import { PlayerBoardDice } from '../PlayerBoardDice/PlayerBoardDice';
+import { PlayerBoardTanks } from '../PlayerBoardTanks/PlayerBoardTanks';
 import { PlayerColor, PlayerRole, DieValue, TankState } from 'src/common/types';
 import './PlayerBoard.scss';
 

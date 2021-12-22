@@ -1,10 +1,10 @@
 import { Reducer, useReducer } from 'react';
 
 import { PlayerInfo } from 'src/common/types';
-import { State, Action } from '../types';
-import { mainReducer } from '../reducers';
-import * as fromActions from '../actions';
-import { INITIAL_STATE } from '../state';
+import { State, Action } from '../store/types';
+import { mainReducer } from '../store/reducers';
+import * as fromActions from '../store/actions';
+import { INITIAL_STATE } from '../store/state';
 
 export const useBattlingTanks = () => {
 

@@ -8,7 +8,7 @@
   }
 }
 
-.board__arrows {
+.battlefield__arrows {
   --width-arrow: 1vw;
   --width-die: 6vw;
   --margin-horizontal: calc(3rem + var(--width-die)/2 - var(--width-arrow)/2);
@@ -24,7 +24,7 @@
   align-items: center;
 }
 
-.board__arrow {
+.battlefield__arrow {
   height: 100%;
   width: var(--width-arrow);
   position: relative;
