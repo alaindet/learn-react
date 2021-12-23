@@ -1,0 +1,32 @@
+@import 'src/styles/variables';
+
+@mixin set-sample-color($color: #000) {
+  background-color: $color;
+  color: #f0f0f0;
+}
+
+.color-sample {
+  border: 3px solid rgba(255,255,255,0.3);
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+  border-radius: 1rem;
+
+  &:hover {
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  &.--active,
+  &:focus {
+    outline: 0;
+    border-color: rgba(255,255,255,0.8);
+  }
+
+  &.--color {
+    &-black { @include set-sample-color($color-black) }
+    &-blue { @include set-sample-color($color-blue) }
+    &-green { @include set-sample-color($color-green) }
+    &-red { @include set-sample-color($color-red) }
+    &-purple { @include set-sample-color($color-purple) }
+    &-yellow { @include set-sample-color($color-yellow) }
+  }
+}

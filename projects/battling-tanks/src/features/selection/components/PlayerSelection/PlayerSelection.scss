@@ -8,10 +8,13 @@
   }
 }
 
-label {
+.ui-form-control {
   display: block;
-}
+  margin: 1rem 0;
 
-button.--active {
-  color: red;
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
 }
