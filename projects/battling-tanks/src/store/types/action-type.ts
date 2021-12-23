@@ -1,6 +1,5 @@
 export enum ActionType {
-  SetAttacker = 'set-attacker',
-  SetDefender = 'set-defender',
+  SetPlayers = 'set-players',
   FightStart = 'fight-start',
   Fight = 'fight',
   FightEnd = 'fight-end',
