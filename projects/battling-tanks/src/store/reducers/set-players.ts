@@ -14,8 +14,8 @@ export const setPlayersReducer = (state: State, action: Action<PlayersForm>): St
   const attackerTanksList = initTanksList(action.payload.attackerTanks);
   const attackerDiceList = tanksToDiceList(attackerTanksList);
 
-  const defenderTanksList = initTanksList(action.payload.attackerTanks);
-  const defenderDiceList = tanksToDiceList(attackerTanksList);
+  const defenderTanksList = initTanksList(action.payload.defenderTanks);
+  const defenderDiceList = tanksToDiceList(defenderTanksList);
 
   return {
     ...state,

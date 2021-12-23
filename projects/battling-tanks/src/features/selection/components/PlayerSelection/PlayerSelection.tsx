@@ -31,7 +31,7 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
     console.log('onSubmit', formValue);
     e.preventDefault();
     dispatch({ type: ActionType.SetPlayers, payload: formValue });
-    // onSelectPlayers();
+    onSelectPlayers();
   };
 
   const onLogFormState = () => {
@@ -54,7 +54,11 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
               <button
                 key={color}
                 type="button"
-                className={formValue.attackerColor === color ? '--active' : ''}
+                className={
+                  formValue.attackerColor === color.toLowerCase()
+                    ? '--active'
+                    : ''
+                }
                 onClick={() => updateForm('attackerColor', color.toLowerCase())}
               >
                 {color}
@@ -89,7 +93,11 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
               <button
                 key={color}
                 type="button"
-                className={formValue.attackerColor === color ? '--active' : ''}
+                className={
+                  formValue.defenderColor === color.toLowerCase()
+                    ? '--active'
+                    : ''
+                }
                 onClick={() => updateForm('defenderColor', color.toLowerCase())}
               >
                 {color}
