@@ -20,7 +20,7 @@ export const Tank: FunctionComponent<TankProps> = ({
   isDisabled,
 }) => {
 
-  color = color ?? 'red';
+  color = color ?? PlayerColor.Red;
   width = width ?? '100px';
   facing = facing ?? 'down';
   isShooting = isShooting ?? false;

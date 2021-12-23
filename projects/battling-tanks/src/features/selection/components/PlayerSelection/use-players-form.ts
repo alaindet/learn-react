@@ -1,12 +1,6 @@
 import { useReducer } from 'react';
-import { PlayerColor } from 'src/common/types';
 
-export interface PlayersForm {
-  attackerColor: PlayerColor;
-  attackerTanks: number;
-  defenderColor: PlayerColor;
-  defenderTanks: number;
-}
+import { PlayersForm } from 'src/common/types';
 
 export const usePlayersForm = (initialState: PlayersForm) => {
 
@@ -21,5 +15,10 @@ export const usePlayersForm = (initialState: PlayersForm) => {
     dispatch({ type: field, payload: value });
   };
 
-  return [state, updateForm];
+  const logState = () => {
+    console.log('FORM VALUE', state);
+  };
+
+
+  return [state, updateForm, logState];
 };

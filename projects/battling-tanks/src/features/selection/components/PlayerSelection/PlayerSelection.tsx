@@ -1,50 +1,45 @@
-import { FormEvent, FunctionComponent, useState } from 'react';
+import { FormEvent, FunctionComponent } from 'react';
 
 import { PlayerColor } from 'src/common/types';
+import { range } from 'src/common/utils';
 import { BattlingTanksContext, useBattlingTanks } from 'src/context';
+import { ActionType } from 'src/store';
 import { usePlayersForm } from './use-players-form';
+import './PlayerSelection.scss';
 
 export interface PlayerSelectionProps {
-  onSelectPlayers: (arg: { attacker: any; defender: any; }) => void;
+  onSelectPlayers: () => void;
 }
 
 export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
-  onSelectPlayers: onSelectPlayersInput,
+  onSelectPlayers,
 }) => {
 
   const {state, dispatch} = useBattlingTanks() as BattlingTanksContext;
-  const [formValue, updateForm] = usePlayersForm({
-    attackerColor: state.attacker?.color ?? 'red',
+  const [formValue, updateForm, logFormValue] = usePlayersForm({
+    attackerColor: state.attacker?.color ?? PlayerColor.Red,
     attackerTanks: 3,
-    defenderColor: state.attacker?.color ?? 'blue',
+    defenderColor: state.attacker?.color ?? PlayerColor.Blue,
     defenderTanks: 3,
   });
-
-  const onSelectPlayers = () => {
-    onSelectPlayersInput({
-      attacker: { name: 'Alice', color: 'red', tanks: 3 },
-      defender: { name: 'Bob', color: 'blue', tanks: 3 },
-    });
-  };
 
   const onLogState = () => {
     console.log(state);
   };
 
   const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
     console.log('onSubmit', formValue);
+    e.preventDefault();
+    dispatch({ type: ActionType.SetPlayers, payload: formValue });
+    // onSelectPlayers();
   };
 
-  // TODO: Make PlayerColor enum
-  const PLAYER_COLOR = [
-    'red',
-    'black',
-    'purple',
-    'yellow',
-    'green',
-    'blue',
-  ];
+  const onLogFormState = () => {
+    logFormValue();
+  };
+
+  const playerColors = Object.keys(PlayerColor);
+  const tanksRange = range(1, 3);
 
   return (
     <div className="player-selection">
@@ -55,11 +50,12 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
         <div className="player-selection__attacker">
           <label htmlFor="attacker-color">
             Attacker color
-            {PLAYER_COLOR.map(color => (
+            {playerColors.map(color => (
               <button
+                key={color}
                 type="button"
-                className="{formValue.attackerColor === color ? '--active' : ''}"
-                onClick={() => updateForm('attackerColor', color)}
+                className={formValue.attackerColor === color ? '--active' : ''}
+                onClick={() => updateForm('attackerColor', color.toLowerCase())}
               >
                 {color}
               </button>
@@ -67,6 +63,16 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
           </label>
           <label htmlFor="attacker-tanks">
             Attacker tanks
+            {tanksRange.map(tank => (
+              <button
+                key={tank}
+                type="button"
+                onClick={() => updateForm('attackerTanks', tank)}
+                className={formValue.attackerTanks === tank ? '--active' : ''}
+              >
+                {tank}
+              </button>
+            ))}
             <input
               type="number"
               id="attacker-tanks"
@@ -79,11 +85,12 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
         <div className="player-selection__defender">
           <label htmlFor="defender-color">
             Defender color
-            {PLAYER_COLOR.map(color => (
+            {playerColors.map(color => (
               <button
+                key={color}
                 type="button"
-                className="{formValue.attackerColor === color ? '--active' : ''}"
-                onClick={() => updateForm('defenderColor', color)}
+                className={formValue.attackerColor === color ? '--active' : ''}
+                onClick={() => updateForm('defenderColor', color.toLowerCase())}
               >
                 {color}
               </button>
@@ -91,6 +98,16 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
           </label>
           <label htmlFor="defender-tanks">
             Defender tanks
+            {tanksRange.map(tank => (
+              <button
+                key={tank}
+                type="button"
+                onClick={() => updateForm('defenderTanks', tank)}
+                className={formValue.defenderTanks === tank ? '--active' : ''}
+              >
+                {tank}
+              </button>
+            ))}
             <input
               type="number"
               value={formValue.defenderTanks}
@@ -107,6 +124,7 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
 
       <div className="player-selection__controls">
         <button onClick={onLogState}>Log state</button>
+        <button onClick={onLogFormState}>Log form state</button>
       </div>
     </div>
   );

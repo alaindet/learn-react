@@ -19,7 +19,7 @@ export const Die: FunctionComponent<DieProps> = ({
   isRolling,
   isDisabled,
 }) => {
-  color = color ?? 'red';
+  color = color ?? PlayerColor.Red;
   width = width ?? '100px';
   isRolling = isRolling ?? false;
   isDisabled = isDisabled ?? false;

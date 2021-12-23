@@ -7,7 +7,7 @@ import './App.scss';
 
 export const App = () => {
   // TODO: Routing would be better, I know
-  const [isSelectingPlayers, setIsSelectingPlayers] = useState(false);
+  const [isSelectingPlayers, setIsSelectingPlayers] = useState(true);
 
   const onSelectPlayers = () => {
     setIsSelectingPlayers(false);
