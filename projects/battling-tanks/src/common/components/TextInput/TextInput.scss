@@ -1,0 +1,33 @@
+input.ui-text-input {
+  border: 2px solid rgba(0,0,0,0.2);
+  transition: 0.15s all ease-in-out;
+  outline: 2px dashed transparent;
+  outline-offset: 2px;
+  cursor: pointer;
+
+  &:hover {
+    outline-color: rgba(0,0,0,0.4);
+  }
+
+  &:focus {
+    outline-color: rgba(0,0,0,0.6);
+  }
+
+  &.--full-width {
+    width: 100%;
+  }
+
+  &.--size-medium {
+    border-radius: 0.66rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+
+  &.--size-large {
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+  }
+}

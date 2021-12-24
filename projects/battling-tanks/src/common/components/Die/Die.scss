@@ -1,4 +1,4 @@
-@import 'src/styles/variables';
+@import 'src/styles/common/index';
 
 @mixin die-set-color($color, $dot-color: #ffffff) {
   border-color: $dot-color;

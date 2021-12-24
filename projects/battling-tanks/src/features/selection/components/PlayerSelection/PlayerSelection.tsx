@@ -1,140 +1,89 @@
-import { FormEvent, FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
-import { PlayerColor } from 'src/common/types';
-import { range } from 'src/common/utils';
-import { BattlingTanksContext, useBattlingTanks } from 'src/context';
-import { ActionType } from 'src/store';
-import { usePlayersForm } from './use-players-form';
+import { SquareButton, TextInput } from 'src/common/components';
+import { PLAYER_COLORS } from 'src/common/data';
+import { PlayerColor, PlayerRole } from 'src/common/types';
+import { clamp, range } from 'src/common/utils';
 import './PlayerSelection.scss';
-import { SquareButton, Button } from 'src/common/components';
 
 export interface PlayerSelectionProps {
-  onSelectPlayers: () => void;
+  role: PlayerRole;
+  formValue: any;
+  updateForm: (field: string, value: any) => void;
 }
 
+const MIN_TANKS = 1;
+const MAX_TANKS = 100;
+
 export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
-  onSelectPlayers,
+  role,
+  formValue,
+  updateForm,
 }) => {
 
-  const {state, dispatch} = useBattlingTanks() as BattlingTanksContext;
-  const [formValue, updateForm, logFormValue] = usePlayersForm({
-    attackerColor: state.attacker?.color ?? PlayerColor.Red,
-    attackerTanks: 3,
-    defenderColor: state.attacker?.color ?? PlayerColor.Blue,
-    defenderTanks: 3,
-  });
-
-  const onLogState = () => {
-    console.log(state);
-  };
-
-  const onSubmit = (e: FormEvent) => {
-    console.log('onSubmit', formValue);
-    e.preventDefault();
-    dispatch({ type: ActionType.SetPlayers, payload: formValue });
-    onSelectPlayers();
-  };
-
-  const onLogFormState = () => {
-    logFormValue();
-  };
-
-  // TODO: Move in another file
-  const playerColors = Object.keys(PlayerColor).map(color => color.toLowerCase() as PlayerColor);
+  const roleTitle = role[0].toUpperCase() + role.slice(1);
   const tanksRange = range(1, 3);
+  const colorKey = `${role}Color`;
+  const currentColor = formValue[colorKey];
+  const tanksKey = `${role}Tanks`;
+  const currentTanks = formValue[tanksKey];
 
-  const onSelectAttackerColor = (color: PlayerColor): void => {
-    updateForm('attackerColor', color);
+  const onUpdateColor = (color: PlayerColor): void => {
+    updateForm(colorKey, color);
   };
 
-  const onSelectDefenderColor = (color: PlayerColor): void => {
-    updateForm('defenderColor', color);
+  const onUpdateTanks = (event: InputEvent): void => {
+    const target = event.target as HTMLInputElement;
+    let value: any = parseInt(target.value);
+    value = clamp(value, MIN_TANKS, MAX_TANKS);
+    value = (value === null) ? '' : value;
+    updateForm(tanksKey, value);
   };
 
   return (
     <div className="player-selection">
-
-      <button onClick={onSelectPlayers}>Select players!</button>
-
-      <form onSubmit={onSubmit}>
-        <div className="player-selection__attacker">
-
-          <div className="ui-form-control">
-            <label htmlFor="attacker-color">Attacker color</label>
-            {playerColors.map(color => (
+      <div className="ui-form-control">
+        <label>{roleTitle} color</label>
+        <div className="ya-cols">
+          {PLAYER_COLORS.map(color => (
+            <div key={color} className="ya-col-4 ya-col-m-2 ya-p1">
               <SquareButton
-                key={color}
                 color={color}
-                size="64px"
-                isActive={formValue.attackerColor === color}
-                onClick={onSelectAttackerColor}
+                size="48px"
+                isActive={currentColor === color}
+                onClick={() => onUpdateColor(color)}
               />
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-          <div className="ui-form-control">
-            <label htmlFor="attacker-tanks">Attacker tanks</label>
-            {tanksRange.map(tank => (
+      <div className="ui-form-control">
+        <label>{roleTitle} tanks</label>
+        <div className="ya-cols">
+          {tanksRange.map(tank => (
+            <div key={tank} className="ya-col-4 ya-col-m-2 ya-p1">
               <SquareButton
-                key={tank}
                 color={PlayerColor.Black}
-                onClick={() => updateForm('attackerTanks', tank)}
-                isActive={formValue.attackerTanks === tank}
+                size="48px"
+                onClick={() => updateForm(tanksKey, tank)}
+                isActive={currentTanks === tank}
               >
                 {tank}
               </SquareButton>
-            ))}
-            <input
+            </div>
+          ))}
+          <div className="ya-col-12 ya-mt2 ya-p1">
+            <TextInput
+              fullWidth
               type="number"
               id="attacker-tanks"
-              value={formValue.attackerTanks}
-              onChange={e => updateForm('attackerTanks', e.target.value)}
+              size="large"
+              value={currentTanks}
+              onChange={onUpdateTanks}
             />
           </div>
         </div>
-
-        <div className="player-selection__defender">
-          <div className="ui-form-control">
-            <label htmlFor="defender-color">Defender color</label>
-              {playerColors.map(color => (
-                <SquareButton
-                  key={color}
-                  color={color}
-                  size="64px"
-                  isActive={formValue.defenderColor === color}
-                  onClick={onSelectDefenderColor}
-                />
-              ))}
-          </div>
-          <div className="ui-form-control">
-            <label htmlFor="defender-tanks">Defender tanks</label>
-            {tanksRange.map(tank => (
-              <SquareButton
-                key={tank}
-                color={PlayerColor.Black}
-                onClick={() => updateForm('defenderTanks', tank)}
-                isActive={formValue.defenderTanks === tank}
-              >
-                {tank}
-              </SquareButton>
-            ))}
-            <input
-              type="number"
-              value={formValue.defenderTanks}
-              onChange={e => updateForm('defenderTanks', e.target.value)}
-              id="defender-tanks"
-            />
-          </div>
-        </div>
-
-        <div className="player-selection__submit">
-          <Button type="submit">Save</Button>
-        </div>
-      </form>
-
-      <div className="player-selection__controls">
-        <Button onClick={onLogState}>Log state</Button>
-        <Button onClick={onLogFormState}>Log form state</Button>
       </div>
     </div>
   );

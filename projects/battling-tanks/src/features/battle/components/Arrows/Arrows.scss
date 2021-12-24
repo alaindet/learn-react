@@ -1,4 +1,4 @@
-@import 'src/styles/variables';
+@import 'src/styles/common/index';
 
 @mixin arrow-set-color($color) {
   background-color: $color;

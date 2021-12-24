@@ -1,4 +1,4 @@
-@import 'src/styles/variables';
+@import 'src/styles/common/index';
 
 @mixin tank-set-color($color, $border-color: #ffffff) {
   $factor: +1;

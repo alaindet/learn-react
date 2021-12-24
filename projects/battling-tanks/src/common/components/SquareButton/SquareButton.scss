@@ -1,4 +1,4 @@
-@import 'src/styles/variables';
+@import 'src/styles/common/index';
 
 @mixin set-sample-color($color: #000) {
   background-color: $color;
@@ -6,19 +6,20 @@
 }
 
 .color-sample {
-  border: 3px solid rgba(255,255,255,0.3);
+  border: 0;
   transition: 0.2s all ease-in-out;
   cursor: pointer;
   border-radius: 1rem;
+  outline: 2px dashed transparent;
+  outline-offset: 4px;
 
   &:hover {
-    border-color: rgba(255,255,255,0.6);
+    outline-color: #aaa;
   }
 
   &.--active,
   &:focus {
-    outline: 0;
-    border-color: rgba(255,255,255,0.8);
+    outline-color: #303030;
   }
 
   &.--color {

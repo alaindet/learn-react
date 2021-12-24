@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { BattleField } from 'src/features/battle';
-import { PlayerSelection } from 'src/features/selection';
+import { PlayersSelection } from 'src/features/selection';
 import { BattlingTanksProvider } from 'src/context';
 import './App.scss';
 
@@ -19,8 +19,17 @@ export const App = () => {
 
   return (
     <BattlingTanksProvider>
-      {isSelectingPlayers && <PlayerSelection onSelectPlayers={onSelectPlayers} />}
-      {!isSelectingPlayers && <BattleField onChangePlayers={onChangePlayers}/>}
+      <div className="App">
+
+        {isSelectingPlayers && (
+          <PlayersSelection onSelectPlayers={onSelectPlayers} />
+        )}
+
+        {!isSelectingPlayers && (
+          <BattleField onChangePlayers={onChangePlayers}/>
+        )}
+
+      </div>
     </BattlingTanksProvider>
   );
 };

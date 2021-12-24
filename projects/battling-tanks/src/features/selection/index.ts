@@ -1,1 +1,1 @@
-export * from './components/PlayerSelection/PlayerSelection';
+export * from './components/PlayersSelection/PlayerSelection';

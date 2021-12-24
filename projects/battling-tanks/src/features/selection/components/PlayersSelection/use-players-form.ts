@@ -15,10 +15,5 @@ export const usePlayersForm = (initialState: PlayersForm) => {
     dispatch({ type: field, payload: value });
   };
 
-  const logState = () => {
-    console.log('FORM VALUE', state);
-  };
-
-
-  return [state, updateForm, logState];
+  return [state, updateForm];
 };
