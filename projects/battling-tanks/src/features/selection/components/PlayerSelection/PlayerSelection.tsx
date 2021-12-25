@@ -3,7 +3,7 @@ import { FunctionComponent } from 'react';
 import { SquareButton, TextInput } from 'src/common/components';
 import { PLAYER_COLORS } from 'src/common/data';
 import { PlayerColor, PlayerRole } from 'src/common/types';
-import { clamp, range } from 'src/common/utils';
+import { clamp, range, getOppositePlayerRole } from 'src/common/utils';
 import './PlayerSelection.scss';
 
 export interface PlayerSelectionProps {
@@ -21,11 +21,15 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
   updateForm,
 }) => {
 
+  // TODO: Memoize?
   const roleTitle = role[0].toUpperCase() + role.slice(1);
   const tanksRange = range(1, 3);
   const colorKey = `${role}Color`;
-  const currentColor = formValue[colorKey];
   const tanksKey = `${role}Tanks`;
+  const oppositeRole = getOppositePlayerRole(role);
+  const oppositeColorKey = `${oppositeRole}Color`;
+  const currentColor = formValue[colorKey];
+  const oppositeColor = formValue[oppositeColorKey];
   const currentTanks = formValue[tanksKey];
 
   const onUpdateColor = (color: PlayerColor): void => {
@@ -46,10 +50,11 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
         <label>{roleTitle} color</label>
         <div className="ya-cols">
           {PLAYER_COLORS.map(color => (
-            <div key={color} className="ya-col-4 ya-col-m-2 ya-p1">
+            <div key={color} className="ya-col-4 ya-col-m-2 ya-p1 center-content">
               <SquareButton
                 color={color}
                 size="48px"
+                isDisabled={oppositeColor === color}
                 isActive={currentColor === color}
                 onClick={() => onUpdateColor(color)}
               />
@@ -62,7 +67,7 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
         <label>{roleTitle} tanks</label>
         <div className="ya-cols">
           {tanksRange.map(tank => (
-            <div key={tank} className="ya-col-4 ya-col-m-2 ya-p1">
+            <div key={tank} className="ya-col-4 ya-col-m-2 ya-p1 center-content">
               <SquareButton
                 color={PlayerColor.Black}
                 size="48px"

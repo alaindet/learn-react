@@ -7,7 +7,9 @@ import './SquareButton.scss';
 export interface SquareButtonProps {
   color: PlayerColor;
   isActive?: boolean;
+  isDisabled?: boolean;
   size?: string;
+  className?: string;
   onClick: (color: PlayerColor) => void;
 }
 
@@ -21,17 +23,22 @@ export const multiplyCssNumberByFactor = (cssNumber: string, factor: number): st
 export const SquareButton: FunctionComponent<SquareButtonProps> = ({
   color,
   isActive,
+  isDisabled,
   size,
   onClick,
+  className,
   children,
 }) => {
   size = size ?? '64px';
   isActive = isActive ?? false;
+  isDisabled = isDisabled ?? false;
 
   const cssClasses = [
     'color-sample',
     `--color-${color}`,
-    isActive ? `--active` : null,
+    isActive ? '--active' : null,
+    isDisabled ? '--disabled' : null,
+    className ?? null,
   ];
 
   const cssStyle: CSSProperties = {};

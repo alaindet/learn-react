@@ -22,6 +22,12 @@
     outline-color: #303030;
   }
 
+
+  &.--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   &.--color {
     &-black { @include set-sample-color($color-black) }
     &-blue { @include set-sample-color($color-blue) }

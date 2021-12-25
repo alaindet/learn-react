@@ -7,6 +7,7 @@ export interface TextInputProps {
   size?: 'small' | 'medium' | 'large' | 'larger';
   fullWidth?: boolean;
   type?: string;
+  className?: string;
   [other: string]: any;
 }
 
@@ -14,7 +15,7 @@ export const TextInput: FunctionComponent<TextInputProps> = ({
   size,
   fullWidth,
   type,
-  // onChange,
+  className,
   ...props
 }) => {
   size = size ?? 'medium';
@@ -25,13 +26,13 @@ export const TextInput: FunctionComponent<TextInputProps> = ({
     'ui-text-input',
     `--size-${size}`,
     fullWidth ? '--full-width' : null,
+    className ?? null,
   ];
 
   return (
     <input
       type={type}
       className={classNames(cssClasses)}
-      // onChange={props.onChange ?? undefined}
       {...props}
     />
   );

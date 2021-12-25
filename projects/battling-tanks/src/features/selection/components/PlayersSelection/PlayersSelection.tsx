@@ -35,13 +35,13 @@ export const PlayersSelection: FunctionComponent<PlayersSelectionProps> = ({
       <form onSubmit={onSubmit}>
 
         <PlayerSelection
-          role="attacker"
+          role="defender"
           formValue={formValue}
           updateForm={updateForm}
         />
 
         <PlayerSelection
-          role="defender"
+          role="attacker"
           formValue={formValue}
           updateForm={updateForm}
         />

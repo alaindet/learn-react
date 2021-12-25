@@ -5,6 +5,11 @@
   background-color: #eee;
 }
 
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
 // TODO: Move into component
 .ui-form-control {
   display: block;

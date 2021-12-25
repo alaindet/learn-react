@@ -18,7 +18,6 @@ export const PlayerBoardDice: FunctionComponent<PlayerBoardDiceProps> = ({
   dieWidth,
   isRolling,
 }) => {
-  console.log('PlayerBoardDice', color, dice); // TODO
   dieWidth = dieWidth ?? '6vw';
   isRolling = isRolling ?? false;
 

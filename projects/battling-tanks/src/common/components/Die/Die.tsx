@@ -10,6 +10,7 @@ export interface DieProps {
   value: DieValue;
   isRolling?: boolean;
   isDisabled?: boolean;
+  className?: string;
 }
 
 export const Die: FunctionComponent<DieProps> = ({
@@ -18,6 +19,7 @@ export const Die: FunctionComponent<DieProps> = ({
   value,
   isRolling,
   isDisabled,
+  className,
 }) => {
   color = color ?? PlayerColor.Red;
   width = width ?? '100px';
@@ -41,6 +43,7 @@ export const Die: FunctionComponent<DieProps> = ({
     `--value-${value}`,
     isRolling ? '--rolling' : null,
     isDisabled ? '--disabled' : null,
+    className ?? null,
   ];
 
   return (

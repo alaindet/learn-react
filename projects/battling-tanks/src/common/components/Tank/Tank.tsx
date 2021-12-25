@@ -10,6 +10,7 @@ export interface TankProps {
   facing?: TankDirection;
   isShooting?: boolean;
   isDisabled?: boolean;
+  className?: string;
 }
 
 export const Tank: FunctionComponent<TankProps> = ({
@@ -18,6 +19,7 @@ export const Tank: FunctionComponent<TankProps> = ({
   facing,
   isShooting,
   isDisabled,
+  className,
 }) => {
 
   color = color ?? PlayerColor.Red;
@@ -36,6 +38,7 @@ export const Tank: FunctionComponent<TankProps> = ({
     `--facing-${facing}`,
     isDisabled ? '--disabled' : null,
     isShooting ? '--shooting' : null,
+    className ?? null,
   ];
 
   return (

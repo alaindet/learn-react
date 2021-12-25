@@ -8,8 +8,9 @@ export interface ButtonProps {
   fullWidth?: boolean;
   fill?: 'solid' | 'outline';
   type?: 'button' | 'submit';
-  [other: string]: any;
+  className?: string;
   onClick?: Function;
+  [other: string]: any;
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({
@@ -18,6 +19,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
   type,
   children,
   fullWidth,
+  className,
   onClick,
   theRest
 }) => {
@@ -31,6 +33,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
     `--size-${size}`,
     `--fill-${fill}`,
     fullWidth ? '--full-width' : null,
+    className ?? null,
   ];
 
   return (

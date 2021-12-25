@@ -1,6 +1,9 @@
 import { FunctionComponent } from 'react';
+import { Button } from 'src/common/components';
+import { PlayerData } from 'src/common/types';
 
 import { BattlingTanksContext, useBattlingTanks } from 'src/context';
+import { PlayerBoard } from '../PlayerBoard/PlayerBoard';
 import './BattleField.scss';
 
 export interface BattleFieldProps {
@@ -16,41 +19,55 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
     console.log(state);
   };
 
+  const onFight = () => {
+
+  };
+
+  if (!state?.attacker || !state?.defender) {
+    onChangePlayers();
+  }
+
+  const defender: PlayerData = state.defender as PlayerData;
+  const attacker: PlayerData = state.attacker as PlayerData;
+
   return (
     <div className="battlefield">
 
-      <div className="battlefield__attacker">
-        Attacker slot
-      </div>
-
+      {/* Defender */}
       <div className="battlefield__defender">
-        Defender slot
+        <PlayerBoard
+          role="defender"
+          color={defender.color}
+          tanks={defender.tanksList}
+          isRolling={state.isRolling}
+          dice={defender.diceList}
+          tankWidth="48px"
+          dieWidth="48px"
+        />
       </div>
 
+      {/* Attacker */}
+      <div className="battlefield__attacker">
+        <PlayerBoard
+          role="attacker"
+          color={attacker.color}
+          tanks={attacker.tanksList}
+          isRolling={state.isRolling}
+          dice={attacker.diceList}
+          tankWidth="48px"
+          dieWidth="48px"
+        />
+      </div>
+
+      {/* Fight */}
       <div className="battlefield__controls">
-        <button onClick={onChangePlayers}>Change Players</button>
-        <button onClick={onLogState}>Log state</button>
+        <Button onClick={onFight} fullWidth size="large" className="ya-mb2">
+          Fight!
+        </Button>
+        <Button onClick={onChangePlayers} fullWidth size="large" fill="outline">
+          Change settings
+        </Button>
       </div>
-
-      {/* {state.defender && (
-        <PlayerBoard
-          role={state.defender.role}
-          color={state.defender.color}
-          tanks={state.defender.tanksList}
-          isRolling={state.isRolling}
-          dice={state.defender.diceList}
-        />
-      )} */}
-
-      {/* {state.attacker && (
-        <PlayerBoard
-          role={state.attacker.role}
-          color={state.attacker.color}
-          tanks={state.attacker.tanksList}
-          isRolling={state.isRolling}
-          dice={state.attacker.diceList}
-        />
-      )} */}
 
       {/* {outcome && (
         <BoardArrows
@@ -59,6 +76,12 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
           outcome={outcome}
         />
       )} */}
+
+      {/* TODO */}
+      <div>
+        <button onClick={onLogState}>Log state</button>
+      </div>
+
 
     </div>
   );
