@@ -111,7 +111,35 @@
   &.--color-yellow { @include tank-set-color($color-yellow, $color-black) }
 
   // Facing up
-  &.--facing-up { transform: rotate(180deg) }
+  &.--facing-up {
+    transform: rotate(180deg);
+  }
+
+  &.--destroyed {
+    background: #ccc;
+    border-color: #666;
+    border-style: solid;
+    position: relative;
+
+    &::after {
+      content: 'x';
+      position: absolute;
+      font-size: 4rem;
+      font-weight: bold;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      inset: 0;
+      bottom: 20%;
+    }
+
+    & > * {
+      background: #ccc;
+      border-color: #666;
+      border-style: solid;
+    }
+  }
 
   // Disabled
   &.--disabled {

@@ -10,7 +10,6 @@ const tanksToDiceList = (tanksList: TankState[]): DieValue[] => {
 }
 
 export const setPlayersReducer = (state: State, action: Action<PlayersForm>): State => {
-
   const attackerTanksList = initTanksList(action.payload.attackerTanks);
   const attackerDiceList = tanksToDiceList(attackerTanksList);
 

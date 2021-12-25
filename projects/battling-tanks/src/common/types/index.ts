@@ -1,4 +1,5 @@
 export * from './die-value';
+export * from './feature';
 export * from './player-color';
 export * from './player-info';
 export * from './player-role';

@@ -1,34 +1,41 @@
 import { FunctionComponent } from 'react';
 import { Button } from 'src/common/components';
-import { PlayerData } from 'src/common/types';
+import { AppFeature, PlayerData } from 'src/common/types';
 
 import { BattlingTanksContext, useBattlingTanks } from 'src/context';
+import { ActionType } from 'src/store';
 import { PlayerBoard } from '../PlayerBoard/PlayerBoard';
 import './BattleField.scss';
 
 export interface BattleFieldProps {
-  onChangePlayers: () => void;
+  onNavigate: (feature: AppFeature) => void;
 }
 
 export const BattleField: FunctionComponent<BattleFieldProps> = ({
-  onChangePlayers,
+  onNavigate,
 }) => {
   const { state, dispatch } = useBattlingTanks() as BattlingTanksContext;
 
-  const onLogState = () => {
-    console.log(state);
+  const onNavigateToSelection = () => {
+    onNavigate(AppFeature.Selection);
   };
 
   const onFight = () => {
-
+    dispatch({ type: ActionType.FightStart, payload: null });
+    setTimeout(() => {
+      dispatch({ type: ActionType.Fight, payload: null });
+      dispatch({ type: ActionType.FightEnd, payload: null });
+    }, 500);
   };
 
   if (!state?.attacker || !state?.defender) {
-    onChangePlayers();
+    onNavigateToSelection();
   }
 
   const defender: PlayerData = state.defender as PlayerData;
   const attacker: PlayerData = state.attacker as PlayerData;
+  const tankWidth = '48px';
+  const dieWidth = '48px';
 
   return (
     <div className="battlefield">
@@ -41,8 +48,8 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
           tanks={defender.tanksList}
           isRolling={state.isRolling}
           dice={defender.diceList}
-          tankWidth="48px"
-          dieWidth="48px"
+          tankWidth={tankWidth}
+          dieWidth={dieWidth}
         />
       </div>
 
@@ -54,8 +61,8 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
           tanks={attacker.tanksList}
           isRolling={state.isRolling}
           dice={attacker.diceList}
-          tankWidth="48px"
-          dieWidth="48px"
+          tankWidth={tankWidth}
+          dieWidth={dieWidth}
         />
       </div>
 
@@ -64,8 +71,8 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
         <Button onClick={onFight} fullWidth size="large" className="ya-mb2">
           Fight!
         </Button>
-        <Button onClick={onChangePlayers} fullWidth size="large" fill="outline">
-          Change settings
+        <Button onClick={onNavigateToSelection} fullWidth size="large" fill="outline">
+          Change
         </Button>
       </div>
 
@@ -76,13 +83,6 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
           outcome={outcome}
         />
       )} */}
-
-      {/* TODO */}
-      <div>
-        <button onClick={onLogState}>Log state</button>
-      </div>
-
-
     </div>
   );
 };

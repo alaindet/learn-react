@@ -10,6 +10,7 @@ export interface TankProps {
   facing?: TankDirection;
   isShooting?: boolean;
   isDisabled?: boolean;
+  isDestroyed?: boolean;
   className?: string;
 }
 
@@ -19,6 +20,7 @@ export const Tank: FunctionComponent<TankProps> = ({
   facing,
   isShooting,
   isDisabled,
+  isDestroyed,
   className,
 }) => {
 
@@ -27,6 +29,7 @@ export const Tank: FunctionComponent<TankProps> = ({
   facing = facing ?? 'down';
   isShooting = isShooting ?? false;
   isDisabled = isDisabled ?? false;
+  isDestroyed = isDestroyed ?? false;
 
   const cssVars = {
     '--tank-width': width,
@@ -38,6 +41,7 @@ export const Tank: FunctionComponent<TankProps> = ({
     `--facing-${facing}`,
     isDisabled ? '--disabled' : null,
     isShooting ? '--shooting' : null,
+    isDestroyed ? '--destroyed' : null,
     className ?? null,
   ];
 

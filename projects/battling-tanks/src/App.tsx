@@ -1,35 +1,28 @@
-import { useState } from 'react';
-
 import { BattleField } from 'src/features/battle';
 import { PlayersSelection } from 'src/features/selection';
-import { BattlingTanksProvider } from 'src/context';
+import { AppFeature } from 'src/common/types';
+import { BattlingTanksContext, useBattlingTanks } from 'src/context';
 import './App.scss';
+import { ActionType } from './store';
 
 export const App = () => {
-  // TODO: Routing would be better, I know
-  const [isSelectingPlayers, setIsSelectingPlayers] = useState(true);
+  const {state, dispatch} = useBattlingTanks() as BattlingTanksContext;
 
-  const onSelectPlayers = () => {
-    setIsSelectingPlayers(false);
-  };
-
-  const onChangePlayers = () => {
-    setIsSelectingPlayers(true);
+  const onNavigate = (feature: AppFeature) => {
+    dispatch({ type: ActionType.SetFeature, payload: feature });
   };
 
   return (
-    <BattlingTanksProvider>
-      <div className="App">
+    <div className="App">
 
-        {isSelectingPlayers && (
-          <PlayersSelection onSelectPlayers={onSelectPlayers} />
-        )}
+      {state.feature === AppFeature.Selection && (
+        <PlayersSelection onNavigate={onNavigate} />
+      )}
 
-        {!isSelectingPlayers && (
-          <BattleField onChangePlayers={onChangePlayers}/>
-        )}
+      {state.feature === AppFeature.Battle && (
+        <BattleField onNavigate={onNavigate}/>
+      )}
 
-      </div>
-    </BattlingTanksProvider>
+    </div>
   );
 };

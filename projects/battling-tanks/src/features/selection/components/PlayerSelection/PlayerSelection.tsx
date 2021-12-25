@@ -78,16 +78,6 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
               </SquareButton>
             </div>
           ))}
-          <div className="ya-col-12 ya-mt2 ya-p1">
-            <TextInput
-              fullWidth
-              type="number"
-              id="attacker-tanks"
-              size="large"
-              value={currentTanks}
-              onChange={onUpdateTanks}
-            />
-          </div>
         </div>
       </div>
     </div>

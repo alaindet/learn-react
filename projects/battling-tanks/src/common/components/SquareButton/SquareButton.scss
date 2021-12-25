@@ -24,7 +24,10 @@
 
 
   &.--disabled {
-    opacity: 0.5;
+    background-color: transparent!important;
+    outline-style: dashed;
+    outline-offset: 0;
+    outline-color: #aaa;
     pointer-events: none;
   }
 

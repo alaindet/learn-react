@@ -35,6 +35,7 @@ export const PlayerBoardTanks: FunctionComponent<PlayerBoardTanksProps> = ({
           facing={role === 'attacker' ? 'up' : 'down'}
           isShooting={isShooting}
           isDisabled={tank === TankState.Disabled}
+          isDestroyed={tank === TankState.Loser}
         />
       ))}
     </div>

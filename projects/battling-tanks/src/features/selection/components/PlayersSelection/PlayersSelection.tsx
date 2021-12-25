@@ -1,6 +1,6 @@
 import { FormEvent, FunctionComponent } from 'react';
 
-import { PlayerColor } from 'src/common/types';
+import { AppFeature, PlayerColor } from 'src/common/types';
 import { Button } from 'src/common/components';
 import { BattlingTanksContext, useBattlingTanks } from 'src/context';
 import { ActionType } from 'src/store';
@@ -9,11 +9,11 @@ import './PlayersSelection.scss';
 import { PlayerSelection } from '../PlayerSelection/PlayerSelection';
 
 export interface PlayersSelectionProps {
-  onSelectPlayers: () => void;
+  onNavigate: (feature: AppFeature) => void;
 }
 
 export const PlayersSelection: FunctionComponent<PlayersSelectionProps> = ({
-  onSelectPlayers,
+  onNavigate,
 }) => {
 
   const {state, dispatch} = useBattlingTanks() as BattlingTanksContext;
@@ -27,7 +27,7 @@ export const PlayersSelection: FunctionComponent<PlayersSelectionProps> = ({
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch({ type: ActionType.SetPlayers, payload: formValue });
-    onSelectPlayers();
+    onNavigate(AppFeature.Battle);
   };
 
   return (
