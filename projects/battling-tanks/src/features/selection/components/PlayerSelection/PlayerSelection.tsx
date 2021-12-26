@@ -3,7 +3,7 @@ import { FunctionComponent } from 'react';
 import { SquareButton, TextInput } from 'src/common/components';
 import { PLAYER_COLORS } from 'src/common/data';
 import { PlayerColor, PlayerRole } from 'src/common/types';
-import { clamp, range, getOppositePlayerRole } from 'src/common/utils';
+import { range, getOppositePlayerRole } from 'src/common/utils';
 import './PlayerSelection.scss';
 
 export interface PlayerSelectionProps {
@@ -11,9 +11,6 @@ export interface PlayerSelectionProps {
   formValue: any;
   updateForm: (field: string, value: any) => void;
 }
-
-const MIN_TANKS = 1;
-const MAX_TANKS = 100;
 
 export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
   role,
@@ -32,16 +29,13 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
   const oppositeColor = formValue[oppositeColorKey];
   const currentTanks = formValue[tanksKey];
 
-  const onUpdateColor = (color: PlayerColor): void => {
-    updateForm(colorKey, color);
-  };
-
-  const onUpdateTanks = (event: InputEvent): void => {
-    const target = event.target as HTMLInputElement;
-    let value: any = parseInt(target.value);
-    value = clamp(value, MIN_TANKS, MAX_TANKS);
-    value = (value === null) ? '' : value;
-    updateForm(tanksKey, value);
+  const onUpdateTanks = (event: InputEvent) => {
+    let rawVal = (event.target as HTMLInputElement).value;
+    if (!rawVal) {
+      updateForm(tanksKey, rawVal);
+    }
+    const val = parseInt(rawVal);
+    updateForm(tanksKey, val);
   };
 
   return (
@@ -53,10 +47,10 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
             <div key={color} className="ya-col-4 ya-col-m-2 ya-p1 center-content">
               <SquareButton
                 color={color}
-                size="48px"
+                size="42px"
                 isDisabled={oppositeColor === color}
                 isActive={currentColor === color}
-                onClick={() => onUpdateColor(color)}
+                onClick={() => updateForm(colorKey, color)}
               />
             </div>
           ))}
@@ -70,7 +64,7 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
             <div key={tank} className="ya-col-4 ya-col-m-2 ya-p1 center-content">
               <SquareButton
                 color={PlayerColor.Black}
-                size="48px"
+                size="42px"
                 onClick={() => updateForm(tanksKey, tank)}
                 isActive={currentTanks === tank}
               >
@@ -78,6 +72,15 @@ export const PlayerSelection: FunctionComponent<PlayerSelectionProps> = ({
               </SquareButton>
             </div>
           ))}
+          <div className="ya-col-12 ya-mt2">
+            <TextInput
+              type="number"
+              value={currentTanks}
+              fullWidth
+              centeredContent
+              onInput={onUpdateTanks}
+            />
+          </div>
         </div>
       </div>
     </div>

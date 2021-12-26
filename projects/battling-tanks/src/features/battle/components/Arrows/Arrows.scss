@@ -1,5 +1,10 @@
 @import 'src/styles/common/index';
 
+$container-width: 171px;
+$container-height: 48px;
+$arrow-width: 16px;
+$arrow-tip-width: 1.3 * $arrow-width;
+
 @mixin arrow-set-color($color) {
   background-color: $color;
 
@@ -9,16 +14,12 @@
 }
 
 .battlefield__arrows {
-  --width-arrow: 1vw;
-  --width-die: 6vw;
-  --margin-horizontal: calc(3rem + var(--width-die)/2 - var(--width-arrow)/2);
-
-  height: 4vh;
+  width: $container-width;
+  height: $container-height;
   position: absolute;
   top: 50%;
-  left: var(--margin-horizontal);
-  right: var(--margin-horizontal);
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,22 +27,24 @@
 
 .battlefield__arrow {
   height: 100%;
-  width: var(--width-arrow);
+  width: $arrow-width;
   position: relative;
   transition: 0.15s transform ease-in-out;
 
   &::after {
-    --width-tip: calc(1.5 * var(--width-arrow));
-
     content: '';
     z-index: 1;
-    top: calc(-0.4 * var(--width-tip));
-    left: calc(-1 * var(--width-tip) + var(--width-arrow)/2);
+    top: -0.4 * $arrow-tip-width;
+    left: -1 * $arrow-tip-width + 0.5 * $arrow-width;
     position: absolute;
     border-top: 0;
-    border-left: var(--width-tip) solid transparent;
-    border-right: var(--width-tip) solid transparent;
-    border-bottom: var(--width-tip) solid black;
+    border-left: $arrow-tip-width solid transparent;
+    border-right: $arrow-tip-width solid transparent;
+    border-bottom: $arrow-tip-width solid black;
+  }
+
+  &.--disabled {
+    opacity: 0;
   }
 
   &.--facing-down {

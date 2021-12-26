@@ -1,5 +1,7 @@
+export * from './battle-resolution';
 export * from './die-value';
 export * from './feature';
+export * from './outcome';
 export * from './player-color';
 export * from './player-info';
 export * from './player-role';

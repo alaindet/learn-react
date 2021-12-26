@@ -1,10 +1,11 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, Fragment } from 'react';
 import { Button } from 'src/common/components';
 import { AppFeature, PlayerData } from 'src/common/types';
 
 import { BattlingTanksContext, useBattlingTanks } from 'src/context';
-import { ActionType } from 'src/store';
+import { battle, battleEnd, battleStart, battleCleanup } from 'src/store';
 import { PlayerBoard } from '../PlayerBoard/PlayerBoard';
+import { Arrows } from '../Arrows/Arrows';
 import './BattleField.scss';
 
 export interface BattleFieldProps {
@@ -21,11 +22,19 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
   };
 
   const onFight = () => {
-    dispatch({ type: ActionType.FightStart, payload: null });
+    dispatch(battleStart());
     setTimeout(() => {
-      dispatch({ type: ActionType.Fight, payload: null });
-      dispatch({ type: ActionType.FightEnd, payload: null });
+      dispatch(battle());
+      dispatch(battleEnd());
     }, 500);
+  };
+
+  const onFightOrNext = () => {
+    if (state?.battleOutcome) {
+      dispatch(battleCleanup());
+      return;
+    }
+    onFight();
   };
 
   if (!state?.attacker || !state?.defender) {
@@ -36,53 +45,66 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
   const attacker: PlayerData = state.attacker as PlayerData;
   const tankWidth = '48px';
   const dieWidth = '48px';
+  const canContinue = attacker.tanks > 0 && defender.tanks > 0;
+  let winner = null;
+  if (!canContinue) {
+    winner = (attacker.tanks === 0) ? defender.color : attacker.color;
+  }
 
   return (
-    <div className="battlefield">
+    <Fragment>
+      <div className="battlefield">
 
-      {/* Defender */}
-      <div className="battlefield__defender">
-        <PlayerBoard
-          role="defender"
-          color={defender.color}
-          tanks={defender.tanksList}
-          isRolling={state.isRolling}
-          dice={defender.diceList}
-          tankWidth={tankWidth}
-          dieWidth={dieWidth}
-        />
-      </div>
+        {/* Defender */}
+        <div className="battlefield__defender">
+          <PlayerBoard
+            role="defender"
+            color={defender.color}
+            tanks={defender.tanksList}
+            isRolling={state.isRolling}
+            dice={defender.diceList}
+            tankWidth={tankWidth}
+            dieWidth={dieWidth}
+          />
+        </div>
 
-      {/* Attacker */}
-      <div className="battlefield__attacker">
-        <PlayerBoard
-          role="attacker"
-          color={attacker.color}
-          tanks={attacker.tanksList}
-          isRolling={state.isRolling}
-          dice={attacker.diceList}
-          tankWidth={tankWidth}
-          dieWidth={dieWidth}
-        />
+        {/* Attacker */}
+        <div className="battlefield__attacker">
+          <PlayerBoard
+            role="attacker"
+            color={attacker.color}
+            tanks={attacker.tanksList}
+            isRolling={state.isRolling}
+            dice={attacker.diceList}
+            tankWidth={tankWidth}
+            dieWidth={dieWidth}
+          />
+        </div>
+
+        {/* Outcome */}
+        {state?.battleOutcome && (
+          <Arrows
+            attackerColor={attacker.color}
+            defenderColor={defender.color}
+            outcome={state.battleOutcome}
+          />
+        )}
       </div>
 
       {/* Fight */}
-      <div className="battlefield__controls">
-        <Button onClick={onFight} fullWidth size="large" className="ya-mb2">
-          Fight!
-        </Button>
+      <div className="battlefield-controls">
+        {canContinue &&
+          <Button onClick={onFightOrNext} fullWidth size="large" className="ya-mb2">
+            {state?.battleOutcome ? 'Next' : 'Fight!'}
+          </Button>
+        }
+        {winner && (
+          <p>{winner} won</p>
+        )}
         <Button onClick={onNavigateToSelection} fullWidth size="large" fill="outline">
-          Change
+          Settings
         </Button>
       </div>
-
-      {/* {outcome && (
-        <BoardArrows
-          attackerColor={attackingPlayer.color}
-          defenderColor={defendingPlayer.color}
-          outcome={outcome}
-        />
-      )} */}
-    </div>
+    </Fragment>
   );
 };

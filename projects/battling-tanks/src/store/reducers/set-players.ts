@@ -1,13 +1,6 @@
-import { MAX_VISIBLE_TANKS } from 'src/common/data';
-import { DieValue, PlayersForm, TankState } from 'src/common/types';
+import { PlayersForm } from 'src/common/types';
 import { Action, State } from '../types';
-import { initTanksList } from '../utils';
-
-const tanksToDiceList = (tanksList: TankState[]): DieValue[] => {
-  return tanksList
-    .slice(0, MAX_VISIBLE_TANKS)
-    .map(tank => tank === TankState.Enabled ? 0 : tank);
-}
+import { initTanksList, tanksToDiceList } from '../utils';
 
 export const setPlayersReducer = (state: State, action: Action<PlayersForm>): State => {
   const attackerTanksList = initTanksList(action.payload.attackerTanks);

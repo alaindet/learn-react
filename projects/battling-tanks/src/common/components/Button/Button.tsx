@@ -9,6 +9,7 @@ export interface ButtonProps {
   fill?: 'solid' | 'outline';
   type?: 'button' | 'submit';
   className?: string;
+  isDisabled?: boolean;
   onClick?: Function;
   [other: string]: any;
 }
@@ -19,19 +20,22 @@ export const Button: FunctionComponent<ButtonProps> = ({
   type,
   children,
   fullWidth,
+  isDisabled,
   className,
   onClick,
-  theRest
+  props
 }) => {
   size = size ?? 'medium';
   type = type ?? 'button';
   fullWidth = fullWidth ?? false;
+  isDisabled = isDisabled ?? false;
   fill = fill ?? 'solid';
 
   const cssClasses = [
     'ui-button',
     `--size-${size}`,
     `--fill-${fill}`,
+    isDisabled ? '--disabled' : null,
     fullWidth ? '--full-width' : null,
     className ?? null,
   ];
@@ -41,7 +45,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
       type={type}
       className={classNames(cssClasses)}
       onClick={onClick}
-      {...theRest}
+      {...props}
     >
       {children}
     </button>

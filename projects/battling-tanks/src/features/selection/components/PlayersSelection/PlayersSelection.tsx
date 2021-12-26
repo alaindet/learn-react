@@ -3,9 +3,8 @@ import { FormEvent, FunctionComponent } from 'react';
 import { AppFeature, PlayerColor } from 'src/common/types';
 import { Button } from 'src/common/components';
 import { BattlingTanksContext, useBattlingTanks } from 'src/context';
-import { ActionType } from 'src/store';
+import { setPlayers } from 'src/store';
 import { usePlayersForm } from './use-players-form';
-import './PlayersSelection.scss';
 import { PlayerSelection } from '../PlayerSelection/PlayerSelection';
 
 export interface PlayersSelectionProps {
@@ -19,14 +18,14 @@ export const PlayersSelection: FunctionComponent<PlayersSelectionProps> = ({
   const {state, dispatch} = useBattlingTanks() as BattlingTanksContext;
   const [formValue, updateForm] = usePlayersForm({
     attackerColor: state.attacker?.color ?? PlayerColor.Red,
-    attackerTanks: 3,
-    defenderColor: state.attacker?.color ?? PlayerColor.Blue,
-    defenderTanks: 3,
+    attackerTanks: state.attacker?.tanks ?? 3,
+    defenderColor: state.defender?.color ?? PlayerColor.Blue,
+    defenderTanks: state.defender?.tanks ?? 3,
   });
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    dispatch({ type: ActionType.SetPlayers, payload: formValue });
+    dispatch(setPlayers(formValue));
     onNavigate(AppFeature.Battle);
   };
 
@@ -48,7 +47,12 @@ export const PlayersSelection: FunctionComponent<PlayersSelectionProps> = ({
 
         {/* Submit */}
         <div className="players-selection__submit">
-          <Button onClick={onSubmit} fullWidth size="large">
+          <Button
+            isDisabled={!formValue.attackerTanks || !formValue.defenderTanks}
+            onClick={onSubmit}
+            fullWidth
+            size="large"
+          >
             Save
           </Button>
         </div>

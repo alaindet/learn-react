@@ -23,7 +23,8 @@ export const PlayerBoardTanks: FunctionComponent<PlayerBoardTanksProps> = ({
   tankWidth = tankWidth ?? '6vw';
   isShooting = isShooting ?? false;
 
-  const visibleTanks = tanks.slice(0, MAX_VISIBLE_TANKS)
+  const visibleTanks = tanks.slice(0, MAX_VISIBLE_TANKS);
+  const additionalTanks = tanks.length - visibleTanks.length;
 
   return (
     <div className="player-board__tanks">
@@ -33,11 +34,16 @@ export const PlayerBoardTanks: FunctionComponent<PlayerBoardTanksProps> = ({
           color={color}
           width={tankWidth}
           facing={role === 'attacker' ? 'up' : 'down'}
-          isShooting={isShooting}
+          isShooting={tank === TankState.Enabled && isShooting}
           isDisabled={tank === TankState.Disabled}
           isDestroyed={tank === TankState.Loser}
         />
       ))}
+      {additionalTanks > 0 && (
+        <div className="tanks__additional">
+          + {additionalTanks}
+        </div>
+      )}
     </div>
   );
 };

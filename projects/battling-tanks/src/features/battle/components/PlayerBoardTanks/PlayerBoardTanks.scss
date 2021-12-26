@@ -4,8 +4,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   & > * {
     margin: 0 1rem;
   }
+}
+
+.tanks__additional {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9em;
+  font-weight: bold;
 }

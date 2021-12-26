@@ -1,20 +1,23 @@
 import { State, Action, ActionType } from '../types';
-import { setPlayersReducer } from './set-players';
-import { fightStartReducer } from './fight-start';
-import { fightReducer } from './fight';
-import { fightEndReducer } from './fight-end';
+import { battleCleanupReducer } from './battle-cleanup';
+import { battleEndReducer } from './battle-end';
+import { battleReducer } from './battle';
+import { battleStartReducer } from './battle-start';
 import { setFeature } from './set-feature';
+import { setPlayersReducer } from './set-players';
 
 export const mainReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case ActionType.SetPlayers:
       return setPlayersReducer(state, action);
-    case ActionType.FightStart:
-      return fightStartReducer(state, action);
-    case ActionType.FightEnd:
-      return fightEndReducer(state, action);
-    case ActionType.Fight:
-      return fightReducer(state, action);
+    case ActionType.BattleStart:
+      return battleStartReducer(state, action);
+    case ActionType.Battle:
+      return battleReducer(state, action);
+    case ActionType.BattleEnd:
+      return battleEndReducer(state, action);
+    case ActionType.BattleCleanup:
+      return battleCleanupReducer(state, action);
     case ActionType.SetFeature:
       return setFeature(state, action);
     default:

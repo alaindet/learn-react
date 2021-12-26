@@ -17,17 +17,23 @@ input.ui-text-input {
     width: 100%;
   }
 
-  &.--size-medium {
-    border-radius: 0.66rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    line-height: 1rem;
+  &.--centered {
+    text-align: center;
   }
 
-  &.--size-large {
-    border-radius: 1rem;
-    padding: 1rem 1.5rem;
-    font-size: 1.3rem;
-    line-height: 1.3rem;
+  &.--size {
+    &-medium {
+      border-radius: 0.66rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+
+    &-large {
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+      font-size: 1.3rem;
+      line-height: 1.3rem;
+    }
   }
 }

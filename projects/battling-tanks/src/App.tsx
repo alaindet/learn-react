@@ -2,14 +2,14 @@ import { BattleField } from 'src/features/battle';
 import { PlayersSelection } from 'src/features/selection';
 import { AppFeature } from 'src/common/types';
 import { BattlingTanksContext, useBattlingTanks } from 'src/context';
+import { setFeature } from './store';
 import './App.scss';
-import { ActionType } from './store';
 
 export const App = () => {
   const {state, dispatch} = useBattlingTanks() as BattlingTanksContext;
 
   const onNavigate = (feature: AppFeature) => {
-    dispatch({ type: ActionType.SetFeature, payload: feature });
+    dispatch(setFeature(feature));
   };
 
   return (

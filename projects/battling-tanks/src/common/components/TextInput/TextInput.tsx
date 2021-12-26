@@ -6,6 +6,7 @@ import './TextInput.scss';
 export interface TextInputProps {
   size?: 'small' | 'medium' | 'large' | 'larger';
   fullWidth?: boolean;
+  centeredContent?: boolean;
   type?: string;
   className?: string;
   [other: string]: any;
@@ -14,6 +15,7 @@ export interface TextInputProps {
 export const TextInput: FunctionComponent<TextInputProps> = ({
   size,
   fullWidth,
+  centeredContent,
   type,
   className,
   ...props
@@ -21,11 +23,13 @@ export const TextInput: FunctionComponent<TextInputProps> = ({
   size = size ?? 'medium';
   type = type ?? 'text';
   fullWidth = fullWidth ?? false;
+  centeredContent = centeredContent ?? false;
 
   const cssClasses = [
     'ui-text-input',
     `--size-${size}`,
     fullWidth ? '--full-width' : null,
+    centeredContent ? '--centered' : null,
     className ?? null,
   ];
 

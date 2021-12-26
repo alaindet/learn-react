@@ -11,7 +11,7 @@ export const usePlayersForm = (initialState: PlayersForm) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const updateForm = (field: keyof PlayersForm, value: any): void => {
+  const updateForm = <T = any>(field: keyof PlayersForm, value: T): void => {
     dispatch({ type: field, payload: value });
   };
 
