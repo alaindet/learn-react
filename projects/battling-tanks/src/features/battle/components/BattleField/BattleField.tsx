@@ -1,5 +1,5 @@
 import { FunctionComponent, Fragment } from 'react';
-import { Button } from 'src/common/components';
+import { Button, WinnerStripe } from 'src/common/components';
 import { AppFeature, PlayerData } from 'src/common/types';
 
 import { BattlingTanksContext, useBattlingTanks } from 'src/context';
@@ -99,7 +99,7 @@ export const BattleField: FunctionComponent<BattleFieldProps> = ({
           </Button>
         }
         {winner && (
-          <p>{winner} won</p>
+          <WinnerStripe color={winner} />
         )}
         <Button onClick={onNavigateToSelection} fullWidth size="large" fill="outline">
           Settings

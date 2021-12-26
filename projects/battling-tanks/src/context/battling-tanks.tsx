@@ -3,7 +3,7 @@
 
 import { createContext, useReducer, useContext, ReactNode, Reducer } from 'react';
 
-import { Action, State, INITIAL_STATE, devMainReducer } from 'src/store';
+import { Action, State, INITIAL_STATE, mainReducer } from 'src/store';
 
 export interface BattlingTanksContext {
   state: State;
@@ -16,7 +16,7 @@ const BattlingTanksContextPrivate = createContext<(
 
 const BattlingTanksProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer<Reducer<State, any>>(
-    devMainReducer,
+    mainReducer,
     INITIAL_STATE
   );
 

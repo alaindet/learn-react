@@ -26,11 +26,11 @@ export const mainReducer = (state: State, action: Action): State => {
 };
 
 // TODO
-export const devMainReducer = (state: State, action: Action): State => {
-  console.log('---');
-  console.log('DEV:BEFORE', action, state);
-  const newState = mainReducer(state, action);
-  console.log('DEV:AFTER', action, newState);
-  console.log('---');
-  return newState;
-};
+// export const devMainReducer = (state: State, action: Action): State => {
+//   console.log('---');
+//   console.log('DEV:BEFORE', action, state);
+//   const newState = mainReducer(state, action);
+//   console.log('DEV:AFTER', action, newState);
+//   console.log('---');
+//   return newState;
+// };
