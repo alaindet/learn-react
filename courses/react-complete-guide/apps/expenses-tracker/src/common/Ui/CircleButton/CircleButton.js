@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import './CircleButton.css';
 
@@ -37,7 +37,7 @@ export const CircleButton = ({
   }
 
   return (
-    <button style={cssStyle} className={classnames(cssClasses)} type={type} {...theRest}>
+    <button style={cssStyle} className={classNames(cssClasses)} type={type} {...theRest}>
       {children}
     </button>
   );

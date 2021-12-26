@@ -1,0 +1,42 @@
+@import 'src/styles/common/index';
+
+@mixin set-sample-color($color: #000) {
+  background-color: $color;
+  color: #f0f0f0;
+}
+
+.color-sample {
+  border: 0;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+  border-radius: 1rem;
+  outline: 2px dashed transparent;
+  outline-offset: 4px;
+
+  &:hover {
+    outline-color: #aaa;
+  }
+
+  &.--active,
+  &:focus {
+    outline-color: #303030;
+  }
+
+
+  &.--disabled {
+    background-color: transparent!important;
+    outline-style: dashed;
+    outline-offset: 0;
+    outline-color: #aaa;
+    pointer-events: none;
+  }
+
+  &.--color {
+    &-black { @include set-sample-color($color-black) }
+    &-blue { @include set-sample-color($color-blue) }
+    &-green { @include set-sample-color($color-green) }
+    &-red { @include set-sample-color($color-red) }
+    &-purple { @include set-sample-color($color-purple) }
+    &-yellow { @include set-sample-color($color-yellow) }
+  }
+}

@@ -1,0 +1,22 @@
+@import 'src/styles/common/index';
+
+@mixin stripe-set-color($background-color, $text-color: #fff) {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+.winner-stripe {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  &.--color-black { @include stripe-set-color($color-black) }
+  &.--color-blue { @include stripe-set-color($color-blue) }
+  &.--color-green { @include stripe-set-color($color-green) }
+  &.--color-red { @include stripe-set-color($color-red) }
+  &.--color-purple { @include stripe-set-color($color-purple) }
+  &.--color-yellow { @include stripe-set-color($color-yellow, $color-black) }
+}

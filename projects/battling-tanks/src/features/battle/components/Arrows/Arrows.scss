@@ -1,0 +1,61 @@
+@import 'src/styles/common/index';
+
+$container-width: 171px;
+$container-height: 48px;
+$arrow-width: 16px;
+$arrow-tip-width: 1.3 * $arrow-width;
+
+@mixin arrow-set-color($color) {
+  background-color: $color;
+
+  &::after {
+    border-bottom-color: $color;
+  }
+}
+
+.battlefield__arrows {
+  width: $container-width;
+  height: $container-height;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.battlefield__arrow {
+  height: 100%;
+  width: $arrow-width;
+  position: relative;
+  transition: 0.15s transform ease-in-out;
+
+  &::after {
+    content: '';
+    z-index: 1;
+    top: -0.4 * $arrow-tip-width;
+    left: -1 * $arrow-tip-width + 0.5 * $arrow-width;
+    position: absolute;
+    border-top: 0;
+    border-left: $arrow-tip-width solid transparent;
+    border-right: $arrow-tip-width solid transparent;
+    border-bottom: $arrow-tip-width solid black;
+  }
+
+  &.--disabled {
+    opacity: 0;
+  }
+
+  &.--facing-down {
+    transform: rotate(180deg);
+  }
+
+  // Color
+  &.--color-black { @include arrow-set-color($color-black) }
+  &.--color-blue { @include arrow-set-color($color-blue) }
+  &.--color-green { @include arrow-set-color($color-green) }
+  &.--color-red { @include arrow-set-color($color-red) }
+  &.--color-purple { @include arrow-set-color($color-purple) }
+  &.--color-yellow { @include arrow-set-color($color-yellow) }
+}

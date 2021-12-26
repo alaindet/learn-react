@@ -1,0 +1,70 @@
+button.ui-button {
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.15s all ease-in-out;
+
+  &:hover,
+  &:focus {
+    outline: 0;
+  }
+
+  &.--fill {
+    &-solid {
+      background-color: #303030;
+      color: #fff;
+
+      &:hover, &:focus {
+        background-color: scale_color(#303030, $lightness: 10%);
+      }
+    }
+
+    &-outline {
+      color: #303030;
+      border-color: #303030;
+      background-color: transparent;
+
+      &:hover, &:focus {
+        background-color: #303030;
+        color: #fff;
+        border-color: #303030;
+      }
+    }
+  }
+
+  &.--size {
+    &-small {
+      padding: 0.33rem 0.66rem;
+    }
+
+    &-medium {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+
+    &-large {
+      padding: 0.75rem 1.25rem;
+      font-size: 1.3rem;
+      line-height: 1.3rem;
+    }
+
+    &-larger {
+      padding: 1.2rem 2rem;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  &.--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.--full-width {
+    width: 100%;
+  }
+}

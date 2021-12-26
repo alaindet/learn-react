@@ -1,0 +1,23 @@
+.player-selection {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  background-color: #eee;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+// TODO: Move into component
+.ui-form-control {
+  display: block;
+  margin: 0.5rem 0;
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+}

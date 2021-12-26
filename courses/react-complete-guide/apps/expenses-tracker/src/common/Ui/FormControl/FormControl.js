@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import './FormControl.css';
 
@@ -13,7 +13,7 @@ export const FormControl = ({
   ];
 
   return (
-    <div className={classnames(cssClasses)} {...theRest}>
+    <div className={classNames(cssClasses)} {...theRest}>
       {children}
     </div>
   );
