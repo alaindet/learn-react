@@ -29,6 +29,7 @@
   position: relative;
   border: var(--tank-width-border) solid black;
   border-radius: calc( var(--tank-width) * 0.3 );
+  transition: 0.25s all ease-in-out;
 
   & > * {
     position: absolute;
@@ -97,9 +98,13 @@
     }
   }
 
-  &.--shooting &-shot {
-    opacity: 0.6;
-    transform: translateX(-50%) scale(1.5);
+  &.--shooting {
+    transform: translateY(-10%);
+
+    .tank-shot {
+      opacity: 0.6;
+      transform: translateX(-50%) scale(1.5);
+    }
   }
 
   // Color
@@ -113,6 +118,9 @@
   // Facing up
   &.--facing-up {
     transform: rotate(180deg);
+  }
+  &.--facing-up.--shooting {
+    transform: translateY(10%) rotate(180deg);
   }
 
   &.--destroyed {
