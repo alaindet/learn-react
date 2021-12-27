@@ -1,15 +1,14 @@
-import { useState } from 'react';
-
 import { ExpenseItem } from '../ExpenseItem/ExpenseItem';
 import './ExpensesList.css';
 
 export const ExpensesList = ({
   expenses,
-  onSelectExpense,
+  onCancelEdit,
+  onEditExpense,
   onDeleteExpense,
+  onActivateItem,
+  activeItemIndex,
 }) => {
-  const [activeIndex, setActiveIndex] = useState(null);
-
   return (
     <section className="expenses">
       <ul>
@@ -17,10 +16,11 @@ export const ExpensesList = ({
           <ExpenseItem
             key={index}
             index={index}
-            isActive={index === activeIndex}
-            onActivate={() => setActiveIndex(index)}
-            onCancel={() => setActiveIndex(null)}
-            onEdit={() => onSelectExpense(index)}
+            isActive={index === activeItemIndex}
+            onActivate={() => onActivateItem(index)}
+            onCancel={() => onActivateItem(null)}
+            onCancelEdit={onCancelEdit}
+            onEdit={() => onEditExpense(index)}
             onDelete={() => onDeleteExpense(index)}
             {...expense}
           />

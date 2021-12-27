@@ -1,83 +1,92 @@
-import { Button, Input, FormControl } from '../../../common/Ui';
-import { formatDate } from '../../../utils';
-import { useExpenseForm } from './hooks/expense-form';
+import { Button, Input, FormControl } from '../../../common/components/Ui';
+import { EXPENSE_FORM_SCHEMA as FORM_SCHEMA } from './form-schema';
+import { useExpenseForm } from './use-expense-form';
 import './ExpenseForm.css';
+import classNames from 'classnames';
 
 export const ExpenseForm = ({
   isOpen,
+  toggleOpen,
   expense,
   onSubmit: propOnSubmit,
   onCancel,
 }) => {
-  const [form, updateForm] = useExpenseForm({
-    title: expense?.title ?? '',
-    amount: expense?.amount ?? 0,
-    date: formatDate('y-m-d', expense?.date ?? Date.now()),
-  });
+  const [formValue, formUpdate, formIsValid] = useExpenseForm(expense, FORM_SCHEMA);
 
-  const isFormValid = (form) => {
-    // TODO: Validation
-    return (
-      form?.title &&
-      form?.amount &&
-      form?.date
-    );
+  const onSetTitle = (event) => {
+    formUpdate('title', event.target.value);
+  };
+
+  const onSetDate = (event) => {
+    formUpdate('date', event.target.value);
+  };
+
+  const onSetAmount = (event) => {
+    formUpdate('amount', parseFloat(event.target.value));
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!isFormValid(form)) {
+    if (!formIsValid) {
       return;
     }
 
     const submittedExpense = {
-      title: form.title,
-      amount: form.amount,
-      date: new Date(form.date).getTime(),
+      title: formValue.title,
+      amount: formValue.amount,
+      date: new Date(formValue.date).getTime(),
     };
 
+    if (!!expense?.id) {
+      submittedExpense.id = expense?.id
+    }
+
     propOnSubmit(submittedExpense);
+    toggleOpen(false);
   };
 
   return (
-    <form className="expense-form ya-cols" onSubmit={onSubmit}>
+    <form className={classNames({
+      'expense-form ya-cols': true,
+      '--open': isOpen,
+    })} onSubmit={onSubmit}>
 
       {/* Title */}
-      <FormControl className="ya-col-12">
+      <FormControl className="expense-form__control ya-col-12">
         <label htmlFor="expense-title">Title</label>
         <Input
           type="text"
-          value={form.title}
+          value={formValue.title}
           id="expense-title"
           fullWidth
           size="large"
           placeholder="Expense title..."
-          onChange={e => updateForm('title', e.target.value)}
+          onChange={onSetTitle}
         />
       </FormControl>
 
       {/* Date */}
-      <FormControl className="ya-col-6 form-control-inline --left">
+      <FormControl className="expense-form__control ya-col-6 form-control-inline --left">
         <label htmlFor="expense-date">Date</label>
         <Input
           type="date"
-          value={form.date}
+          value={formValue.date}
           fullWidth
           id="expense-date"
-          onChange={e => updateForm('date', e.target.value)}
+          onChange={onSetDate}
         />
       </FormControl>
 
       {/* Amount */}
-      <FormControl className="ya-col-6 form-control-inline --right">
+      <FormControl className="expense-form__control ya-col-6 form-control-inline --right">
         <label htmlFor="expense-amount">Amount</label>
         <Input
           type="number"
-          value={form.amount}
+          value={formValue.amount}
           id="expense-amount"
           fullWidth
           placeholder="Expense amunt..."
-          onChange={e => updateForm('amount', e.target.value)}
+          onChange={onSetAmount}
         />
       </FormControl>
 
@@ -87,10 +96,17 @@ export const ExpenseForm = ({
           Cancel
         </Button>
         &nbsp;
-        <Button fill="solid" type="submit">
+        <Button fill="solid" type="submit" isDisabled={!formIsValid}>
           {expense ? 'Update' : 'Create'}
         </Button>
       </FormControl>
+
+      {/* Toggle */}
+      <button
+        type="button"
+        className="expense-form__toggle"
+        onClick={() => toggleOpen(!isOpen)}
+      ></button>
 
     </form>
   );

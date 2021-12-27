@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button } from '../../../common/Ui';
+import { Button } from '../../../common/components/Ui';
 import './ExpenseItemActions.css';
 
 const MODE = {
@@ -11,6 +11,7 @@ const MODE = {
 
 export const ExpenseItemActions = ({
   onCancel,
+  onCancelEdit,
   onEdit: propOnEdit,
   onDelete: propOnDelete,
 }) => {
@@ -32,18 +33,26 @@ export const ExpenseItemActions = ({
 
   return (
     <div className="expense-item__actions">
-      <Button fill="outline" type="button" onClick={onCancel}>Cancel</Button>
 
       {mode === MODE.EDITING && (
-        <p>Editing...</p>
+        <>
+          <Button fill="outline" type="button" onClick={onCancelEdit}>Cancel</Button>
+          <p>Editing...</p>
+        </>
       )}
 
       {mode === MODE.DELETING && (
-        <Button fill="solid" type="button" onClick={onDeleteConfirm}>Confirm delete</Button>
+        <>
+          <Button fill="outline" type="button" onClick={onCancel}>Cancel</Button>
+          <Button fill="solid" type="button" onClick={onDeleteConfirm}>
+            Confirm delete?
+          </Button>
+        </>
       )}
 
       {mode === MODE.CHOOSING && (
         <>
+          <Button fill="outline" type="button" onClick={onCancel}>Cancel</Button>
           <Button fill="solid" type="button" onClick={onEdit}>Edit</Button>
           <Button fill="solid" type="button" onClick={onDelete}>Delete</Button>
         </>

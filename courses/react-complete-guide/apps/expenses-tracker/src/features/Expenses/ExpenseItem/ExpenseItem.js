@@ -8,16 +8,17 @@ export const ExpenseItem = ({
   isActive,
   onActivate,
   onCancel,
+  onCancelEdit,
   onEdit,
   onDelete,
 }) => {
 
   if (isActive) {
-    // TODO: Delete confirmation?
     return (
       <li className="expense-item --active">
         <ExpenseItemActions
           onCancel={onCancel}
+          onCancelEdit={onCancelEdit}
           onEdit={onEdit}
           onDelete={onDelete}
         />
@@ -37,7 +38,7 @@ export const ExpenseItem = ({
         <div className="date__month-day">{month} {day}</div>
       </div>
       <div className="expense-item__title">{title}</div>
-      <div className="expense-item__amount">{amount} €</div>
+      <div className="expense-item__amount">{amount}&nbsp;€</div>
     </li>
   );
 };

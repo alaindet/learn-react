@@ -7,17 +7,20 @@ export const Button = ({
   size, // 'small' | 'medium' | 'large'
   fill, // 'outline' | 'solid'
   className,
+  isDisabled,
   children,
   ...theRest
 }) => {
   type = type ?? 'button';
   size = size ?? 'medium';
   fill = fill ?? 'outline';
+  isDisabled = isDisabled ?? false;
 
   const cssClasses = [
     'ui-button',
     `--size-${size}`,
     `--fill-${fill}`,
+    isDisabled ? '--disabled' : null,
     className,
   ];
 

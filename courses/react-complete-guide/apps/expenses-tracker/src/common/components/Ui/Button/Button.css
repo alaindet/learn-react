@@ -53,3 +53,10 @@ button.ui-button.--size-large {
   font-size: 1.3rem;
   line-height: 1.3rem;
 }
+
+button.ui-button.--disabled {
+  background-color: #aaa;
+  border-color: #aaa;
+  color: #777;
+  pointer-events: none;
+}

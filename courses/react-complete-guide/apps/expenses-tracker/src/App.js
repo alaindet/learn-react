@@ -1,62 +1,103 @@
 import { useState } from 'react';
 
 import { MOCK_EXPENSES } from './mocks';
-import { ExpensesChart, ExpenseForm, ExpensesList, CreateExpense } from './features/Expenses';
+import { useEffectOnce } from './common/hooks';
+import { ExpenseForm, ExpensesList, CreateExpense } from './features/Expenses';
 import './App.css';
 
 export const App = () => {
 
   const [expenses, setExpenses] = useState(MOCK_EXPENSES);
   const [expense, setExpense] = useState(null);
-  const [isExpenseFormOpen, setIsExpenseFormOpen] = useState(false);
+  const [activeItemIndex, setActiveItemIndex] = useState(null);
+  const [isFormOpen, setIsFormOpen] = useState(true);
+  const [lastId, setLastId] = useState(0);
+
+  useEffectOnce(() => {
+    let id = 0;
+    expenses.forEach(exp => {
+      if (exp.id > id) {
+        id = exp.id;
+      }
+    });
+    setLastId(id);
+  }, [expenses], deps => true);
 
   const clearExpenseIfAny = () => {
     if (expense) {
       setExpense(null);
     }
+    setActiveItemIndex(null);
+  };
+
+  const openFormIfClose = () => {
+    if (!isFormOpen) {
+      setIsFormOpen(true);
+    }
+  };
+
+  const onActivateItem = (indexOrNull) => {
+    setActiveItemIndex(indexOrNull);
   };
 
   const onOpenCreateExpenseForm = () => {
     clearExpenseIfAny();
-    setIsExpenseFormOpen(true);
+    openFormIfClose();
   };
 
   const onCancelExpenseForm = () => {
     clearExpenseIfAny();
-    setIsExpenseFormOpen(false);
+    setIsFormOpen(false);
   };
 
-  const onSelectExpense = (index) => {
-    setExpense(expenses[index]);
+  const onSelectExpenseToEdit = (index) => {
+    setExpense({ ...expenses[index] });
+    openFormIfClose();
   };
 
   const onDeleteExpense = (index) => {
     setExpenses(expenses.filter((exp, i) => i !== index));
   };
 
+  const onToggleForm = (forcedState) => {
+    setIsFormOpen(forcedState ?? !isFormOpen);
+  };
+
   const onSubmitExpenseForm = (newExpense) => {
-    const newExpenses = expense
-      ? expenses.map(exp => exp.id === newExpense.id ? newExpense : exp)
-      : [newExpense, ...expenses];
-    clearExpenseIfAny();
-    setIsExpenseFormOpen(false);
+
+    // Editing
+    if (expense) {
+      const { id } = newExpense;
+      const newExpenses = expenses.map(exp => exp.id === id ? newExpense : exp);
+      setExpenses(newExpenses);
+      onCancelExpenseForm();
+      return;
+    }
+
+    // Creating
+    const id = lastId + 1;
+    const newExpenses = [{ ...newExpense, id }, ...expenses];
     setExpenses(newExpenses);
+    onCancelExpenseForm();
   };
 
   return (
     <main className="app">
       <h1>Expenses Tracker</h1>
-      <ExpensesChart />
       <ExpenseForm
-        isOpen={isExpenseFormOpen}
         expense={expense}
         onSubmit={onSubmitExpenseForm}
         onCancel={onCancelExpenseForm}
+        isOpen={isFormOpen}
+        toggleOpen={onToggleForm}
       />
       <ExpensesList
         expenses={expenses}
-        onSelectExpense={onSelectExpense}
+        onCancelEdit={onCancelExpenseForm}
+        onEditExpense={onSelectExpenseToEdit}
         onDeleteExpense={onDeleteExpense}
+        onActivateItem={onActivateItem}
+        activeItemIndex={activeItemIndex}
       />
       <CreateExpense
         onClick={onOpenCreateExpenseForm}
