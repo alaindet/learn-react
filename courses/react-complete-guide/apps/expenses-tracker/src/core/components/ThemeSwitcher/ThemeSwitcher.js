@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 import { useDarkTheme } from '../../hooks';
 import './ThemeSwitcher.css';
 
@@ -7,10 +9,11 @@ export const ThemeSwitcher = () => {
   return (
     <button
       type="button"
-      className="theme-switcher"
+      className={classNames({
+        'theme-switcher': true,
+        '--dark': isDarkTheme,
+      })}
       onClick={() => toggleDarkTheme()}
-    >
-      {isDarkTheme ? 'Dark' : 'Light'}
-    </button>
+    ></button>
   );
 };
