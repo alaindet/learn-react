@@ -66,7 +66,7 @@ export const ExpenseForm = ({
       </FormControl>
 
       {/* Date */}
-      <FormControl className="expense-form__control ya-col-6 form-control-inline --left">
+      <FormControl className="expense-form__control ya-col-12 ya-col-m-6 form-control-inline --left">
         <label htmlFor="expense-date">Date</label>
         <Input
           type="date"
@@ -78,7 +78,7 @@ export const ExpenseForm = ({
       </FormControl>
 
       {/* Amount */}
-      <FormControl className="expense-form__control ya-col-6 form-control-inline --right">
+      <FormControl className="expense-form__control ya-col-12 ya-col-m-6  form-control-inline --right">
         <label htmlFor="expense-amount">Amount</label>
         <Input
           type="number"
@@ -102,11 +102,15 @@ export const ExpenseForm = ({
       </FormControl>
 
       {/* Toggle */}
-      <button
-        type="button"
-        className="expense-form__toggle"
+      <div
+        className="expense-form__toggle-container"
         onClick={() => toggleOpen(!isOpen)}
-      ></button>
+      >
+        <button
+          type="button"
+          className="expense-form__toggle"
+        ></button>
+      </div>
 
     </form>
   );

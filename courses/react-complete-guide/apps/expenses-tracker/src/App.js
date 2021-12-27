@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { MOCK_EXPENSES } from './mocks';
 import { useEffectOnce } from './common/hooks';
+import { ThemeSwitcher } from './core/components';
 import { ExpenseForm, ExpensesList, CreateExpense } from './features/Expenses';
 import './App.css';
 
@@ -83,7 +84,13 @@ export const App = () => {
 
   return (
     <main className="app">
+
+      <div className="theme-switcher-container">
+        <ThemeSwitcher />
+      </div>
+
       <h1>Expenses Tracker</h1>
+
       <ExpenseForm
         expense={expense}
         onSubmit={onSubmitExpenseForm}

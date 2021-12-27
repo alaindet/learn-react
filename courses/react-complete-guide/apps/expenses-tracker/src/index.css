@@ -4,8 +4,15 @@
   --color-background-contrast: #ccc;
   --color-foreground: #303030;
   --color-foreground-contrast: #505050;
-
   --radius: 0.5rem;
+}
+
+:root.dark {
+  --color-background: #303030;
+  --color-background-contrast-low: #505050;
+  --color-background-contrast: #808080;
+  --color-foreground: white;
+  --color-foreground-contrast: #f0f0f0;
 }
 
 *, *::before, *::after {
