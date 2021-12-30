@@ -35,6 +35,21 @@
   right: 0;
   top: 0;
   height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.expense-form__toggle-title {
+  transition: 0.15s opacity ease-in-out;
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  padding-left: 1.2rem;
+  color: var(--color-foreground-contrast);
+  font-weight: normal;
+  font-style: italic;
 }
 
 .expense-form__toggle {
@@ -65,6 +80,14 @@
 
 .expense-form.--open {
   max-height: 100vh;
+}
+
+.expense-form.--open .expense-form__toggle-container {
+  cursor: initial;
+}
+
+.expense-form.--open .expense-form__toggle-title {
+  opacity: 0;
 }
 
 .expense-form.--open .expense-form__control,

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { MOCK_EXPENSES } from './mocks';
 import { useEffectOnce } from './common/hooks';
 import { ThemeSwitcher } from './core/components';
-import { ExpenseForm, ExpensesList, CreateExpense } from './features/Expenses';
+import { ExpenseForm, ExpensesList, CreateExpense, ExpensesChart } from './features/Expenses';
 import './App.css';
 
 export const App = () => {
@@ -90,6 +90,10 @@ export const App = () => {
       </div>
 
       <h1>Expenses Tracker</h1>
+
+      <ExpensesChart
+        expenses={expenses}
+      />
 
       <ExpenseForm
         expense={expense}

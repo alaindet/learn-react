@@ -1,0 +1,36 @@
+.expenses-chart {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 2px solid var(--color-foreground);
+  border-radius: var(--radius);
+}
+
+.expenses-chart__items {
+  height: 100px;
+}
+
+.expenses-chart__item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item__bar {
+  border: 2px solid var(--color-foreground);
+  height: 100%;
+  width: max(2vw, 50%);
+  position: relative;
+}
+
+.item__bar__value {
+  background-color: var(--color-foreground);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.item__label {
+  font-size: 0.75em;
+}

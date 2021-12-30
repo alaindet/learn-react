@@ -106,6 +106,7 @@ export const ExpenseForm = ({
         className="expense-form__toggle-container"
         onClick={() => toggleOpen(!isOpen)}
       >
+        <h2 className="expense-form__toggle-title">Expense Form</h2>
         <button
           type="button"
           className="expense-form__toggle"
