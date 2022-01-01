@@ -1,0 +1,6 @@
+.expenses-filters {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 2px solid var(--color-foreground);
+  border-radius: var(--radius);
+}

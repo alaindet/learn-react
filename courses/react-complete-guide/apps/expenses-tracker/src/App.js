@@ -1,18 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { MOCK_EXPENSES } from './mocks';
 import { useEffectOnce } from './common/hooks';
 import { ThemeSwitcher } from './core/components';
-import { ExpenseForm, ExpensesList, CreateExpense, ExpensesChart } from './features/Expenses';
+import {
+  CreateExpense,
+  ExpenseForm,
+  ExpensesChart,
+  ExpensesFilters,
+  ExpensesList,
+} from './features/Expenses';
 import './App.css';
 
 export const App = () => {
 
   const [expenses, setExpenses] = useState(MOCK_EXPENSES);
+  const [filteredExpenses, setFilteredExpenses] = useState(MOCK_EXPENSES);
+  const [filters, setFilters] = useState(null);
   const [expense, setExpense] = useState(null);
   const [activeItemIndex, setActiveItemIndex] = useState(null);
   const [isFormOpen, setIsFormOpen] = useState(true);
   const [lastId, setLastId] = useState(0);
+
+  // TODO
+  const filterExpenses = (_expenses, _filters) => {
+    return _expenses;
+  };
+
+  useEffect(() => {
+    const newFilteredExpenses = filterExpenses(expenses, filters);
+    setFilteredExpenses(newFilteredExpenses);
+  }, [expenses, filters]);
 
   useEffectOnce(() => {
     let id = 0;
@@ -22,7 +40,7 @@ export const App = () => {
       }
     });
     setLastId(id);
-  }, [expenses], deps => true);
+  }, [expenses], () => true);
 
   const clearExpenseIfAny = () => {
     if (expense) {
@@ -52,7 +70,7 @@ export const App = () => {
   };
 
   const onSelectExpenseToEdit = (index) => {
-    setExpense({ ...expenses[index] });
+    setExpense({ ...filteredExpenses[index] });
     openFormIfClose();
   };
 
@@ -62,6 +80,10 @@ export const App = () => {
 
   const onToggleForm = (forcedState) => {
     setIsFormOpen(forcedState ?? !isFormOpen);
+  };
+
+  const onSelectFilters = (filters) => {
+    setFilters(filters);
   };
 
   const onSubmitExpenseForm = (newExpense) => {
@@ -92,7 +114,7 @@ export const App = () => {
       <h1>Expenses Tracker</h1>
 
       <ExpensesChart
-        expenses={expenses}
+        expenses={filteredExpenses}
       />
 
       <ExpenseForm
@@ -102,14 +124,21 @@ export const App = () => {
         isOpen={isFormOpen}
         toggleOpen={onToggleForm}
       />
+
+      <ExpensesFilters
+        filters={filters}
+        onSelectFilters={onSelectFilters}
+      />
+
       <ExpensesList
-        expenses={expenses}
+        expenses={filteredExpenses}
         onCancelEdit={onCancelExpenseForm}
         onEditExpense={onSelectExpenseToEdit}
         onDeleteExpense={onDeleteExpense}
         onActivateItem={onActivateItem}
         activeItemIndex={activeItemIndex}
       />
+
       <CreateExpense
         onClick={onOpenCreateExpenseForm}
       />

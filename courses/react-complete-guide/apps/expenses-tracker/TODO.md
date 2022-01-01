@@ -1,5 +1,8 @@
-- [ ] Dark/Light theme switch via custom hook and localStorage
-- [ ] Add expenses chart
+- [x] Dark/Light theme switch via custom hook and localStorage
+- [x] Add expenses chart
 - [x] Add formatDate utility function
 - [x] Style Input
 - [ ] Better imports
+- [ ] Memoize everything
+- [ ] Move more logic from App.js to custom hooks
+- [ ] Add expenses counter?
