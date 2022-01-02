@@ -17,14 +17,33 @@ export const App = () => {
   const [expenses, setExpenses] = useState(MOCK_EXPENSES);
   const [filteredExpenses, setFilteredExpenses] = useState(MOCK_EXPENSES);
   const [filters, setFilters] = useState(null);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [expense, setExpense] = useState(null);
   const [activeItemIndex, setActiveItemIndex] = useState(null);
-  const [isFormOpen, setIsFormOpen] = useState(true);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const [lastId, setLastId] = useState(0);
 
-  // TODO
   const filterExpenses = (_expenses, _filters) => {
-    return _expenses;
+    if (_filters === null) {
+      return _expenses;
+    }
+    return _expenses.filter(exp => {
+      if (_filters.year) {
+        const expYear = (new Date(exp.date)).getFullYear();
+        return _filters.year === expYear;
+      }
+      return true;
+    });
+  };
+
+  const getLastId = (_expenses) => {
+    let id = 0;
+    _expenses.forEach(exp => {
+      if (exp.id > id) {
+        id = exp.id;
+      }
+    });
+    return id;
   };
 
   useEffect(() => {
@@ -33,13 +52,7 @@ export const App = () => {
   }, [expenses, filters]);
 
   useEffectOnce(() => {
-    let id = 0;
-    expenses.forEach(exp => {
-      if (exp.id > id) {
-        id = exp.id;
-      }
-    });
-    setLastId(id);
+    setLastId(getLastId(expenses));
   }, [expenses], () => true);
 
   const clearExpenseIfAny = () => {
@@ -82,8 +95,17 @@ export const App = () => {
     setIsFormOpen(forcedState ?? !isFormOpen);
   };
 
+  const onToggleFilters = (forcedState) => {
+    setIsFiltersOpen(forcedState ?? !isFiltersOpen);
+  };
+
   const onSelectFilters = (filters) => {
     setFilters(filters);
+    setIsFiltersOpen(false);
+  };
+
+  const onClearFilters = () => {
+    setFilters(null);
   };
 
   const onSubmitExpenseForm = (newExpense) => {
@@ -128,6 +150,9 @@ export const App = () => {
       <ExpensesFilters
         filters={filters}
         onSelectFilters={onSelectFilters}
+        onClearFilters={onClearFilters}
+        isOpen={isFiltersOpen}
+        toggleOpen={onToggleFilters}
       />
 
       <ExpensesList

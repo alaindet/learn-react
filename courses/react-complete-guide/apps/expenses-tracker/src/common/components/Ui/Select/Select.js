@@ -1,29 +1,31 @@
 import classNames from 'classnames';
 
-import './Input.css';
+import './Select.css';
 
-export const Input = ({
-  type,
+export const Select = ({
   size, // 'medium' | 'large'
   fullWidth,
   className,
+  options,
   ...props
 }) => {
-  type = type ?? 'text';
-  size = size ?? 'medium';
-
   const cssClasses = [
-    'ui-input',
+    'ui-select',
     `--size-${size}`,
     fullWidth ? '--full-width' : '',
     className,
   ];
 
   return (
-    <input
+    <select
       className={classNames(cssClasses)}
-      type={type}
       {...props}
-    />
+    >
+      {options.map(option => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
   );
 };

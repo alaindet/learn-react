@@ -1,0 +1,35 @@
+select.ui-select {
+  border-radius: var(--radius);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  border: 2px solid currentColor;
+  cursor: pointer;
+}
+
+select.ui-select:hover {
+  border-color: var(--color-foreground-contrast);
+}
+
+select.ui-select:focus {
+  outline: 1px dashed var(--color-foreground-contrast);
+  outline-offset: 2px;
+}
+
+select.ui-select.--size-medium {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  height: 36px;
+}
+
+select.ui-select.--size-large {
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  height: 48px;
+}
+
+select.ui-select.--full-width {
+  width: 100%;
+  min-width: 100%;
+}

@@ -1,8 +1,9 @@
-import { Button, Input, FormControl } from '../../../common/components/Ui';
+import classNames from 'classnames';
+
+import { FormControl, Button, Input } from '../../../common/components/Ui';
 import { EXPENSE_FORM_SCHEMA as FORM_SCHEMA } from './form-schema';
 import { useExpenseForm } from './use-expense-form';
 import './ExpenseForm.css';
-import classNames from 'classnames';
 
 export const ExpenseForm = ({
   isOpen,
@@ -23,6 +24,12 @@ export const ExpenseForm = ({
 
   const onSetAmount = (event) => {
     formUpdate('amount', parseFloat(event.target.value));
+  };
+
+  const onClickToggleContainer = () => {
+    if (!isOpen) {
+      toggleOpen(true);
+    }
   };
 
   const onSubmit = (e) => {
@@ -46,11 +53,13 @@ export const ExpenseForm = ({
   };
 
   return (
-    <form className={classNames({
-      'expense-form ya-cols': true,
-      '--open': isOpen,
-    })} onSubmit={onSubmit}>
-
+    <form
+      className={classNames({
+        'expense-form ya-cols': true,
+        '--open': isOpen,
+      })}
+      onSubmit={onSubmit}
+    >
       {/* Title */}
       <FormControl className="expense-form__control ya-col-12">
         <label htmlFor="expense-title">Title</label>
@@ -92,7 +101,7 @@ export const ExpenseForm = ({
 
       {/* Submit */}
       <FormControl className="expense-form__submit ya-col-12">
-        <Button fille="outline" type="button" onClick={onCancel}>
+        <Button fill="outline" type="button" onClick={onCancel}>
           Cancel
         </Button>
         &nbsp;
@@ -104,11 +113,12 @@ export const ExpenseForm = ({
       {/* Toggle */}
       <div
         className="expense-form__toggle-container"
-        onClick={() => toggleOpen(!isOpen)}
+        onClick={onClickToggleContainer}
       >
-        <h2 className="expense-form__toggle-title">Expense Form</h2>
+        <h2 className="expense-form__toggle-title">Form</h2>
         <button
           type="button"
+          onClick={() => toggleOpen()}
           className="expense-form__toggle"
         ></button>
       </div>
