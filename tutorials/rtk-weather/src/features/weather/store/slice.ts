@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 import { INITIAL_STATE, SLICE_NAME } from './state';
 import { fetchWeatherForecast } from './fetch-weather-forecast';
