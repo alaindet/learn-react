@@ -4,6 +4,7 @@ import commonReducer from './common.slice';
 import aboutReducer from 'src/features/about/store';
 
 export const store = configureStore({
+  devTools: process.env.NODE_ENV !== 'production',
   reducer: {
     common: commonReducer,
     about: aboutReducer,
