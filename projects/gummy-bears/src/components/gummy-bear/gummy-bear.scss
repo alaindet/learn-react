@@ -1,0 +1,134 @@
+.gummy-bear {
+  --color-background: #e0e0e0;
+  --color-foreground: #888888;
+  --width: 64px;
+
+  width: var(--width);
+  height: calc(2 * var(--width));
+  position: relative;
+
+  &.-flavor {
+    &-raspberry { --color-background: #ff0040; --color-foreground: #bb0030 }
+    &-orange { --color-background: #ff8000; --color-foreground: #cc6000 }
+    &-strawberry { --color-background: #00ff80; --color-foreground: #00cc60 }
+    &-pineapple { --color-background: #ffe0b8; --color-foreground: #eebfa0 }
+    &-lemon { --color-background: #ffe000; --color-foreground: #ddc800 }
+  }
+
+  ._head {
+    border-radius: 100%;
+    position: absolute;
+    background-color: var(--color-background);
+    width: calc(0.7 * var(--width));
+    height: calc(0.7 * var(--width));
+    top: calc(0.2 * var(--width));
+    left: calc(0.15 * var(--width));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &::before,
+    &::after {
+      content: '';
+      background-color: var(--color-foreground);
+      border: calc(0.05 * var(--width)) solid var(--color-background);
+      border-radius: 100%;
+      width: calc(0.3 * var(--width));
+      height: calc(0.3 * var(--width));
+      position: absolute;
+      top: calc(-0.05 * var(--width));
+    }
+
+    &::before { left: calc(-0.1 * var(--width)) }
+    &::after { right: calc(-0.1 * var(--width)) }
+  }
+
+  ._eyes {
+    position: relative;
+    width: calc(0.3 * var(--width));
+    height: calc(0.1 * var(--width));
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 20%;
+      height: 90%;
+      background-color: var(--color-foreground);
+      border-radius: 100%;
+    }
+
+    &::before { left: 0 }
+    &::after { right: 0 }
+  }
+
+  ._nose {
+    z-index: 1;
+    background-color: var(--color-foreground);
+    width: calc(0.2 * var(--width));
+    height: calc(0.2 * var(--width));
+    border-radius: 100%;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: calc(0.1 * var(--width));
+      background-color: var(--color-foreground);
+      top: calc(0.2 * var(--width));
+      left: calc(0.1 * var(--width) - 1px);
+    }
+  }
+
+  ._body {
+    border-radius: 100%;
+    position: absolute;
+    background-color: var(--color-background);
+    width: calc(0.8 * var(--width));
+    height: var(--width);
+    top: calc(0.75 * var(--width));
+    left: calc(0.1 * var(--width));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: calc(0.25 * var(--width));
+      height: calc(0.25 * var(--width));
+      background-color: var(--color-foreground);
+      border-radius: 100%;
+      top: calc(0.15 * var(--width));
+    }
+
+    &::before { left: calc(-0.05 * var(--width)) }
+    &::after { right: calc(-0.05 * var(--width)) }
+  }
+
+  ._belly {
+    background-color: var(--color-foreground);
+    width: calc(0.4 * var(--width));
+    height: calc(0.5 * var(--width));
+    border-radius: 100%;
+    position: absolute;
+    top: calc(0.3 * var(--width));
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: calc(0.3 * var(--width));
+      height: calc(0.3 * var(--width));
+      background-color: var(--color-foreground);
+      border-radius: 100%;
+      top: calc(0.5 * var(--width));
+    }
+
+    &::before { left: calc(-0.25 * var(--width)) }
+    &::after { right: calc(-0.25 * var(--width)) }
+  }
+}

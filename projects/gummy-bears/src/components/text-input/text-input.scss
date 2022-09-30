@@ -1,0 +1,17 @@
+.text-input {
+  padding: 0.5rem;
+  border: 2px solid var(--color-primary-700);
+  border-radius: 8px;
+  transition: 0.2s all ease-out;
+
+  &:hover,
+  &:focus {
+    outline: 0;
+    border-color: var(--color-primary-800);
+    box-shadow: 2px 2px 0 var(--color-primary-700);
+  }
+
+  &.-fullsize {
+    width: 100%;
+  }
+}

@@ -1,0 +1,7 @@
+.app {
+  --app-width: min(500px, 90vw);
+
+  padding: 1rem;
+  max-width: var(--app-width);
+  margin: 0 auto;
+}

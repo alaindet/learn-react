@@ -1,0 +1,21 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary-200: #E1FCF1;
+  --color-primary-300: #A3F5D4;
+  --color-primary-400: #6CEFBA;
+  --color-primary-500: #35E9A1;
+  --color-primary-600: #16CA82;
+  --color-primary-700: #12A56A;
+  --color-primary-800: #0C6E47;
+  --color-primary-900: #063723;
+}
+
+html {
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-primary-200);
+  color: var(--color-primary-900);
+}
