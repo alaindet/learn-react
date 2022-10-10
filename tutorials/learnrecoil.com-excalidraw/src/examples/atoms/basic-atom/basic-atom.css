@@ -1,0 +1,33 @@
+.basic-atom-example {
+  --color-bg: #eee;
+  --color-fg: #333;
+
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 2px solid #60aaff;
+}
+
+.basic-atom-example > .-dark-mode {
+  --color-bg: #333;
+  --color-fg: #eee;
+}
+
+.basic-atom-example > ._switch {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+.basic-atom-example > ._switch label {
+  width: 100%;
+}
+
+.basic-atom-example > ._paragraph {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
