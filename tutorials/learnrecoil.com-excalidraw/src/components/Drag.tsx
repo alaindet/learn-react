@@ -1,22 +1,26 @@
-import {DraggableCore} from 'react-draggable'
-import {ElementStyle} from './Rectangle/Rectangle'
+import { ReactNode } from 'react'
+import { DraggableCore } from 'react-draggable'
 
-type DragProps = {
-    position: ElementStyle['position']
-    onDrag: (position: ElementStyle['position']) => void
+import { ElementStyle } from '../types'
+
+interface DragProps {
+  position: ElementStyle['position']
+  onDrag: (position: ElementStyle['position']) => void
+  children: ReactNode
 }
 
-export const Drag: React.FC<DragProps> = ({position, onDrag, children}) => {
-    return (
-        <DraggableCore
-            onDrag={(e: any) => {
-                onDrag({
-                    left: e.movementX + position.left,
-                    top: e.movementY + position.top,
-                })
-            }}
-        >
-            {children}
-        </DraggableCore>
-    )
+export function Drag({ position, onDrag, children }: DragProps) {
+
+  function handleDrag(e: any) {
+    onDrag({
+      left: e.movementX + position.left,
+      top: e.movementY + position.top,
+    });
+  }
+
+  return (
+    <DraggableCore onDrag={handleDrag}>
+      {children}
+    </DraggableCore>
+  )
 }

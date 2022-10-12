@@ -86,7 +86,7 @@ function Commission() {
         </FormLabel>
         <Switch
           id="includeCommission"
-          isChecked={enabled}
+          isChecked={!!enabled}
           onChange={(event) => setEnabled(event.currentTarget.checked)}
         />
       </FormControl>
