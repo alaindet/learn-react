@@ -1,49 +1,54 @@
 import { ReactNode } from 'react';
-import { useRecoilState } from 'recoil';
+// import { useRecoilState } from 'recoil';
 import { InputGroup, InputRightElement, NumberInput, NumberInputField, Text, VStack } from '@chakra-ui/react';
 
-import { selectedElementPropertiesAtom } from './state';
-import { Element } from './types';
+// import { selectedElementPropertiesAtom } from './state';
+// import { Element } from './types';
+import { editPropertyAtom } from './state';
+import { useRecoilValue } from 'recoil';
 
-type ElementPropKey = 'top' | 'left' | 'width' | 'height';
+// type ElementPropKey = 'top' | 'left' | 'width' | 'height';
 
-// TODO: Use Immer?
-const PROP_HANDLERS: { [key in ElementPropKey]: (element: Element, value: number) => Element } = {
-  top: (el, top) => ({ style: { ...el!.style, position: { ...el!.style.position, top } } }),
-  left: (el, left) => ({ style: { ...el!.style, position: { ...el!.style.position, left } } }),
-  width: (el, width) => ({ style: { ...el!.style, size: { ...el!.style.size, width } } }),
-  height: (el, height) => ({ style: { ...el!.style, size: { ...el!.style.size, height } } }),
-};
+// // TODO: Use Immer?
+// const PROP_HANDLERS: { [key in ElementPropKey]: (element: Element, value: number) => Element } = {
+//   top: (el, top) => ({ style: { ...el!.style, position: { ...el!.style.position, top } } }),
+//   left: (el, left) => ({ style: { ...el!.style, position: { ...el!.style.position, left } } }),
+//   width: (el, width) => ({ style: { ...el!.style, size: { ...el!.style.size, width } } }),
+//   height: (el, height) => ({ style: { ...el!.style, size: { ...el!.style.size, height } } }),
+// };
 
 export function EditProperties() {
-  const [element, setElement] = useRecoilState(selectedElementPropertiesAtom);
+  // const [element, setElement] = useRecoilState(selectedElementPropertiesAtom);
 
-  if (!element) {
-    return null;
-  }
+  // if (!element) {
+  //   return null;
+  // }
 
-  const { top, left } = element.style.position;
-  const { width, height } = element.style.size;
+  // const { top, left } = element.style.position;
+  // const { width, height } = element.style.size;
 
-  function handleElementChange(key: ElementPropKey) {
-    const handler = PROP_HANDLERS[key];
-    return function(value: number) {
-      if (!element) return;
-      const newElement = handler(element, value);
-      setElement(newElement);
-    }
-  }
+  // function handleElementChange(key: ElementPropKey) {
+  //   const handler = PROP_HANDLERS[key];
+  //   return function(value: number) {
+  //     if (!element) return;
+  //     const newElement = handler(element, value);
+  //     setElement(newElement);
+  //   }
+  // }
+
+  const top = useRecoilValue(editPropertyAtom('style.position.top'));
 
   return (
     <Card>
       <Section heading="Position">
-        <Property label="Top" value={top} onChange={handleElementChange('top')} />
-        <Property label="Left" value={left} onChange={handleElementChange('left')} />
+      <Property label="Top" value={1} onChange={top => {}} />
+        {/* <Property label="Top" value={top} onChange={handleElementChange('top')} />
+        <Property label="Left" value={left} onChange={handleElementChange('left')} /> */}
       </Section>
-      <Section heading="Position">
+      {/* <Section heading="Position">
         <Property label="Width" value={width} onChange={handleElementChange('width')} />
         <Property label="Height" value={height} onChange={handleElementChange('height')} />
-      </Section>
+      </Section> */}
     </Card>
   )
 }
