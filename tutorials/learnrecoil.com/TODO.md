@@ -1,1 +1,1 @@
-https://learnrecoil.com/video/selector-families
+https://learnrecoil.com/video/data-fetching-advanced
