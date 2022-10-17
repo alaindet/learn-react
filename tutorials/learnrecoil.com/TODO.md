@@ -1,1 +1,1 @@
-https://learnrecoil.com/video/data-fetching-design-tool
+https://learnrecoil.com/video/atom-effects-atom-families
