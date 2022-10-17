@@ -1,1 +1,1 @@
-https://learnrecoil.com/video/data-fetching-advanced
+https://learnrecoil.com/video/data-fetching-design-tool
