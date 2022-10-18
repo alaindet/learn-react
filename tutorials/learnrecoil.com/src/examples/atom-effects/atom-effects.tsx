@@ -1,39 +1,25 @@
 import { ReactNode, useState, ChangeEvent, KeyboardEvent } from 'react';
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState, useRecoilCallback } from 'recoil';
 import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 import { Box, Divider, Heading, VStack } from '@chakra-ui/layout';
-import produce from 'immer';
 
-import { shoppingListState } from './state';
+import { itemState, idsState } from './state';
 
 export function AtomEffects() {
 
-  const [items, setItems] = useRecoilState(shoppingListState);
-  const resetList = useResetRecoilState(shoppingListState);
+  const ids = useRecoilValue(idsState);
+  const resetList = useResetRecoilState(idsState);
+  const nextId = ids.length;
 
-  function toggleItem(index: number)  {
-    setItems(
-      produce(items, draftItems => {
-        draftItems[index].checked = !draftItems[index].checked;
-      }),
-    )
-  }
-
-  function insertNewItem(label: string) {
-    setItems([...items, { label, checked: false }])
-  }
+  const insertNewItem = useRecoilCallback(({ set }) => (label: string) => {
+    set(idsState, [...ids, nextId]);
+    set(itemState(nextId), { label, checked: false });
+  });
 
   return (
     <Container onClear={resetList}>
-      {items.map((item, index) => (
-        <Item
-          key={item.label}
-          label={item.label}
-          checked={item.checked}
-          onClick={() => toggleItem(index)}
-        />
-      ))}
+      {ids.map(id => <Item key={id} id={id} />)}
       <NewItemInput onInsert={insertNewItem} />
     </Container>
   )
@@ -63,23 +49,28 @@ function Container({ children, onClear }: ContainerProps) {
 }
 
 interface ItemProps {
-  label: string;
-  checked: boolean;
-  onClick: () => void;
+  id: number;
 }
 
-function Item({ label, checked, onClick }: ItemProps) {
+function Item({ id }: ItemProps) {
+
+  const [item, setItem] = useRecoilState(itemState(id));
+
+  function onClick() {
+    setItem({ ...item, checked: !item.checked });
+  }
+
   return (
     <Box
       rounded="md"
-      textDecoration={checked ? 'line-through' : ''}
-      opacity={checked ? 0.5 : 1}
+      textDecoration={item.checked ? 'line-through' : ''}
+      opacity={item.checked ? 0.5 : 1}
       _hover={{ textDecoration: 'line-through' }}
       cursor="pointer"
       width="100%"
       onClick={onClick}
     >
-      {label}
+      {item.label}
     </Box>
   )
 }

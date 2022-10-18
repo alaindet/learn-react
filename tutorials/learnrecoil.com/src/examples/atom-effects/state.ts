@@ -1,44 +1,16 @@
-import { atom, DefaultValue } from 'recoil';
+import { atom, atomFamily } from 'recoil';
 
 import { ItemType } from './types';
+import { persistEffect } from './effects';
 
-const STORAGE_KEY = 'my-shopping-list';
-
-function storeData(data: ItemType[]): void {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-
-function fetchData(): ItemType[] | null {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (raw === null) return null;
-  return JSON.parse(raw);
-}
-
-function clearData(): void {
-  localStorage.removeItem(STORAGE_KEY);
-}
-
-export const shoppingListState = atom<ItemType[]>({
-  key: 'shoppingList',
+export const idsState = atom<number[]>({
+  key: 'ids',
   default: [],
-  effects: [
-    props => {
+  effects: [persistEffect],
+});
 
-      // Triggered each time data changes or gets reset
-      props.onSet(updatedData => {
-        if (updatedData instanceof DefaultValue) {
-          clearData();
-        } else {
-          storeData(updatedData);
-        }
-      });
-
-      // Triggerd on creation
-      const storedData = fetchData();
-      if (storedData !== null) {
-        props.setSelf(storedData);
-      }
-
-    },
-  ],
+export const itemState = atomFamily<ItemType, number>({
+  key: 'item',
+  default: { label: '', checked: false },
+  effects: [persistEffect],
 });
