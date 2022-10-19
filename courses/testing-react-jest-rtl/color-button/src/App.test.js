@@ -13,10 +13,10 @@ test('button has correct initial text', () => {
   expect(colorButton).toHaveTextContent(/change to blue/i);
 });
 
-// test('button turns blue when clicked', () => {
-//   render(<App />);
-//   const colorButton = screen.getByRole('button', { name: /change to blue/i });
-//   fireEvent.click(colorButton);
-//   expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
-//   expect(colorButton).toHaveTextContent(/change to red/i);
-// });
+test('button turns blue when clicked', () => {
+  render(<App />);
+  const colorButton = screen.getByRole('button', { name: /change to blue/i });
+  fireEvent.click(colorButton);
+  expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
+  expect(colorButton).toHaveTextContent(/change to red/i);
+});

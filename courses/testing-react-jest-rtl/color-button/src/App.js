@@ -2,10 +2,14 @@ import { useMemo, useState } from 'react';
 
 import './App.css';
 
+function getOppositeColor(color) {
+  return color === 'red' ? 'blue' : 'red';
+}
+
 export function App() {
 
-  const [color, setColor] = useState<'red' | 'blue'>('red');
-  const nextColor = useMemo(() => color === 'red' ? 'blue' : 'red', [color]);
+  const [color, setColor] = useState('red');
+  const nextColor = useMemo(() => getOppositeColor(color), [color]);
   const flipColor = () => setColor(nextColor);
 
   return (
