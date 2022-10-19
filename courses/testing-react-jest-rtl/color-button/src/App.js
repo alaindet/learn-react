@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import { useMemo, useState } from 'react';
+
 import './App.css';
 
 export function App() {
+
+  const [color, setColor] = useState<'red' | 'blue'>('red');
+  const nextColor = useMemo(() => color === 'red' ? 'blue' : 'red', [color]);
+  const flipColor = () => setColor(nextColor);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          testing library
-        </a>
-      </header>
+    <div className="app">
+      <button type="button" style={{backgroundColor: color}} onClick={flipColor}>
+        Change to {nextColor}
+      </button>
     </div>
   );
 }
