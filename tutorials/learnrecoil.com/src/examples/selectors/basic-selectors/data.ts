@@ -1,0 +1,3 @@
+// As of 10/10/2022
+export const EXCHANGE_RATE_USD_TO_EUR = 1.03;
+export const EXCHANGE_RATE_EUR_TO_USD = 1 / EXCHANGE_RATE_USD_TO_EUR;
