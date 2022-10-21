@@ -4,8 +4,13 @@ export function SummaryForm() {
 
   const [termsAccepted, setTermsAccepted] = useState(false);
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log('handleSubmit');
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="form-control">
         <input
           type="checkbox"
