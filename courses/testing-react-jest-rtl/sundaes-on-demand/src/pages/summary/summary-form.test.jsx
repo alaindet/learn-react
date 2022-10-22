@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { SummaryForm } from './summary-form';
 
@@ -14,14 +15,15 @@ describe('SummaryForm component', () => {
     expect(termsCheckbox).not.toBeChecked();
   });
 
-  test('checkbox enables/disables button when clicked', () => {
+  test('checkbox enables/disables button when clicked', async () => {
+    const user = userEvent.setup();
     render(<SummaryForm />);
     const termsCheckbox = screen.getByRole('checkbox', { name: TERMS_NAME });
     const confirmButton = screen.getByRole('button', { name: CONFIRM_NAME });
     expect(confirmButton).toBeDisabled();
-    fireEvent.click(termsCheckbox);
+    await user.click(termsCheckbox);
     expect(confirmButton).toBeEnabled();
-    fireEvent.click(termsCheckbox);
+    await user.click(termsCheckbox);
     expect(confirmButton).toBeDisabled();
   });
 });
