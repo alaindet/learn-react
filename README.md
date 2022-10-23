@@ -10,6 +10,10 @@ This repository contains the learning material, demo, tests and everything I use
   - **Course**: [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux)
   - **Teacher**: [Academind by Maximilian Schwarzmüller](https://www.udemy.com/user/academind/)
 
+- Next.js & React - The Complete Guide (incl. Two Paths!)
+  - **Course** [Next.js & React - The Complete Guide (incl. Two Paths!)](https://www.udemy.com/course/nextjs-react-the-complete-guide)
+  - **Teacher**: [Academind by Maximilian Schwarzmüller](https://www.udemy.com/user/academind/)
+
 - Modern React with Redux [2020 Update]
   - **Course**: [Modern React with Redux [2020 Update]](https://www.udemy.com/course/react-redux/)
   - **Teacher**: [Stephen Grider](https://www.udemy.com/user/sgslo/)
