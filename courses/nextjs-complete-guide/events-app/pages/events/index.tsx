@@ -1,8 +1,16 @@
+import { EventList } from '../../components/events/event-list/event-list';
+import { EventsSearch } from '../../components/events/events-search/events-search';
+import { getAllEvents } from '../../mock-data';
+
 export default function EventsPage() {
+
+  const events = getAllEvents();
+
   return (
-    <>
-      <h1>Events page</h1>
-      <p>Showing all events...</p>
-    </>
+    <div className="content-container">
+      <h1>Events</h1>
+      <EventsSearch />
+      <EventList events={events} />
+    </div>
   );
 }

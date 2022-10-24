@@ -6,6 +6,11 @@
   --app-color-primary: #03be9f;
   --app-color-primary-hover: #02afa1;
   --app-color-primary-contrast: #dafff7;
+  --app-color-primary-gradient: linear-gradient(to bottom left,  #008b79, #1180a1);
+
+  --app-breakpoint-mobile: 768px;
+
+  --app-size-container: min(40rem, 90vw);
 }
 
 html,
@@ -41,4 +46,9 @@ a:hover {
     color: white;
     background: black;
   }
+}
+
+.content-container {
+  max-width: var(--app-size-container);
+  margin: 0 auto;
 }

@@ -1,4 +1,4 @@
-import { LiveEvent } from './types';
+import { EventFilters, LiveEvent } from './types';
 
 const MOCK_EVENTS: LiveEvent[] = [
   {
@@ -38,9 +38,7 @@ export function getAllEvents(): LiveEvent[] {
   return MOCK_EVENTS;
 }
 
-export function getFilteredEvents(
-  dateFilter: { year: number, month: number },
-): LiveEvent[] {
+export function getFilteredEvents(dateFilter: EventFilters): LiveEvent[] {
 
   const { year, month } = dateFilter;
 

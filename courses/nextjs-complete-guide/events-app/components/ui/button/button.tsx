@@ -3,26 +3,14 @@ import { ReactNode } from 'react';
 import css from './button.module.css';
 
 interface ButtonProps {
-  type: 'button' | 'submit' | 'reset';
-  onClick: () => void;
+  type?: 'button' | 'submit' | 'reset';
   children: ReactNode;
-  otherProps: { [prop: string]: any };
+  other?: { [prop: string]: any };
 }
 
-export function Button({
-  type = 'button',
-  onClick,
-  children,
-  ...otherProps
-}: ButtonProps) {
-
+export function Button({ type = 'button', children, ...other }: ButtonProps) {
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={css.button}
-      {...otherProps}
-    >
+    <button type={type} className={css.button} {...other}>
       {children}
     </button>
   );
