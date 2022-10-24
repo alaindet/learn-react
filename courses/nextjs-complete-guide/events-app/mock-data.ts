@@ -38,9 +38,9 @@ export function getAllEvents(): LiveEvent[] {
   return MOCK_EVENTS;
 }
 
-export function getFilteredEvents(dateFilter: EventFilters): LiveEvent[] {
+export function getFilteredEvents(filters: EventFilters): LiveEvent[] {
 
-  const { year, month } = dateFilter;
+  const { year, month } = filters;
 
   let filteredEvents = MOCK_EVENTS.filter((event) => {
     const d = new Date(event.date);

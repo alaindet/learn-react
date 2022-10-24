@@ -6,10 +6,10 @@ import { YEARS, MONTHS } from './options';
 import css from './events-search.module.css';
 
 interface EventsSearchProps {
-  // ...
+  onSearch: (filters: EventFilters) => void;
 }
 
-export function EventsSearch({}: EventsSearchProps) {
+export function EventsSearch({ onSearch }: EventsSearchProps) {
 
   const yearRef = useRef<null | HTMLSelectElement>(null);
   const monthRef = useRef<null | HTMLSelectElement>(null);
@@ -19,13 +19,15 @@ export function EventsSearch({}: EventsSearchProps) {
     const year = yearRef.current?.value;
     const month = monthRef.current?.value;
 
-    // "Validation"
+    // TODO: Validation
     if (!year || !month) return;
 
-    const filters: EventFilters = { year: +year, month: +month };
+    const filters: EventFilters = {
+      year: +year,
+      month: +month,
+    };
 
-    // TODO: Remove
-    console.log('filters', filters);
+    onSearch(filters);
   }
 
   return (
