@@ -1,6 +1,6 @@
-import { LiveEvent } from '../../types';
-import { EventItem } from './event-item';
-import styles from './event-list.module.css';
+import { LiveEvent } from '../../../types';
+import { EventItem } from '../event-item/event-item';
+import css from './event-list.module.css';
 
 interface EventListProps {
   events: LiveEvent[];
@@ -8,7 +8,7 @@ interface EventListProps {
 
 export function EventList({ events }: EventListProps) {
   return (
-    <ul className={styles.eventList}>
+    <ul className={css.list}>
       {events.map(event => (
         <EventItem key={event.id} event={event} />
       ))}

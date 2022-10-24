@@ -1,5 +1,17 @@
+:root {
+  --app-color-background: #eeeeee;
+  --app-color-foreground: #303030;
+  --app-color-link: #047ebb;
+  --app-color-link-hover: #026799;
+  --app-color-primary: #03be9f;
+  --app-color-primary-hover: #02afa1;
+  --app-color-primary-contrast: #dafff7;
+}
+
 html,
 body {
+  background-color: var(--app-color-background);
+  color: var(--app-color-foreground);
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -7,8 +19,14 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--app-color-link);
   text-decoration: none;
+}
+
+a:hover {
+  color: var(--app-color-link-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 * {

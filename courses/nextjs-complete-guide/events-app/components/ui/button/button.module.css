@@ -1,0 +1,19 @@
+.button {
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+  background-color: var(--app-color-primary);
+  border: 1px solid var(--app-color-primary);
+  border-radius: 4px;
+  color: var(--app-color-primary-contrast);
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+}
+
+.button:hover, .button:active {
+  text-decoration: none;
+  color: var(--app-color-primary-contrast);
+  background-color: var(--app-color-primary-hover);
+  border-color: var(--app-color-primary-hover);
+}

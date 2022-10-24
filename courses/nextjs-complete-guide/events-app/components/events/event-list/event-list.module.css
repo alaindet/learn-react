@@ -1,0 +1,8 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 1rem;
+  max-width: 40rem;
+  margin: 5rem auto;
+}
