@@ -1,0 +1,54 @@
+:root {
+  --app-color-background: #eeeeee;
+  --app-color-foreground: #303030;
+  --app-color-link: #047ebb;
+  --app-color-link-hover: #026799;
+  --app-color-primary: #03be9f;
+  --app-color-primary-hover: #02afa1;
+  --app-color-primary-contrast: #dafff7;
+  --app-color-primary-gradient: linear-gradient(to bottom left,  #008b79, #1180a1);
+
+  --app-breakpoint-mobile: 768px;
+
+  --app-size-container: min(40rem, 90vw);
+}
+
+html,
+body {
+  background-color: var(--app-color-background);
+  color: var(--app-color-foreground);
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: var(--app-color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--app-color-link-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+
+.content-container {
+  max-width: var(--app-size-container);
+  margin: 0 auto;
+}

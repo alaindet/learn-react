@@ -1,0 +1,23 @@
+.filters {
+  border: 2px solid #ccc;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.item label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.33rem;
+  margin-right: 0.5rem;
+}
+
+.control {
+  padding: 0.33rem 0.66rem;
+  border-radius: 4px;
+  font: inherit;
+  min-width: 10rem;
+}
