@@ -1,13 +1,18 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 
-import { loadDataFromFileSystem } from '../utils';
+import { loadDataFromFileSystem } from '../../utils';
 
 export const getStaticProps: GetStaticProps = async context => {
   const { params } = context;
   const productId = params?.pid;
   const products = await loadDataFromFileSystem();
-  const product = products.find(p => p.id === productId) ?? null;
+  const product = products.find(p => p.id === productId);
+
+  if (!product) {
+    return { notFound: true };
+  }
+
   const props = { product };
 
   return { props };
@@ -22,6 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     // Calculate other pages as SSR, block rendering while fetching data
     fallback: 'blocking',
+    // fallback: 'blocking', // Blocks rendering until data is available?
     // fallback: false, // 404 on other pages not in "paths" for this dynamic route
     // fallback: true, // Render the page as SSR, does not wait for data fetching
 

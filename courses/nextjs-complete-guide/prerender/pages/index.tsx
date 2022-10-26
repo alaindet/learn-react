@@ -6,7 +6,7 @@ export default function HomePage() {
       <h1>Pre-rendering examples</h1>
       <ul>
         <li><Link href="/ssg-example">SSG example</Link></li>
-        <li><Link href="/p1">Product page (Dynamic params example)</Link></li>
+        <li><Link href="/products/p1">Product page (Dynamic params example)</Link></li>
       </ul>
     </div>
   )
