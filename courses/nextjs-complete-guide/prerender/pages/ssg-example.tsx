@@ -1,6 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import { loadDataFromFileSystem } from '../utils';
+import { Product } from '../types';
 
 // getStaticProps() gets called first, if present
 // This is only executed on your machine when running "npm run build"
@@ -39,7 +40,7 @@ export default function SsgExamplePage({
   return (
     <div>
       <ul>
-        {products.map(p => <li key={p.id}>{p.title}</li>)}
+        {products.map((p: Product) => <li key={p.id}>{p.title}</li>)}
       </ul>
     </div>
   )
