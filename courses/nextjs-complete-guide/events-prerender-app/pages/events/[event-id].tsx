@@ -1,21 +1,18 @@
-import { useRouter } from 'next/router';
+import { GetStaticPropsContext } from 'next';
 
 import { EventContent } from '../../components/events/event-content/event-content';
 import EventLogistics from '../../components/events/event-logistics/event-logistics';
 import { EventSummary } from '../../components/events/event-summary/event-summary';
-import { getEventById } from '../../mock-data';
+import * as api from '../../api';
+import { LiveEvent } from '../../types';
 
-export default function EventDetailPage() {
+interface EventDetailPageProps {
+  event: LiveEvent;
+}
 
-  const router = useRouter();
-  const eventId = router.query['event-id'];
-  const event = getEventById(eventId as string);
-
-  if (!event) {
-    return (
-      <p>No event found with id <strong>{eventId}</strong></p>
-    );
-  }
+export default function EventDetailPage({
+  event,
+}: EventDetailPageProps) {
 
   return (
     <>
@@ -31,4 +28,20 @@ export default function EventDetailPage() {
       </EventContent>
     </>
   );
+}
+
+export async function getStaticProps(context: GetStaticPropsContext) {
+  const id = context.params!['event-id'];
+  if (!id) return { notFound: true };
+  const event: LiveEvent | null = await api.getEventById(id as string);
+  if (!event) return { notFound: true };
+  const props = { event } as EventDetailPageProps;
+  const ONE_MINUTE = 60;
+  return { props, revalidate: ONE_MINUTE };
+}
+
+export async function getStaticPaths() {
+  const featuredEvents = await api.getFeaturedEvents();
+  const paths = featuredEvents.map(ev => ({ params: { 'event-id': ev.id }}));
+  return { paths, fallback: 'blocking' };
 }

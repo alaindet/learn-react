@@ -22,7 +22,7 @@ router.get('/events', (req, res) => {
     events = events.filter(event => event.isFeatured);
   }
 
-  return res.send(events);
+  return res.send({ error: null, data: events });
 });
 
 router.get('/events/:id', (req, res) => {
@@ -30,7 +30,7 @@ router.get('/events/:id', (req, res) => {
 
   if (!id) {
     const error = 'No ID provided';
-    return res.send({ error, data: null });
+    return res.statusCode(400).send({ error, data: null });
   }
 
   const events = DATABASE.events;
@@ -38,7 +38,7 @@ router.get('/events/:id', (req, res) => {
 
   if (!event) {
     const error = `No event found with id ${id}`;
-    return res.send({ error, data: null });
+    return res.statusCode(404).send({ error, data: null });
   }
 
   return res.send({ error: null, data: event });

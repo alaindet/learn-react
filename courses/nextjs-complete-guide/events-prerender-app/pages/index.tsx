@@ -1,5 +1,5 @@
 import { InferGetStaticPropsType } from 'next';
-import { getFeaturedEvents } from '../api';
+import * as api from '../api';
 import { EventList } from '../components/events/event-list/event-list';
 import { LiveEvent } from '../types';
 
@@ -15,7 +15,8 @@ export default function HomePage({
 }
 
 export async function getStaticProps() {
-  const events: LiveEvent[] = await getFeaturedEvents();
+  const ONE_HOUR = 60 * 60;
+  const events: LiveEvent[] = await api.getFeaturedEvents();
   const props = { events };
-  return { props };
+  return { props, revalidate: ONE_HOUR };
 }

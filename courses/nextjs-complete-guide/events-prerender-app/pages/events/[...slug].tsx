@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { EventList } from '../../components/events/event-list/event-list';
-import { getFilteredEvents } from '../../mock-data';
-import { EventFilters } from '../../types';
+import * as api from '../../api';
+import { EventFilters, LiveEvent } from '../../types';
 
 function isInputValid(input: any): boolean {
   if (!input) return false;
@@ -37,7 +37,8 @@ export default function FilteredEventsPage() {
   }
 
   const filters = parseInput(router.query['slug']);
-  const events = getFilteredEvents(filters);
+  const events: LiveEvent[] = [];
+  // const events = getFilteredEvents(filters);
 
   let result: JSX.Element;
 
@@ -54,3 +55,19 @@ export default function FilteredEventsPage() {
     </div>
   );
 }
+
+// export async function getStaticProps(context: GetStaticPropsContext) {
+//   const id = context.params!['event-id'];
+//   if (!id) return { notFound: true };
+//   const event: LiveEvent | null = await api.getEventById(+id);
+//   if (!event) return { notFound: true };
+//   const props = { event } as EventDetailPageProps;
+//   return { props };
+// }
+
+// export async function getStaticPaths() {
+//   const events = await api.getAllEvents();
+//   const paths = events.map(ev => ({ params: { 'event-id': ev.id }}));
+//   const fallback = 'blocking';
+//   return { fallback, paths };
+// }
