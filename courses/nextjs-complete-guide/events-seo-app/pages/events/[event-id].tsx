@@ -1,4 +1,5 @@
 import { GetStaticPropsContext } from 'next';
+import Head from 'next/head';
 
 import { EventContent } from '../../components/events/event-content/event-content';
 import EventLogistics from '../../components/events/event-logistics/event-logistics';
@@ -16,6 +17,10 @@ export default function EventDetailPage({
 
   return (
     <>
+      <Head>
+        <title>{event.title}</title>
+        <meta name="description" content={event.description} />
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}

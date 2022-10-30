@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Head from 'next/head';
 
 import { EventList } from '../../components/events/event-list/event-list';
 import * as api from '../../api';
@@ -39,10 +40,16 @@ export default function FilteredEventsPage({
 
   if (!validInput) {
     return (
-      <div className="content-container">
-        <h1>Error</h1>
-        <p>No valid filters provided</p>
-      </div>
+      <>
+        <Head>
+          <title>Next Events - Filtered events</title>
+          <meta name="description" content="Invalid search" />
+        </Head>
+        <div className="content-container">
+          <h1>Error</h1>
+          <p>No valid filters provided</p>
+        </div>
+      </>
     );
   }
 
@@ -51,10 +58,19 @@ export default function FilteredEventsPage({
     : <EventList events={results} />; 
 
   return (
-    <div className="content-container">
-      <h1>Events happening on {filters?.year}/{filters?.month}</h1>
-      {resultsView}
-    </div>
+    <>
+      <Head>
+        <title>NexEvents - Filtered events</title>
+        <meta
+          name="description"
+          content={`Events happening on ${filters?.year}/${filters?.month}`}
+        />
+      </Head>
+      <div className="content-container">
+        <h1>Events happening on {filters?.year}/{filters?.month}</h1>
+        {resultsView}
+      </div>
+    </>
   );
 }
 

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { LiveEvent } from '../../../types';
 import { LinkButton } from '../../ui/button/link-button';
 import { DateIcon } from '../../icons/date-icon';
@@ -21,7 +23,13 @@ export function EventItem({ event }: EventItemProps) {
 
   return (
     <li className={css.item}>
-      <img className={css.image} src={`/${event.image}`} alt={event.title}/>
+      <Image
+        className={css.image}
+        src={`/${event.image}`}
+        alt={event.title}
+        width={250}
+        height={160}
+      />
       <div className={css.content}>
         <h2>{event.title}</h2>
         <time className={css.date}>

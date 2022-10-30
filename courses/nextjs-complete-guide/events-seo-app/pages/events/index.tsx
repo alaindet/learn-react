@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import { EventList } from '../../components/events/event-list/event-list';
 import { EventsSearch } from '../../components/events/events-search/events-search';
@@ -19,11 +20,17 @@ export default function EventsPage({ events }: EventsPageProps) {
   }
 
   return (
-    <div className="content-container">
-      <h1>Events</h1>
-      <EventsSearch onSearch={handleSearchFilters} />
-      <EventList events={events} />
-    </div>
+    <>
+      <Head>
+        <title>Next Events - All Events</title>
+        <meta name="description" content="Here is a list of all events" />
+      </Head>
+      <div className="content-container">
+        <h1>Events</h1>
+        <EventsSearch onSearch={handleSearchFilters} />
+        <EventList events={events} />
+      </div>
+    </>
   );
 }
 
