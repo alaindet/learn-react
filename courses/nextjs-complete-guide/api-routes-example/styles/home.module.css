@@ -1,0 +1,9 @@
+.form-control {
+  margin: 1rem 0;
+}
+
+.form-control label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
