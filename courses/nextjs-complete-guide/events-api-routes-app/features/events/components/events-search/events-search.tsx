@@ -1,12 +1,12 @@
 import { FormEvent, useRef } from 'react';
 
-import { EventFilters } from '@/types';
-import { Button } from '@/components/ui/button/button';
+import { Button } from '@/common/components/ui';
+import { LiveEventFilters } from '../../types';
 import { YEARS, MONTHS } from './options';
 import css from './events-search.module.css';
 
 interface EventsSearchProps {
-  onSearch: (filters: EventFilters) => void;
+  onSearch: (filters: LiveEventFilters) => void;
 }
 
 export function EventsSearch({ onSearch }: EventsSearchProps) {
@@ -22,7 +22,7 @@ export function EventsSearch({ onSearch }: EventsSearchProps) {
     // TODO: Validation
     if (!year || !month) return;
 
-    const filters: EventFilters = {
+    const filters: LiveEventFilters = {
       year: +year,
       month: +month,
     };

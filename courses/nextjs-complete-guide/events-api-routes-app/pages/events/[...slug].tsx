@@ -2,8 +2,7 @@ import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
 
-import { LiveEvent, LiveEventFilters, getFilteredEvents } from '@/features/events';
-import { EventList } from '@/components/events/event-list/event-list';
+import { LiveEvent, EventList, LiveEventFilters, getFilteredEvents } from '@/features/events';
 
 interface FilteredEventsPageProps {
   validInput: boolean;
@@ -34,7 +33,7 @@ export default function FilteredEventsPage({
 
   const resultsView = !results.length
     ? <p>No events found, go back to <Link href="/events">all events</Link></p>
-    : <EventList events={results} />; 
+    : <EventList events={results} />;
 
   return (
     <>
@@ -73,7 +72,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 function isInputValid(input: any): boolean {
   if (!input) return false;
   if (input?.length !== 2) return false;
-  
+
   const year = +input[0];
   if (isNaN(year) || year < 2000 || year > 3000) return false;
 

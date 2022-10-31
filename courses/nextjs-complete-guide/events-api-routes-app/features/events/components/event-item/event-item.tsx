@@ -1,10 +1,8 @@
 import Image from 'next/image';
 
-import { LiveEvent } from '@/types';
-import { LinkButton } from '@/components/ui/button/link-button';
-import { DateIcon } from '@/components/icons/date-icon';
-import { AddressIcon } from '@/components/icons/address-icon';
-import { ArrowRightIcon } from '@/components/icons/arrow-right-icon';
+import { LiveEvent } from '../../types';
+import { LinkButton } from '@/common/components/ui';
+import { DateIcon, AddressIcon, ArrowRightIcon } from '@/common/components/icons';
 import css from './event-item.module.css';
 
 interface EventItemProps {

@@ -1,9 +1,8 @@
 import { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 
-import { LiveEvent, getFeaturedEvents } from '@/features/events';
-import { EventList } from '@/components/events/event-list/event-list';
-import { NewsletterRegistration } from '@/components/input/newsletter-registration/newsletter-registration';
+import { LiveEvent, EventList, getFeaturedEvents } from '@/features/events';
+import { NewsletterRegistration } from '@/common/components/input';
 
 export default function HomePage({
   events,

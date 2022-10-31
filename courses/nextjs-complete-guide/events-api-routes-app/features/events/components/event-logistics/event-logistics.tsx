@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
-import { AddressIcon } from '@/components/icons/address-icon';
-import { DateIcon } from '@/components/icons/date-icon';
+import { AddressIcon, DateIcon } from '@/common/components/icons';
 import { EventLogisticsItem } from '../event-logistics-item/event-logistics-item';
 import css from './event-logistics.module.css';
 
@@ -18,7 +17,7 @@ interface EventLogisticsProps {
   imageAlt: string;
 }
 
-function EventLogistics({
+export function EventLogistics({
   date,
   address,
   image,
@@ -52,5 +51,3 @@ function EventLogistics({
     </section>
   );
 }
-
-export default EventLogistics;

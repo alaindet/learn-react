@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import { TheLayout } from '@/components/layout/layout';
+import { TheLayout } from '@/common/components/layout';
 import '@/styles/globals.css';
 
 // This is the app shell

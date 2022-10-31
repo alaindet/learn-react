@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Comment } from '@/types';
+import { Comment } from '@/features/comments';
 import { CommentList } from '../comment-list/comment-list';
 import { NewComment } from '../new-comment/new-comment';
 import css from './comments.module.css';
@@ -17,7 +17,7 @@ export function Comments({ eventId }: CommentsProps) {
     setShowComments(show => !show);
   }
 
-  function addCommentHandler(comment: Comment) {
+  async function addCommentHandler(commentData: Partial<Comment>) {
     // send data to API
   }
 
@@ -26,8 +26,17 @@ export function Comments({ eventId }: CommentsProps) {
       <button type="button" onClick={toggleCommentsHandler}>
         {showComments ? 'Hide' : 'Show'} Comments
       </button>
-      {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList />}
+
+      {showComments && (
+        <>
+          <NewComment onAddComment={addCommentHandler} />
+          <CommentList />
+        </>
+      )}
     </section>
   );
+}
+
+async function fetchComments(): Promise<Comment[]> {
+  // Call API route
 }
