@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import * as api from '@/api';
-import { EventFilters, LiveEvent } from '@/types';
+import { LiveEvent, LiveEventFilters, getAllEvents } from '@/features/events';
 import { EventList } from '@/components/events/event-list/event-list';
 import { EventsSearch } from '@/components/events/events-search/events-search';
 
@@ -14,7 +13,7 @@ export default function EventsPage({ events }: EventsPageProps) {
 
   const router = useRouter();
 
-  function handleSearchFilters(filters: EventFilters) {
+  function handleSearchFilters(filters: LiveEventFilters) {
     const { year, month } = filters;
     router.push(`/events/${year}/${month}`);
   }
@@ -36,7 +35,7 @@ export default function EventsPage({ events }: EventsPageProps) {
 
 export async function getStaticProps() {
   const ONE_HOUR = 60 * 60;
-  const events: LiveEvent[] = await api.getAllEvents();
+  const events: LiveEvent[] = await getAllEvents();
   const props = { events } as EventsPageProps;
   return { props, revalidate: ONE_HOUR };
 }

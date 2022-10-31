@@ -1,11 +1,11 @@
 import { GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 
-import * as api from '@/api';
-import { LiveEvent } from '@/types';
+import { LiveEvent, getFeaturedEvents, getEventById } from '@/features/events';
 import { EventContent } from '@/components/events/event-content/event-content';
 import EventLogistics from '@/components/events/event-logistics/event-logistics';
 import { EventSummary } from '@/components/events/event-summary/event-summary';
+import { Comments } from '@/components/input/comments/comments';
 
 interface EventDetailPageProps {
   event: LiveEvent;
@@ -31,6 +31,7 @@ export default function EventDetailPage({
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id} />
     </>
   );
 }
@@ -38,7 +39,7 @@ export default function EventDetailPage({
 export async function getStaticProps(context: GetStaticPropsContext) {
   const id = context.params!['event-id'];
   if (!id) return { notFound: true };
-  const event: LiveEvent | null = await api.getEventById(id as string);
+  const event: LiveEvent | null = await getEventById(id as string);
   if (!event) return { notFound: true };
   const props = { event } as EventDetailPageProps;
   const ONE_MINUTE = 60;
@@ -46,7 +47,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 export async function getStaticPaths() {
-  const featuredEvents = await api.getFeaturedEvents();
+  const featuredEvents = await getFeaturedEvents();
   const paths = featuredEvents.map(ev => ({ params: { 'event-id': ev.id }}));
   return { paths, fallback: 'blocking' };
 }
