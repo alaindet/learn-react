@@ -1,18 +1,25 @@
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useContext, useRef } from 'react';
 
+import { NotificationContext } from '@/core/context';
 import { postJson, validateEmail } from '@/common/utils';
 import css from './newsletter-registration.module.css';
 
 export function NewsletterRegistration() {
 
+  const notification = useContext(NotificationContext);
   const emailRef = useRef<HTMLInputElement | null>(null);
 
   async function handleSubscription(event: FormEvent) {
     event.preventDefault();
-    const email = emailRef.current?.value ?? '';
-    if (!email || !validateEmail(email)) alert('Invalid email');
-    await postJson('/api/newsletter', { email });
-    alert('You subscribed to NextEvents');
+    try {
+      notification.pending('Loading', 'Subscribing to the newsletter...');
+      const email = emailRef.current?.value ?? '';
+      if (!email || !validateEmail(email)) alert('Invalid email');
+      await postJson('/api/newsletter', { email });
+      notification.success('Success', 'You subscribed to NextEvents newsletter');
+    } catch (err) {
+      notification.error('Error', 'Could not subscribe to NextEvents newsletter');
+    }
   }
 
   return (
