@@ -1,6 +1,6 @@
 import { getRandomHash } from '@/common/utils';
 import { eventsRepository } from './repository';
-import { CreateLiveEventRequest, LiveEvent, LiveEventFilters } from './types';
+import { CreateLiveEventRequest, LiveEvent, LiveEventFilters } from '../types';
 
 export async function getAllEvents(): Promise<LiveEvent[]> {
   return await eventsRepository.getItems();

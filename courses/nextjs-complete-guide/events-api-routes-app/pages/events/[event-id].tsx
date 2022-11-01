@@ -1,7 +1,8 @@
 import { GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 
-import { LiveEvent, EventContent, EventLogistics, EventSummary, getFeaturedEvents, getEventById } from '@/features/events';
+import { LiveEvent, EventContent, EventLogistics, EventSummary } from '@/features/events';
+import { getFeaturedEvents, getEventById } from '@/features/events/server';
 import { Comments } from '@/common/components/input';
 
 interface EventDetailPageProps {

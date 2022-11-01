@@ -1,31 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { createSubscription } from '@/features/newsletter';
+import { createSubscription } from '@/features/newsletter/server';
+import { badRequest, createResponse, methodNotAllowed, validateEmail } from '@/common/utils';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'POST':
       return handleSubscribeToNewsletter(req, res);
     default:
-      return res.status(405).send({ message: 'Method Not Allowed', data: null });
+      return methodNotAllowed(res);
   }
 }
 
 async function handleSubscribeToNewsletter(req: NextApiRequest, res: NextApiResponse) {
 
-  if (!req.query.email) {
-    return res.status(400).send({
-      message: 'No valid email provided',
-      data: null,
-    });
+  if (!req.body.email || !validateEmail(req.body.email as string)) {
+    return badRequest(res, 'No valid email provided');
   }
 
-  const email = req.query.email as string;
+  const email = req.body.email as string;
   const request = { email };
   const subscription = await createSubscription(request);
 
-  return res.status(201).send({
-    message: '',
-    data: subscription
-  });
+  const message = 'You subscribed to the NextEvents newsletter';
+  return res.status(201).send(createResponse(message, subscription));
 }

@@ -1,24 +1,19 @@
+import { Comment } from '@/features/comments';
 import css from './comment-list.module.css';
 
-export function CommentList() {
+interface CommentListProps {
+  comments: Comment[];
+}
+
+export function CommentList({ comments }: CommentListProps) {
   return (
     <ul className={css.comments}>
-      {/* Render list of comments - fetched from API */}
-      
-      <li>
-        <p>My comment is amazing!</p>
-        <div>
-          By <address>Maximilian</address>
-        </div>
-      </li>
-
-      <li>
-        <p>My comment is amazing!</p>
-        <div>
-          By <address>Maximilian</address>
-        </div>
-      </li>
-
+      {comments.map(comment => (
+        <li key={comment.id}>
+          <p>{comment.text}</p>
+          <div>By <address>{comment.name} &lt;{comment.email}&gt;</address></div>
+        </li>
+      ))}
     </ul>
   );
 }

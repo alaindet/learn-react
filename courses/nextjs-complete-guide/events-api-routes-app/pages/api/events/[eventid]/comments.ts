@@ -1,6 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { createComment, CreateCommentRequest } from '@/features/comments';
+import { CreateCommentRequest } from '@/features/comments';
+import { createComment, getCommentsByEventId } from '@/features/comments/server';
+import { getEventById } from '@/features/events/server';
+import { createResponse, badRequest, methodNotAllowed, notFound } from '@/common/utils';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
@@ -9,29 +12,39 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     case 'POST':
       return handleCreateNewCommentOnEvent(req, res);
     default:
-      return res.status(405).send({ message: 'Method Not Allowed', data: null });
+      return methodNotAllowed(res);
   }
 }
 
 async function handleGetCommentsByEvent(req: NextApiRequest, res: NextApiResponse) {
-  // TODO: Validation
+  if (!req.query.eventid) {
+    return badRequest(res, 'No event ID provided');
+  }
+  const eventId = req.query.eventid as string;
+  const comments = await getCommentsByEventId(eventId);
+  const message = `Comments created on event ${eventId}`;
+  return res.status(200).send(createResponse(message, comments));
 }
 
 async function handleCreateNewCommentOnEvent(req: NextApiRequest, res: NextApiResponse) {
 
-  // TODO: Validation
+  const eventId = req.query?.eventid as string;
+  const email = req.body?.email as string;
+  const name = req.body?.name as string;
+  const text = req.body?.text as string;
+  const validate = (x: any) => !!x && !Array.isArray(x) && x.trim() !== '';
 
-  const request: CreateCommentRequest = {
-    eventId: req.query.eventId as string,
-    email: req.query.email as string,
-    name: req.query.name as string,
-    text: req.query.text as string,
-  };
+  const event = await getEventById(eventId);
+  if (!event) {
+    return notFound(res, `Event with ID "${eventId}" not found`);
+  }
 
+  if (!validate(eventId) || !validate(email) || !validate(name) || !validate(text)) {
+    return badRequest(res, 'Invalid input. Cannot create comment');
+  }
+
+  const request: CreateCommentRequest = { eventId, email, name, text };
   const comment = await createComment(request);
-
-  return res.status(201).send({
-    message: `Comment created on event ${comment.eventId}`,
-    data: comment,
-  });
+  const message = `Comment created on event "${event.title}"`;
+  return res.status(201).send(createResponse(message, comment));
 }

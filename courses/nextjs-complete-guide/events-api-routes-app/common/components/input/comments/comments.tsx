@@ -1,42 +1,52 @@
 import { useState } from 'react';
 
-import { Comment } from '@/features/comments';
+import { getJson, postJson } from '@/common/utils';
+import { Comment, CommentData, CreateCommentRequest } from '@/features/comments';
+import { LiveEvent } from '@/features/events';
 import { CommentList } from '../comment-list/comment-list';
 import { NewComment } from '../new-comment/new-comment';
 import css from './comments.module.css';
 
 interface CommentsProps {
-  eventId: string;
+  eventId: LiveEvent['id'];
 }
 
 export function Comments({ eventId }: CommentsProps) {
 
   const [showComments, setShowComments] = useState(false);
+  const [comments, setComments] = useState<Comment[]>([]);
 
-  function toggleCommentsHandler() {
-    setShowComments(show => !show);
+  async function handleToggleComments() {
+    setShowComments(show => {
+      const willShow = !show;
+      if (willShow && !comments.length) fetchComments();
+      return willShow;
+    });
   }
 
-  async function addCommentHandler(commentData: Partial<Comment>) {
-    // send data to API
+  async function fetchComments() {
+    const res = await getJson(`/api/events/${eventId}/comments`);
+    setComments(res.data.reverse());
+  }
+
+  async function handleAddComment(commentData: CommentData) {
+    const payload: CreateCommentRequest = { eventId, ...commentData };
+    const comment = await postJson(`/api/events/${eventId}/comments`, payload);
+    setComments(comments => [...comments, comment.data].reverse());
   }
 
   return (
     <section className={css.comments}>
-      <button type="button" onClick={toggleCommentsHandler}>
+      <button type="button" onClick={handleToggleComments}>
         {showComments ? 'Hide' : 'Show'} Comments
       </button>
 
       {showComments && (
         <>
-          <NewComment onAddComment={addCommentHandler} />
-          <CommentList />
+          <NewComment onAddComment={handleAddComment} />
+          <CommentList comments={comments} />
         </>
       )}
     </section>
   );
-}
-
-async function fetchComments(): Promise<Comment[]> {
-  // Call API route
 }

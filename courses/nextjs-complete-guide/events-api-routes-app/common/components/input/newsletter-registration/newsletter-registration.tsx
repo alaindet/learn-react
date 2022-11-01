@@ -1,5 +1,6 @@
 import { FormEvent, useRef } from 'react';
 
+import { postJson, validateEmail } from '@/common/utils';
 import css from './newsletter-registration.module.css';
 
 export function NewsletterRegistration() {
@@ -9,10 +10,8 @@ export function NewsletterRegistration() {
   async function handleSubscription(event: FormEvent) {
     event.preventDefault();
     const email = emailRef.current?.value ?? '';
-    if (!email) return;
-    // TODO: Validate email...
-    await subscribeToNewsletter(email);
-    // TODO: Alert
+    if (!email || !validateEmail(email)) alert('Invalid email');
+    await postJson('/api/newsletter', { email });
     alert('You subscribed to NextEvents');
   }
 
@@ -33,13 +32,4 @@ export function NewsletterRegistration() {
       </form>
     </section>
   );
-}
-
-async function subscribeToNewsletter(email: string): Promise<void> {
-  const rawResponse = await fetch('/api/newsletter', {
-    method: 'post',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email }),
-  });
-  return await rawResponse.json();
 }

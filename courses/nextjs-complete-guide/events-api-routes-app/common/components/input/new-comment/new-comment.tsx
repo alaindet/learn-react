@@ -1,10 +1,10 @@
 import { useRef, useState, FormEvent } from 'react';
 
-import { Comment } from '@/features/comments';
+import { CommentData } from '@/features/comments';
 import css from './new-comment.module.css';
 
 interface NewCommentProps {
-  onAddComment: (partialComment: Partial<Comment>) => void;
+  onAddComment: (commentData: CommentData) => void;
 }
 
 export function NewComment({ onAddComment }: NewCommentProps) {

@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import { LiveEvent, LiveEventFilters, EventList, EventsSearch, getAllEvents } from '@/features/events';
+import { LiveEvent, LiveEventFilters, EventList, EventsSearch } from '@/features/events';
+import { getAllEvents } from '@/features/events/server';
 
 interface EventsPageProps {
   events: LiveEvent[];

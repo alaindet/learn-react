@@ -2,7 +2,8 @@ import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
 
-import { LiveEvent, EventList, LiveEventFilters, getFilteredEvents } from '@/features/events';
+import { LiveEvent, EventList, LiveEventFilters } from '@/features/events';
+import { getFilteredEvents } from '@/features/events/server';
 
 interface FilteredEventsPageProps {
   validInput: boolean;

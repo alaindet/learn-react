@@ -8,6 +8,12 @@ export interface Comment {
   text: string;
 }
 
+export interface CommentData {
+  email: string;
+  name: string;
+  text: string;
+}
+
 export interface CreateCommentRequest {
   eventId: LiveEvent['id'];
   email: string;

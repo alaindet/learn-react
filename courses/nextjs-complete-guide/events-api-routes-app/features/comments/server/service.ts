@@ -1,8 +1,8 @@
 import { getRandomHash } from '@/common/utils';
 import { commentsRepository } from './repository';
-import { Comment, CreateCommentRequest } from './types';
+import { Comment, CreateCommentRequest } from '../types';
 
-export async function getCommentsByEvent(eventId: Comment['eventId']): Promise<Comment[]> {
+export async function getCommentsByEventId(eventId: Comment['eventId']): Promise<Comment[]> {
   return await commentsRepository.getFilteredItems(item => item.eventId === eventId);
 }
 

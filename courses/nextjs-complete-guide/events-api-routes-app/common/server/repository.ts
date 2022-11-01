@@ -23,7 +23,7 @@ export class Repository<T extends { [prop: string]: any }> {
 
   async getItemById(id: string): Promise<T | null> {
     const index = this.ids[id] ?? null;
-    if (!index) return null;
+    if (index === undefined) return null;
     return this.items[index] ?? null;
   }
 
