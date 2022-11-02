@@ -62,3 +62,15 @@ button {
   font: inherit;
   cursor: pointer;
 }
+
+.content-container {
+  display: block;
+  width: min(1024px, 90vw);
+  margin: 0 auto;
+}
+
+.content-container-breaker {
+  display: block;
+  width: 100vw;
+  margin: 0 calc(-0.5 * (100vw - min(1024px, 90vw)));
+}
