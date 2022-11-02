@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,700;1,700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,500,700;1,700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
 
 * {
   box-sizing: border-box;
@@ -52,6 +52,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Merriweather Sans', sans-serif;
+  font-weight: bold;
 }
 
 a {
@@ -64,13 +65,11 @@ button {
 }
 
 .content-container {
-  display: block;
   width: min(1024px, 90vw);
   margin: 0 auto;
 }
 
 .content-container-breaker {
-  display: block;
   width: 100vw;
   margin: 0 calc(-0.5 * (100vw - min(1024px, 90vw)));
 }
