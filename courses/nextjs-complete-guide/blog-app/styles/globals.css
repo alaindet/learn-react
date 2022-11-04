@@ -43,11 +43,16 @@ body {
   --size-16:  4.00rem;
   --size-20:  5.00rem;
   --size-40: 10.00rem;
+  --size-container: min(1024px, 90vw);
 
   margin: 0;
   background-color: var(--color-grey-100);
   color: #303030;
   font-family: 'Merriweather', serif;
+  font-size: 18px;
+
+  /* Accounts for scrollbar */
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -65,11 +70,13 @@ button {
 }
 
 .content-container {
-  width: min(1024px, 90vw);
+  width: var(--size-container);
   margin: 0 auto;
 }
 
 .content-container-breaker {
-  width: 100vw;
-  margin: 0 calc(-0.5 * (100vw - min(1024px, 90vw)));
+  margin: 0 calc(-0.5 * (100vw - var(--size-container)));
+  
+  /* Accounts for scrollbar */
+  /* margin: 0 calc(-0.5 * (100vw - var(--size-container) - 16px)); */
 }
