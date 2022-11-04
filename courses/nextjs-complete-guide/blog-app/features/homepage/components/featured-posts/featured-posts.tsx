@@ -1,9 +1,16 @@
+import { PostsGrid } from '@/common/components/posts';
+import { BlogPost } from '@/common/types';
 import css from './featured-posts.module.css';
 
-export function FeaturedPosts() {
+interface FeaturedPostsProps {
+  posts: BlogPost[];
+}
+
+export function FeaturedPosts({ posts }: FeaturedPostsProps) {
   return (
-    <div className={css['featured-posts']}>
-      featured posts
-    </div>
+    <section className={css['featured-posts']}>
+      <h2>Featured Posts</h2>
+      <PostsGrid posts={posts} />
+    </section>
   );
 }
