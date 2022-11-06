@@ -4,4 +4,11 @@ export interface BlogPost {
   excerpt: string;
   date: number; // Unix timestamp
   slug: string;
+  isFeatured: boolean;
+}
+
+type MarkdownString = string;
+
+export interface FullBlogPost extends BlogPost {
+  content: MarkdownString;
 }
