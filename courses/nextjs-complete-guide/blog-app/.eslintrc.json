@@ -1,13 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "@typescript-eslint/quotes": [
-      "error",
-      "single",
-      {
-        "avoidEscape": true,
-        "allowTemplateLiterals": true
-      }
-    ]
+    "quotes": [2, "single", { "avoidEscape": true }]
   }
 }
