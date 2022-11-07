@@ -1,7 +1,7 @@
 ---
 title: 'My first post'
 date: '2022-11-06'
-image: 'first.jpg'
+image: 'cover.jpg'
 excerpt: 'The excerpt of my first post'
 isFeatured: true
 ---
@@ -17,3 +17,5 @@ Fugiat ex **voluptate** sit voluptate *eiusmod non*. Consequat _velit dolore eli
 Laborum id nostrud ipsum adipisicing Lorem laborum consequat. Minim in magna adipisicing sunt qui enim aute anim laboris elit sit. Voluptate excepteur est tempor Lorem culpa eu id. Minim veniam elit minim consectetur proident magna ad adipisicing cillum proident cupidatat consectetur nostrud. Est ex sit ea eu est. Laborum tempor in laborum et esse quis sint. Ex Lorem duis anim sunt elit ex commodo consectetur veniam laboris ullamco incididunt nulla.
 
 Here is a [link](https://www.google.com)
+
+Here is an image instead ![A giraffe hiking](giraffe.png)
