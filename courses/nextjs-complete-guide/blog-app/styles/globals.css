@@ -69,6 +69,10 @@ button {
   cursor: pointer;
 }
 
+input, textarea, button {
+  font-family: 'Merriweather Sans', sans-serif !important;
+}
+
 .content-container {
   width: var(--size-container);
   margin: 0 auto;
@@ -76,7 +80,7 @@ button {
 
 .content-container-breaker {
   margin: 0 calc(-0.5 * (100vw - var(--size-container)));
-  
+
   /* Accounts for scrollbar */
   /* margin: 0 calc(-0.5 * (100vw - var(--size-container) - 16px)); */
 }
