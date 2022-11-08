@@ -3,13 +3,22 @@ import { GetStaticPropsContext } from 'next';
 import { PostContent } from '@/common/components/posts';
 import { getFeaturedPosts, getPost } from '@/common/utils';
 import { FullBlogPost } from '@/common/types';
+import Head from 'next/head';
 
 interface PostPageProps {
   post: FullBlogPost;
 }
 
 export default function PostPage({ post }: PostPageProps) {
-  return <PostContent post={post} />;
+  return (
+    <>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="description" content={post.excerpt} />
+      </Head>
+      <PostContent post={post} />
+    </>
+  );
 }
 
 export function getStaticProps(context: GetStaticPropsContext) {

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Head from 'next/head';
 
 import { httpPost } from '@/common/http';
 import { ContactForm, ContactFormData } from '@/common/components/contact-form/contact-form';
@@ -57,7 +58,11 @@ export default function ContactPage() {
   }
 
   return (
-    <div>
+    <>
+      <Head>
+        <title>Contact</title>
+        <meta name="description" content="Contact me via this form" />
+      </Head>
       <h1>Contact page</h1>
       <ContactForm onSubmit={handleFormSubmit} />
       {!!notif && (
@@ -68,6 +73,6 @@ export default function ContactPage() {
           onDismiss={handleNotificationDismiss}
         />
       )}
-    </div>
+    </>
   );
 }

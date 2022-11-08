@@ -1,3 +1,5 @@
+import { createPortal } from 'react-dom';
+
 import css from './notification.module.css';
 
 interface NotificationProps {
@@ -24,6 +26,7 @@ export function Notification({
     statusCss = css.error;
   }
 
+  // TODO
   return (
     <div className={`${css.notification} ${statusCss}`} onClick={onDismiss}>
       <h2>{title}</h2>

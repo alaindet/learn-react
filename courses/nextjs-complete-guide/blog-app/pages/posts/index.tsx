@@ -1,3 +1,5 @@
+import Head from 'next/head';
+
 import { AllPosts } from '@/common/components/all-posts/all-posts';
 import { FullBlogPost } from '@/common/types';
 import { getPosts } from '@/common/utils';
@@ -8,9 +10,13 @@ interface PostsPageProps {
 
 export default function PostsPage({ posts }: PostsPageProps) {
   return (
-    <div>
+    <>
+      <Head>
+        <title>All posts</title>
+        <meta name="description" content="A list of all posts in this blog" />
+      </Head>
       <AllPosts posts={posts} />
-    </div>
+    </>
   );
 }
 
