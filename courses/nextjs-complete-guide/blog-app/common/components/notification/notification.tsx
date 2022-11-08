@@ -27,10 +27,13 @@ export function Notification({
   }
 
   // TODO
-  return (
-    <div className={`${css.notification} ${statusCss}`} onClick={onDismiss}>
-      <h2>{title}</h2>
-      <p>{message}</p>
-    </div>
+  return createPortal(
+    (
+      <div className={`${css.notification} ${statusCss}`} onClick={onDismiss}>
+        <h2>{title}</h2>
+        <p>{message}</p>
+      </div>
+    ),
+    document.getElementById('notifications')!,
   );
 }
