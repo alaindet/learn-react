@@ -4,7 +4,7 @@
 
 This repository contains the learning material, demo, tests and everything I use to learn React
 
-## References
+## Courses
 
 - React - The Complete Guide (incl Hooks, React Router, Redux)
   - **Course**: [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux)
@@ -25,3 +25,7 @@ This repository contains the learning material, demo, tests and everything I use
 - Node.js and React: Build a complete web chat application
   - **Course** [Node.js and React: Build a complete web chat application](https://www.udemy.com/course/build-a-complete-web-chat-application-with-nodejs-and-react/)
   - **Teacher** [Dino Numić](https://www.udemy.com/user/dino-numic/)
+
+- Testing React with Jest and React Testing Library (RTL)
+  - **Course** [Testing React with Jest and React Testing Library (RTL)](https://www.udemy.com/course/react-testing-library)
+  - **Teacher** [Bonnie Schulkin](https://www.udemy.com/user/bonnie-schulkin/)

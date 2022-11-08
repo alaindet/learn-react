@@ -1,0 +1,43 @@
+.app {
+  margin: 2rem auto;
+  max-width: 500px;
+  padding: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 1rem;
+}
+
+.app #the-button {
+  padding: 0.5rem 1rem;
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  transition: 0.2s background-color ease-out;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.app #the-button.-red {
+  background-color: #cf0a38;
+}
+
+.app #the-button.-red:hover {
+  background-color: #9f082b;
+}
+
+.app #the-button.-blue {
+  background-color: #0a38cf;
+}
+
+.app #the-button.-blue:hover {
+  background-color: #0e32aa;
+}
+
+.app #the-button:disabled {
+  background-color: #cccccc !important;
+  color: #666;
+  pointer-events: none;
+}
+
+.app label {
+  cursor: pointer;
+}
