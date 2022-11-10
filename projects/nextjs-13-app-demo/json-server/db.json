@@ -1,0 +1,16 @@
+{
+  "issues": [
+    {
+      "id": 1,
+      "title": "The first issue",
+      "summary": "The summary of the first issue",
+      "description": "A very long and useless description of the first issue"
+    },
+    {
+      "id": 2,
+      "title": "The second issue",
+      "summary": "The summary of the second issue",
+      "description": "A very long and useless description of the second issue"
+    }
+  ]
+}
