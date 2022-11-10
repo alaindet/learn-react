@@ -1,6 +1,7 @@
 import { Issue } from '@/types';
 import Link from 'next/link';
-import css from './issues-list-item.module.css';
+
+import css from './issue-list-item.module.css';
 
 interface IssueListItemProps {
   issue: Issue;
