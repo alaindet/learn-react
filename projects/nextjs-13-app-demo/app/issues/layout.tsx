@@ -6,6 +6,7 @@ import css from './layout.module.css';
 
 export default async function IssuesLayout({ children }: { children: ReactNode }) {
 
+  // TODO: Is this SSG or SSR?
   const issues = await getIssues();
 
   return (
@@ -22,6 +23,5 @@ async function getIssues(): Promise<Issue[]> {
   const url = 'http://localhost:3001/issues';
   const rawRes = await fetch(url);
   const data = await rawRes.json();
-  console.log('getIssues', data);
   return data as Issue[];
 }

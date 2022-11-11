@@ -1,6 +1,6 @@
 
 import { Issue } from '@/types';
-import css from './IssueDetails.module.css';
+import css from './issue-details.module.css';
 
 interface IssueDetailsProps {
   issue: Issue;
