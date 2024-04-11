@@ -1,0 +1,23 @@
+.input {
+  --_padding: 0.5rem 1rem;
+  --_font-size: 1rem;
+
+  padding: var(--_padding);
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: var(--_font-size);
+}
+
+.input.--size-small {
+  --_padding: 0.25rem 0.75rem;
+  --_font-size: 0.95rem;
+}
+
+.input.--size-medium {
+  --_padding: 0.5rem 1rem;
+}
+
+.input.--size-large {
+  --_padding: 1rem 1.25rem;
+  --_font-size: 1.2rem;
+}
