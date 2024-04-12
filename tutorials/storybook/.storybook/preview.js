@@ -1,5 +1,8 @@
-/** @type { import('@storybook/react').Preview } */
-const preview = {
+import React from 'react';
+
+import { Centered } from '../src/components/centered/Centered';
+
+export default {
   parameters: {
     controls: {
       matchers: {
@@ -10,4 +13,11 @@ const preview = {
   },
 };
 
-export default preview;
+// These are global decorators
+export const decorators = [
+  Story => (
+    <Centered>
+      <Story />
+    </Centered>
+  ),
+];

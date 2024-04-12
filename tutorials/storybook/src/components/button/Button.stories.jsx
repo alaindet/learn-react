@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Button } from './Button';
+import { Centered } from '../centered/Centered';
 
 /**
  * This is a CSF (Component Story File)
@@ -16,6 +18,12 @@ export default {
   args: {
     children: 'Default content',
   },
+
+  // This defines decorators, which are components wrapping every story declared here
+  // We moved the decorator at the global level so that it is not necessary here
+  // decorators: [
+  //   story => <Centered>{story}</Centered>,
+  // ],
 };
 
 // Storybook v6+
