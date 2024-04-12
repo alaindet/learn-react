@@ -1,0 +1,32 @@
+.button {
+  --_color-background: black;
+  --_color-text: white;
+
+  border: none;
+  color: var(--_color-text);
+  padding: 1rem 2rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background-color: var(--_color-background);
+}
+
+.button.primary {
+  --_color-background: #008cba;
+}
+
+.button.secondary {
+  --_color-background: #e7e7e7;
+  --_color-text: black;
+}
+
+.button.success {
+  --_color-background: #4caf50;
+}
+
+.button.danger {
+  --_color-background: #f44336;
+}
